@@ -42,7 +42,13 @@ module.exports.routes = {
     view: 'comentario/nuevo',
     controller: 'ComentarioController',
     action: 'new'
+  },
+  '/usuario/nuevo': {
+    view: 'usuario/nuevo',
+    controller: 'UsuarioController',
+    action: 'nuevo'
   }
+
 
   /***************************************************************************
   *                                                                          *

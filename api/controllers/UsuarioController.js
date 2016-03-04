@@ -6,6 +6,9 @@
  */
 
 module.exports = {
-	
-};
 
+  nuevo: function(req, res) {
+    res.view('/usuario/nuevo');
+  }
+
+};
