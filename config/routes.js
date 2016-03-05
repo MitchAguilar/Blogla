@@ -33,7 +33,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    view: 'homepage/homepage'
   },
   '/index': {
     view: 'index'
@@ -41,7 +41,7 @@ module.exports.routes = {
   '/comentario/nuevo': {
     view: 'comentario/nuevo',
     controller: 'ComentarioController',
-    action: 'new'
+    action: 'nuevo'
   },
   '/usuario/nuevo': {
     view: 'usuario/nuevo',

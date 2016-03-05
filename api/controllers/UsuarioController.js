@@ -8,7 +8,10 @@
 module.exports = {
 
   nuevo: function(req, res) {
-    res.view('/usuario/nuevo');
+    res.view();
+  },
+  show: function(req, res) {
+    res.view();
   }
 
 };
