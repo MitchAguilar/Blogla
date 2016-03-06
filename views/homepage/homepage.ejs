@@ -1,429 +1,1147 @@
-<!-- Default home page -->
-<script src="/js/controllers_angular/ControllerHomePage.js" charset="utf-8"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]> <script src="js/html5shiv.js"></script> <script src="js/respond.min.js"></script> <![endif]-->
+<script type="text/javascript">
+  try {
+    window.AG_onLoad = function(func) {
+      if (window.addEventListener) {
+        window.addEventListener('DOMContentLoaded', func);
+      }
+    };
+    window.AG_removeElementById = function(id) {
+      var element = document.getElementById(id);
+      if (element && element.parentNode) {
+        element.parentNode.removeChild(element);
+      }
+    };
+    window.AG_removeElementBySelector = function(selector) {
+      if (!document.querySelectorAll) {
+        return;
+      }
+      var nodes = document.querySelectorAll(selector);
+      if (nodes) {
+        for (var i = 0; i < nodes.length; i++) {
+          if (nodes[i] && nodes[i].parentNode) {
+            nodes[i].parentNode.removeChild(nodes[i]);
+          }
+        }
+      }
+    };
+    window.AG_each = function(selector, fn) {
+      if (!document.querySelectorAll)
+        return;
+      var elements = document.querySelectorAll(selector);
+      for (var i = 0; i < elements.length; i++) {
+        fn(elements[i]);
+      };
+    };
+    var AG_removeParent = function(el, fn) {
+      while (el && el.parentNode) {
+        if (fn(el)) {
+          el.parentNode.removeChild(el);
+          return;
+        }
+        el = el.parentNode;
+      }
+    };
+    var _gaq = [];
+    var _gat = {
+      _getTracker: function() {
+        return {_initData: function() {}, _trackPageview: function() {}, _trackEvent: function() {}, _setAllowLinker: function() {}, _setCustomVar: function() {}}
+      },
+      _createTracker: function() {
+        return this._getTracker();
+      },
+      _anonymizeIp: function() {}
+    };
+    function urchinTracker() {};
+    var nol_t = function() {
+      return {
+        record: function() {
+          return {post: function() {}}
+        }
+      }
+    };
+    var addthis = {
+      init: function() {},
+      addEventListener: function() {},
+      button: function() {},
+      counter: function() {},
+      update: function() {},
+      toolbox: function() {}
+    };
+  } catch (ex) {
+    console.error('Error executing AG js: ' + ex);
+  }
+</script>
+<div>
+  <!-- Main Wrapper -->
+  <div class="wrapper">
+    <div class="container">
+      <div class="row margin-bottom-0">
+        <div class="col l9 m12">
+          <div class="row">
+            <div class="col l8 col m12 col s12">
+              <!-- News Blog Box -->
+              <div class="news-blog z-depth-1">
+                <!-- News Blog Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/big-news2.jpg" class="responsive-img">
+                </div>
+                <!-- News Blog Category -->
+                <div class="news-category">
+                  <span class="green">Money</span>
+                  <!-- Dropdown -->
+                  <div class="news-dropdown">
+                    <a class="dropdown-button" href="javascript:void(0);" data-activates="dropdown1">
+                      <i class="fa fa-ellipsis-v "></i>
+                    </a>
+                    <ul id="dropdown1" class="dropdown-content">
+                      <li>
+                        <a href="javascript:void(0);">Option 1</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0);">Option 1</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0);">Option 1</a>
+                      </li>
+                    </ul>
 
-<!--PEN CODE-->
-<style media="screen">
-  @import url(https://fonts.googleapis.com/css?family=Lato:400,700,900|Montserrat:400,700,900|Open+Sans:400,700,900|Raleway:400,700,900);
-  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700);
-  /*-----------------------------------//
-//  MIXINS
-//-----------------------------------*/
-  /*-----------------------------------//
-//  D.R.Y. CLASSES
-//-----------------------------------*/
-  /*Text Aligns*/
-  .textLeft {
-    text-align: left;
-  }
-  .textRight {
-    text-align: right;
-  }
-  .textCenter {
-    text-align: center;
-  }
+                  </div>
+                </div>
+                <!-- News Blog Description -->
+                <div class="news-description">
+                  <div class="news-time">
+                    21 min ago
+                  </div>
+                  <div class="news-title">
+                    <a href="javascript:void(0)">Party Sweepsto Israel
+                      <br>
+                      election Victory</a>
+                  </div>
+                  <div class="news-content">
+                    <p>et bibendum leo metus vel magna. In dapibus
+                      <br>
+                      ac tellus non rutrum. Integer.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col l4 col m12 col s12">
+              <!-- vertical News Box -->
+              <div class="news vertical z-depth-1">
+                <!-- vertical News Image -->
+                <div class="news-image">
+                  <img class="responsive-img" src="./images/small-news2.jpg" alt="news Image">
+                </div>
+                <!-- vertical News Description -->
+                <div class="news-description">
+                  <div class="news-time">
+                    <i class="fa fa-clock-o"></i>
+                    9 min ago
+                  </div>
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.
+                    </a>
+                  </div>
+                  <div class="news-content">
+                    <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus In dapibus ac tellus non rutrum et bibendum leo metus vel magna. In dapibus ac tellus</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  /*-----------------------------------//
-//  GENERAL
-//-----------------------------------*/
-  body {
-    font: 14px/1.5em "Open Sans";
-    background: #F0F1FA;
-  }
+          <div class="row">
+            <div class="col l8 col m12 col s12">
+              <div class="z-depth-1">
+                <!-- horizontal News Box -->
+                <div class="news horizontal">
+                  <div class="col l4 col m4 col s12 no-padding">
+                    <!-- horizontal News Image -->
+                    <div class="news-image">
+                      <img alt="news Image" class="responsive-img" src="./images/hor-news4.jpg">
+                    </div>
+                  </div>
+                  <div class="col l8 col m8 col s12 no-padding">
+                    <!-- horizontal News  Description -->
+                    <div class="news-description">
+                      <div class="news-time">
+                        <i class="fa fa-clock-o"></i>
+                        9 min ago
+                      </div>
+                      <div class="news-title">
+                        <a href="javascript:void(0)">
+                          Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.
+                        </a>
+                      </div>
+                      <div class="news-content">
+                        <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. Mauris bibendum semper quam.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-  a {
-    text-decoration: none;
-    color: #E54B4B;
-  }
+                <!-- horizontal News Box -->
+                <div class="news horizontal no-border">
+                  <div class="col l4 col m4 col s12 no-padding">
+                    <!-- horizontal News Image -->
+                    <div class="news-image">
+                      <img alt="news Image" class="responsive-img" src="./images/hor-news6.jpg">
+                    </div>
+                  </div>
+                  <div class="col l8 col m8 col s12 no-padding">
+                    <!-- horizontal News Description -->
+                    <div class="news-description">
+                      <div class="news-time">
+                        <i class="fa fa-clock-o"></i>
+                        9 min ago
+                      </div>
+                      <div class="news-title">
+                        <a href="javascript:void(0)">
+                          Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.</a>
+                      </div>
+                      <div class="news-content">
+                        <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. Mauris bibendum semper quam.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  p em {
-    background: #f2f2f2;
-    color: #87878f;
-    padding: 0 2px;
-  }
+            <div class="col l4 col m12 col s12">
+              <!-- vertical News Box -->
+              <div class="news vertical z-depth-1">
+                <!-- vertical News Image -->
+                <div class="news-image">
+                  <img alt="news Image" class="responsive-img" src="./images/profile5.jpg">
+                </div>
+                <!-- vertical News Description -->
+                <div class="news-description">
+                  <div class="news-time">
+                    <i class="fa fa-clock-o"></i>
+                    9 min ago
+                  </div>
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      Nam erat nulla, auctor a eros vitae, hendrerit efficitur.
+                    </a>
+                  </div>
+                  <div class="news-content">
+                    <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Montserrat";
-  }
+        <div class="col l3 m12 s12 no-padding">
+          <!-- Average Box -->
+          <div class="average">
+            <div class="col l6 m3 s6">
+              <div class="average-box">
+                <div class="top">
+                  <div class="average-symbol">
+                    <i class="fa fa-usd"></i>
+                  </div>
+                  <div class="average-name">Usd</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">26.00
+                    <i class="fa fa-caret-down"></i>
+                  </div>
+                  <div class="average-point">-1.03</div>
+                </div>
+              </div>
+            </div>
+            <div class="col l6 m3 s6">
+              <div class="average-box">
+                <div class="top">
+                  <div class="average-symbol">
+                    <i class="fa fa-eur"></i>
+                  </div>
+                  <div class="average-name">Eur</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">28.88
+                    <i class="fa fa-caret-down"></i>
+                  </div>
+                  <div class="average-point">-1.43</div>
+                </div>
+              </div>
+            </div>
+            <div class="col l6 m3 s6">
+              <div class="average-box third">
+                <div class="top">
+                  <div class="average-symbol grey darken-3">
+                    <i class="fa fa-tint  grey darken-3"></i>
+                  </div>
+                  <div class="average-name">oil</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">46.75<i class="fa fa-caret-up"></i>
+                  </div>
+                  <div class="average-point">+1.25</div>
+                </div>
+              </div>
+            </div>
+            <div class="col l6 m3 s6">
+              <div class="average-box fourth">
+                <div class="top">
+                  <div class="average-symbol">
+                    <i class="fa fa-usd"></i>
+                  </div>
+                  <div class="average-name">Rain</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">+12
+                  </div>
+                  <div class="average-point">New york</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col l12 col m12 col s12">
+            <!-- Sidebar -->
+            <div class="sidbar-box z-depth-1">
+              <div class="sidebar-title">Top Stories</div>
+              <ul>
+                <li>
+                  <a href="javascript:void(0)">
+                    5 Things you Need To Know Wenesday</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Auti-austeriry Protest Turns Violent In Germany</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Flying Cars: The near Future, From SXSW</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">No end in Signt for California Drought</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Boehner Coup by Conservatives.</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Market Reaction to fed rate talk: 3 scenarious</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">fed deny visas for 'Specialized' foreign workers</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Flying Cars: The near Future.</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  hr {
-    margin: 1.5em 0;
-  }
+      <div class="row">
+        <div class="col l12 m12 s12">
+          <div class="title">Sport</div>
+        </div>
+        <div class="col l6 col m12 col s12">
+          <!-- News Blog Box -->
+          <div class="news-blog z-depth-1">
+            <!-- News Blog Image -->
+            <div class="image">
+              <img alt="news Image" src="./images/big-news5.jpg" class="responsive-img">
+            </div>
+            <!-- News Blog Category -->
+            <div class="news-category">
+              <span class="green">Money</span>
+              <!-- Dropdown -->
+              <div class="news-dropdown">
+                <a class="dropdown-button" href="javascript:void(0);" data-activates="dropdown2">
+                  <i class="fa fa-ellipsis-v "></i>
+                </a>
+                <ul id="dropdown2" class="dropdown-content">
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                </ul>
 
-  .hide {
-    display: none;
-  }
+              </div>
+            </div>
+            <!-- News Blog Description -->
+            <div class="news-description">
+              <div class="news-time">
+                21 min ago
+              </div>
+              <div class="news-title">
+                <a href="javascript:void(0)">Party Sweepsto Israel
+                  <br>
+                  election Victory</a>
+              </div>
+              <div class="news-content">
+                <p>et bibendum leo metus vel magna. In dapibus
+                  <br>
+                  ac tellus non rutrum. Integer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 col m12 col s12">
+          <!-- vertical News Box -->
+          <div class="news vertical z-depth-1">
+            <!-- vertical News Image -->
+            <div class="news-image">
+              <img class="responsive-img" src="./images/travel4.jpg" alt="news Image">
+            </div>
+            <!--  vertical News Description -->
+            <div class="news-description">
+              <div class="news-time">
+                <i class="fa fa-clock-o"></i>
+                9 min ago
+              </div>
+              <div class="news-title">
+                <a href="javascript:void(0)">
+                  Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus vel magna.
+                </a>
+              </div>
+              <div class="news-content">
+                <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. et bibendum leo metus vel magna.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 col m12 col s12">
+          <!-- vertical News Box -->
+          <div class="news vertical z-depth-1">
+            <!-- vertical News Image -->
+            <div class="news-image">
+              <img class="responsive-img" src="./images/profile2.jpg" alt="news Image">
+            </div>
+            <!-- vertical News Description -->
+            <div class="news-description">
+              <div class="news-time">
+                <i class="fa fa-clock-o"></i>
+                9 min ago
+              </div>
+              <div class="news-title">
+                <a href="javascript:void(0)">
+                  Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.
+                </a>
+              </div>
+              <div class="news-content">
+                <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus In dapibus ac tellus non rutrum et bibendum leo metus vel magna ac tellus non rutrum Integer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  /*-----------------------------------//
-//  TEMPLATE STYLES
-//-----------------------------------*/
-  /* Buttons and Inputs */
-  textarea,
-  button,
-  a.btn,
-  select,
-  input[type="text"],
-  input[type="submit"],
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  input[type="file"]::-webkit-file-upload-button {
-    font-family: inherit !important;
-    font-size: 13px;
-    border: 1px solid #B0B0BA;
-    box-sizing: border-box;
-    padding: 5px;
-  }
-  a.btn,
-  button,
-  input[type="submit"],
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  input[type="file"]::-webkit-file-upload-button {
-    background: transparent;
-    display: inline-block;
-    padding: 6px 10px;
-    color: inherit;
-    font-weight: bold !important;
-    font-family: Montserrat;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
+      <div class="row">
+        <div class="col l3 col m12 col s12">
+          <!-- vertical News Box -->
+          <div class="news vertical z-depth-1">
+            <!-- vertical News Image -->
+            <div class="news-image">
+              <img class="responsive-img" src="./images/travel14.jpg" alt="news Image">
+            </div>
+            <!--  vertical News Description -->
+            <div class="news-description">
+              <div class="news-time">
+                <i class="fa fa-clock-o"></i>
+                9 min ago
+              </div>
+              <div class="news-title">
+                <a href="javascript:void(0)">
+                  Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus vel magna.
+                </a>
+              </div>
+              <div class="news-content">
+                <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. et bibendum leo metus vel magna .</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l3 col m12 col s12">
+          <!-- vertical News Box -->
+          <div class="news vertical z-depth-1">
+            <!-- vertical News Image -->
+            <div class="news-image">
+              <img class="responsive-img" src="./images/money1.jpg" alt="news Image">
+            </div>
+            <!-- vertical News Description -->
+            <div class="news-description">
+              <div class="news-time">
+                <i class="fa fa-clock-o"></i>
+                9 min ago
+              </div>
+              <div class="news-title">
+                <a href="javascript:void(0)">
+                  Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.
+                </a>
+              </div>
+              <div class="news-content">
+                <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus In dapibus ac tellus non rutrum et bibendum leo metus vel magna ac tellus non rutrum Integer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l6 col m12 col s12">
+          <!-- News Blog Box -->
+          <div class="news-blog z-depth-1">
+            <!-- News Blog Image -->
+            <div class="image">
+              <img class="responsive-img" src="./images/big-news8.jpg" alt="news Image">
+            </div>
+            <!-- News Blog Category -->
+            <div class="news-category">
+              <span class="green">Money</span>
+              <!-- Dropdown -->
+              <div class="news-dropdown">
+                <a class="dropdown-button" href="javascript:void(0);" data-activates="dropdown3">
+                  <i class="fa fa-ellipsis-v "></i>
+                </a>
+                <ul id="dropdown3" class="dropdown-content">
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                </ul>
 
-  /* Row */
-  .row {
-    margin-bottom: 1.5%;
-    overflow: hidden;
-  }
-  .row:last-child {
-    margin: 0;
-  }
+              </div>
+            </div>
+            <!-- News Blog Description -->
+            <div class="news-description">
+              <div class="news-time">
+                21 min ago
+              </div>
+              <div class="news-title">
+                <a href="http://inceptionsystem.us/themes/Material-News/index3.html#">Party Sweepsto Israel
+                  <br>
+                  election Victory</a>
+              </div>
+              <div class="news-content">
+                <p>et bibendum leo metus vel magna. In dapibus
+                  <br>
+                  ac tellus non rutrum. Integer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  @media screen and (min-width: 480px) {
-    .hlf,
-    .trd,
-    .fth {
-      float: left;
-      margin-right: 1.5%;
-    }
-    .hlf:last-child,
-    .trd:last-child,
-    .fth:last-child {
-      margin: 0;
-      float: right;
-    }
+      <div class="row">
+        <div class="col l6 col m12 col s12">
+          <!-- News Blog Solid Box -->
+          <div class="news-blog solid z-depth-1">
+            <!-- News Blog Category -->
+            <div class="news-category">
+              <span class="pink">More</span>
+              <!-- Dropdown -->
+              <div class="news-dropdown">
+                <a class="dropdown-button" href="javascript:void(0);" data-activates="dropdown4">
+                  <i class="fa fa-ellipsis-v "></i>
+                </a>
+                <ul id="dropdown4" class="dropdown-content">
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                </ul>
 
-    .hlf {
-      width: 49.25%;
-    }
+              </div>
+            </div>
+            <!-- News Blog Description -->
+            <div class="news-description center-align">
+              <div class="quote">
+                <i class="fa fa-quote-left"></i>
+              </div>
+              <div class="news-title">
+                <a href="javascript:void(0)">
+                  Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna et bibendum leo metus vel magna.
+                </a>
+              </div>
+              <div class="news-content">
+                <p>President of ThemeLeague
+                  <br>
+                  Dark Waider</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l6 col m12 col s12">
+          <!-- News Blog Box -->
+          <div class="news-blog white z-depth-1">
+            <!-- News Blog Description -->
+            <div class="news-description">
+              <div class="news-time">
+                33 min ago
+              </div>
+              <div class="news-title">
+                <a href="javascript:void(0)">
+                  Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus.</a>
+              </div>
+              <div class="news-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur erat velit, tristique eu molestie vitae, malesuada eget est. Vestibulum ut aliquam libero. Nunc nec risus dolor. Aliquam pellentesque eget lectus vel lobortis. Donec gravida nec tortor ac semper. Aliquam dapibus dolor et metus feugiat porta. Sed in mauris lorem. Quisque ultrices nulla dui. Praesent sollicitudin consectetur tincidunt.</p>
+                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In lobortis dignissim eros sed convallis. Donec et quam eros. Suspendisse a enim sit amet nisl accumsan malesuada. Maecenas sodales velit at molestie blandit. Nullam maximus tellus ante, vitae finibus lorem luctus vel. Quisque auctor nibh et lacus Aliquam dapibus dolor et metus feugiat porta. Sed in mauris lorem. Quisque ultrices nulla dui. Praesent sollicitudin consectetur tincidunt nibh et lacus Aliquam dapibus dolor et metus feugiat porta. Sed in mauris lorem.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    .trd {
-      width: 32.3%;
-    }
+      <div class="row">
+        <div class="col l12 col m12 col s12">
+          <div class="title">Cars</div>
+        </div>
+        <div class="col l3 col m6 col s12">
+          <div class="col l12 col m12 col s12 no-padding">
+            <!-- vertical News Box -->
+            <div class="news vertical z-depth-1 margin-bottom-20">
+              <!-- vertical News Image -->
+              <div class="news-image">
+                <img alt="news Image" class="responsive-img" src="./images/money13.jpg">
+              </div>
+              <!-- vertical News Description -->
+              <div class="news-description">
+                <div class="news-time">
+                  <i class="fa fa-clock-o"></i>
+                  9 min ago
+                </div>
+                <div class="news-title">
+                  <a href="javascript:void(0)">
+                    Nam erat nulla, auctor a eros vitae, hendrerit efficitur.
+                  </a>
+                </div>
+                <div class="news-content">
+                  <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. et bibendum leo metus vel magna. In dapibus ac tellus</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col l12 col m12 col s12 no-padding">
+            <!-- vertical News Box -->
+            <div class="news vertical z-depth-1">
+              <!-- vertical News Image -->
+              <div class="news-image">
+                <img alt="news Image" class="responsive-img" src="./images/life4.jpg">
+              </div>
+              <!-- vertical News Description -->
+              <div class="news-description">
+                <div class="news-time">
+                  <i class="fa fa-clock-o"></i>
+                  9 min ago
+                </div>
+                <div class="news-title">
+                  <a href="javascript:void(0)">
+                    Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus vel magna.
+                  </a>
+                </div>
+                <div class="news-content">
+                  <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. et bibendum leo metus vel magna. In dapibus ac telluset bibendum leo metus vel magna.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l6 col m6 col s12">
+          <!-- vertical News Box -->
+          <div class="news vertical z-depth-1">
+            <!-- vertical News Image -->
+            <div class="news-image">
+              <img alt="news Image" class="responsive-img" src="./images/big-news2.jpg">
+            </div>
+            <!-- vertical News Description -->
+            <div class="news-description">
+              <div class="news-time">
+                <i class="fa fa-clock-o"></i>
+                9 min ago
+              </div>
+              <div class="news-title large-font">
+                <a href="javascript:void(0)">
+                  Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus vel magna.
+                </a>
+              </div>
+              <div class="news-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur erat velit, tristique eu molestie vitae, malesuada eget est. Vestibulum ut aliquam libero. Nunc nec risus dolor. Aliquam pellentesque eget lectus vel lobortis. Donec gravida nec tortor ac semper. Aliquam dapibus dolor et metus feugiat porta. Sed in mauris lorem. Quisque ultrices nulla dui. Praesent sollicitudin consectetur tincidunt.</p>
+                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In lobortis dignissim eros sed convallis. Donec et quam eros. Suspendisse a enim sit amet nisl accumsan malesuada. Maecenas sodales velit at molestie blandit. Nullam maximus tellus ante, vitae finibus lorem luctus vel. Quisque auctor nibh et lacus rhoncus, eu tincidunt massa volutpat. Pellentesque habita Aliquam erat volutpat. In viverra interdum metus, sed hendrerit ex cursus a. Morbi suscipit ligula vel leo facilisis finibus. ac semper. Aliquam dapibus dolor et metus feugiat porta. Sed in mauris lorem. Quisque ultrices nulla dui. Praesent sollicitudin consectetur tincidunt.
+                </p>
 
-    .fth {
-      width: 23.8%;
-    }
-  }
-  /* Box */
-  .box {
-    width: 100%;
-    background: #fff;
-    box-sizing: border-box;
-    padding: 3%;
-    margin: 0 auto 1.6%;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-  }
-  @media screen and (min-width: 480px) {
-    .box {
-      padding: 2%;
-      margin-bottom: 2%;
-      max-width: 500px;
-    }
-  }
-  @media screen and (min-width: 765px) {
-    .box {
-      padding: 1.5%;
-      margin-bottom: 1.5%;
-    }
-  }
-  @media screen and (min-width: 1024px) {
-    .box {
-      padding: 1.25%;
-      margin-bottom: 1.25%;
-    }
-  }
-  @media screen and (min-width: 1180px) {
-    .box {
-      padding: 1%;
-      margin-bottom: 1%;
-    }
-  }
+              </div>
+            </div>
+          </div>
+        </div>
 
-  /*-----------------------------------//
-//  PEN STYLES
-//-----------------------------------*/
-  /*PEN STYLES*/
-  .blog-card {
-    transition: height 0.3s ease;
-    -webkit-transition: height 0.3s ease;
-    background: #fff;
-    border-radius: 3px;
-    box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
-    margin: 0 auto 1.6%;
-    overflow: hidden;
-    position: relative;
-    font-size: 14px;
-    line-height: 1.45em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  .blog-card:hover .details {
-    left: 0;
-  }
-  .blog-card:hover.alt .details {
-    right: 0;
-  }
-  .blog-card.alt .details {
-    right: -100%;
-    left: inherit;
-  }
-  .blog-card .photo {
-    height: 200px;
-    position: relative;
-  }
-  .blog-card .photo.photo1 {
-    background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
-    background-size: cover;
-  }
-  .blog-card .photo.photo2 {
-    background: url("http://i60.tinypic.com/xeiv79.jpg") center no-repeat;
-    background-size: cover;
-  }
-  .blog-card .details {
-    transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    background: rgba(0, 0, 0, 0.6);
-    box-sizing: border-box;
-    color: #fff;
-    font-family: "Open Sans";
-    list-style: none;
-    margin: 0;
-    padding: 10px 15px;
-    height: 200px;
-    /*POSITION*/
-    position: absolute;
-    top: 0;
-    left: -100%;
-  }
-  .blog-card .details > li {
-    padding: 3px 0;
-  }
-  .blog-card .details li:before,
-  .blog-card .details .tags ul:before {
-    font-family: FontAwesome;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  .blog-card .details .author:before {
-    content: "\f007";
-  }
-  .blog-card .details .date:before {
-    content: "\f133";
-  }
-  .blog-card .details .tags ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .blog-card .details .tags ul:before {
-    content: "\f02b";
-  }
-  .blog-card .details .tags li {
-    display: inline-block;
-    margin-right: 3px;
-  }
-  .blog-card .details a {
-    color: inherit;
-    border-bottom: 1px dotted;
-  }
-  .blog-card .details a:hover {
-    color: #75D13B;
-  }
-  .blog-card .description {
-    padding: 10px;
-    box-sizing: border-box;
-    position: relative;
-  }
-  .blog-card .description h1 {
-    font-family: "Roboto";
-    line-height: 1em;
-    margin: 0 0 10px;
-  }
-  .blog-card .description h2 {
-    color: #9b9b9b;
-    font-family: "Open Sans";
-    line-height: 1.2em;
-    text-transform: uppercase;
-    font-size: 1em;
-    font-weight: 400;
-    margin: 1.2% 0;
-  }
-  .blog-card .description p {
-    position: relative;
-    margin: 0;
-    padding-top: 20px;
-  }
-  .blog-card .description p:after {
-    content: "";
-    background: #75D13B;
-    height: 6px;
-    width: 40px;
-    /*POSITION*/
-    position: absolute;
-    top: 6px;
-    left: 0;
-  }
-  .blog-card .description a {
-    color: #75D13B;
-    margin-bottom: 10px;
-    float: right;
-  }
-  .blog-card .description a:after {
-    transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    content: "\f061";
-    font-family: FontAwesome;
-    margin-left: -10px;
-    opacity: 0;
-    vertical-align: middle;
-  }
-  .blog-card .description a:hover:after {
-    margin-left: 5px;
-    opacity: 1;
-  }
+        <div class="col l3 col m12 col s12">
+          <!-- News Sidebar -->
+          <div class="sidbar-box z-depth-1">
+            <div class="sidebar-title">New Stories</div>
+            <div class="news-sidebar">
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news1.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
 
-  @media screen and (min-width: 600px) {
-    .blog-card {
-      height: 200px;
-      max-width: 50%;
-    }
-    .blog-card:hover .photo {
-      -webkit-transform: rotate(5deg) scale(1.3);
-      transform: rotate(5deg) scale(1.3);
-    }
-    .blog-card:hover.alt .photo {
-      -webkit-transform: rotate(-5deg) scale(1.3);
-      transform: rotate(-5deg) scale(1.3);
-    }
-    .blog-card.alt .details {
-      padding-left: 30px;
-    }
-    .blog-card.alt .description {
-      float: right;
-    }
-    .blog-card.alt .description:before {
-      -webkit-transform: skewX(5deg);
-      transform: skewX(5deg);
-      right: -15px;
-      left: inherit;
-    }
-    .blog-card.alt .photo {
-      float: right;
-    }
-    .blog-card .photo {
-      transition: all 0.5s ease;
-      -webkit-transition: all 0.5s ease;
-      float: left;
-      height: 100%;
-      width: 40%;
-    }
-    .blog-card .details {
-      width: 40%;
-    }
-    .blog-card .description {
-      float: left;
-      width: 60%;
-      z-index: 0;
-    }
-    .blog-card .description:before {
-      -webkit-transform: skewX(-5deg);
-      transform: skewX(-5deg);
-      content: "";
-      background: #fff;
-      width: 100%;
-      z-index: -1;
-      /*POSITION*/
-      position: absolute;
-      left: -15px;
-      top: 0;
-      bottom: 0;
-    }
-  }
-</style>
-<div id="blog-card" class="blog-card">
-  <div class="photo photo1"></div>
-  <ul class="details">
-    <li class="author">
-      <a href="#">John Doe</a>
-    </li>
-    <li class="date">Aug. 24, 2015</li>
-    <li class="tags">
-      <ul>
-        <li>
-          <a href="#">Learn</a>
-        </li>
-        <li>
-          <a href="#">Code</a>
-        </li>
-        <li>
-          <a href="#">HTML</a>
-        </li>
-        <li>
-          <a href="#">CSS</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <div class="description">
-    <h1>Learning to Code</h1>
-    <h2>Opening a door to the future</h2>
-    <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-    <a href="#">Read More</a>
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news2.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news3.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news4.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news5.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news6.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news1.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news5.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="news-box">
+                <!-- News Sidebar Image -->
+                <div class="image">
+                  <img alt="news Image" src="./images/hor-news3.jpg">
+                </div>
+                <!-- News Sidebar Detail -->
+                <div class="news-detail">
+                  <!-- News Sidebar Category -->
+                  <div class="news-category">
+                    <a href="javascript:void(0)">World | 21 min ago
+                    </a>
+                  </div>
+                  <!-- News Sidebar Title -->
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      5 things you need to know wenesday</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 col m12 col s12">
+          <!-- Footer Button -->
+          <div class="footer-button center-align">
+            <span class="mdi-action-history"></span>
+          </div>
+        </div>
+
+        <div class="col l12 col m12 col s12">
+          <!-- Footer Column 1 -->
+          <ul>
+            <li class="footer-title">News</li>
+            <li>
+              <a href="javascript:void(0);">Nation</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">World</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Washington</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Elections</a>
+            </li>
+          </ul>
+
+          <!-- Footer Column 2 -->
+          <ul>
+            <li class="footer-title">Sport</li>
+            <li>
+              <a href="javascript:void(0);">NFL</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">MLB</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">NBA</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">NHL</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">NCAAF</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">NCAAB</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">More</a>
+            </li>
+          </ul>
+
+          <!-- Footer Column 3 -->
+          <ul>
+            <li class="footer-title">Life</li>
+            <li>
+              <a href="javascript:void(0);">People</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Movies</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Music</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">TV</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Books</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Entertain This</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">We to Watch</a>
+            </li>
+          </ul>
+
+          <!-- Footer Column 4 -->
+          <ul>
+            <li class="footer-title">Money</li>
+            <li>
+              <a href="javascript:void(0);">Market</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Business</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Personal Finance</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Cars</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Careers</a>
+            </li>
+          </ul>
+
+          <!-- Footer Column 5 -->
+          <ul>
+            <li class="footer-title">Tech</li>
+            <li>
+              <a href="javascript:void(0);">Personal Tech</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Gaming</a>
+            </li>
+          </ul>
+
+          <!-- Footer Column 6 -->
+          <ul>
+            <li class="footer-title">Travel</li>
+            <li>
+              <a href="javascript:void(0);">Travel Advice</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Experience Travel</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Destinations</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Flights</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Cruises</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Deals</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Videos</a>
+            </li>
+          </ul>
+
+          <!-- Footer Column 7 -->
+          <ul>
+            <li class="footer-title">Option</li>
+            <li>
+              <a href="javascript:void(0);">Cartoons</a>
+            </li>
+          </ul>
+
+          <!-- Footer Column 8 -->
+          <ul>
+            <li class="footer-title">Weather</li>
+            <li>
+              <a href="javascript:void(0);">Hurricans</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">Climate</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Footer Logo -->
+      <div class="logo">
+        <a href="http://inceptionsystem.us/themes/Material-News/index.html"><img src="./images/material-logo.png" alt="Logo"></a>
+      </div>
+    </div>
+    <!-- Footer Bottom -->
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="row">
+          <!-- Copyright Text -->
+          <div class="col l4 col m12 col s12">
+            © Copyright 2015 Material News by ThemeLeague
+          </div>
+          <div class="col l4 col m12 col s12">
+            <!-- Social Icon -->
+            <div class="social-icon">
+              <a href="javascript:void(0);">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-pinterest"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-instagram"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-youtube"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-vine"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-linkedin"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-google-plus"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-rss"></i>
+              </a>
+              <a href="javascript:void(0);">
+                <i class="fa fa-tumblr"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col l4 col m12 col s12">
+            <!-- Footer Menu -->
+            <div class="footer-menu">
+              <ul>
+                <li>
+                  <a href="javascript:void(0);">Privacy</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">Advertisement</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">Contact us</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="hiddendiv common"></div>
+  <div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;"></div>
+  <div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;"></div>
+  <script id="hiddenlpsubmitdiv" style="display: none;"></script>
+  <script>
+    try {
+      (function() {
+        for (var lastpass_iter = 0; lastpass_iter < document.forms.length; lastpass_iter++) {
+          var lastpass_f = document.forms[lastpass_iter];
+          if (typeof(lastpass_f.lpsubmitorig2) == "undefined") {
+            lastpass_f.lpsubmitorig2 = lastpass_f.submit;
+            if (typeof(lastpass_f.lpsubmitorig2) == 'object') {
+              continue;
+            }
+            lastpass_f.submit = function() {
+              var form = this;
+              var customEvent = document.createEvent("Event");
+              customEvent.initEvent("lpCustomEvent", true, true);
+              var d = document.getElementById("hiddenlpsubmitdiv");
+              if (d) {
+                for (var i = 0; i < document.forms.length; i++) {
+                  if (document.forms[i] == form) {
+                    if (typeof(d.innerText) != 'undefined') {
+                      d.innerText = i.toString();
+                    } else {
+                      d.textContent = i.toString();
+                    }
+                  }
+                }
+                d.dispatchEvent(customEvent);
+              }
+              form.lpsubmitorig2();
+            }
+          }
+        }
+      })()
+    } catch (e) {}
+  </script>
 </div>
-<div id="blog-card" class="blog-card alt">
-  <div class="photo photo2"></div>
-  <ul class="details">
-    <li class="author">
-      <a href="#">Jane Doe</a>
-    </li>
-    <li class="date">July. 15, 2015</li>
-    <li class="tags">
-      <ul>
-        <li>
-          <a href="#">Learn</a>
-        </li>
-        <li>
-          <a href="#">Code</a>
-        </li>
-        <li>
-          <a href="#">JavaScript</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <div class="description">
-    <h1>Mastering the Language</h1>
-    <h2>Java is not the same as JavaScript</h2>
-    <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-    <a href="#">Read More</a>
-  </div>
-</div>
-<!--END PEN CODE-->

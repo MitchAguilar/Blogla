@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sails App</title>
+    <title>Sails</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
     <!--
         Stylesheets and Preprocessors
@@ -28,82 +28,429 @@
     -->
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/icon.css">
+    <link rel="stylesheet" href="/styles/camera.css">
+    <link rel="stylesheet" href="/styles/css.css">
+    <link rel="stylesheet" href="/styles/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/material.min.css">
+    <link rel="stylesheet" href="/styles/materialize.css">
+    <link rel="stylesheet" href="/styles/pgwslider.css">
+    <link rel="stylesheet" href="/styles/style.css">
     <!--STYLES END-->
   </head>
 
   <body>
 
-    <!-- Uses a header that contracts as the page scrolls down. -->
-    <style>
-      .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type {
-        padding-right: 0;
-      }
+    <!-- Header -->
+    <header class="">
+      <!-- Header Top Display In large and Tablet Device -->
+      <div class="header-top hide-on-small-only">
+        <div class="container">
+          <div class="row">
+            <div class="col l4 col m5 col s12">
+              <a href="/" data-activates="slide-out" class="button-collapse show-on-large">
+                <i class="mdi-navigation-menu"></i>
+              </a>
+              <!-- Dropdown -->
+              <div class="header-dropdown">
+                <!-- Dropdown Trigger -->
+                <a class="dropdown-button btn" data-beloworigin="true" href="/" data-activates="dropdown">Today
+                  <i class="mdi-navigation-arrow-drop-down"></i>
+                </a>
+                <ul id="dropdown" class="dropdown-content">
+                  <li>
+                    <a href="javascript:void(0);">Today</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Yesterday</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">1 Week</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">1 Month</a>
+                  </li>
+                </ul>
+                <!-- Dropdown Structure -->
 
-    </style>
-
-    <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
-      <header class="mdl-layout__header mdl-layout__header--waterfall">
-        <!-- Top row, always visible -->
-        <div class="mdl-layout__header-row">
-          <!-- Title -->
-          <span class="mdl-layout-title">Blogla</span>
-          <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                      mdl-textfield--floating-label mdl-textfield--align-right">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
-              <i class="material-icons">Buscar</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+              </div>
+            </div>
+            <div class="col l4 col m3 col s12">
+              <!-- Logo -->
+              <div class="logo">
+                <a href="/"><img src="./images/material-logo.png" alt="Logo"></a>
+              </div>
+            </div>
+            <div class="col l4 col m4 col s12 pull-right">
+              <!-- Search Button -->
+              <form class="searchbox">
+                <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required="">
+                <input type="submit" class="searchbox-submit">
+                <span class="searchbox-icon">
+                  <i class="mdi-action-search"></i>
+                </span>
+              </form>
+              <!-- LogIn Link -->
+              <a href="http://inceptionsystem.us/themes/Material-News/login.html" class="right login">Login</a>
             </div>
           </div>
         </div>
-        <!-- Bottom row, not visible on scroll -->
-        <div class="mdl-layout__header-row">
-          <div class="mdl-layout-spacer"></div>
-          <!-- Navigation -->
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="{{e.enlace}}" ng-repeat="e in entradas_menu">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-          </nav>
-        </div>
-      </header>
-      <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Blogla</span>
-        <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-        </nav>
       </div>
-      <main class="mdl-layout__content" ng-app>
-        <div class="page-content">
 
-          <%- body %>
+      <!-- Header top Display On Mobile -->
+      <div class="header hide-on-med-and-up">
+        <div class="top-header">
+          <div class="container">
+            <div class="row">
+              <div class="col l4 col m5 col s2">
+                <a href="http://inceptionsystem.us/themes/Material-News/index3.html#" data-activates="slide-out" class="button-collapse show-on-large">
+                  <i class="mdi mdi-navigation-menu"></i>
+                </a>
+              </div>
+              <div class="col l4 col m4 col s5">
+                <!-- Dropdown -->
+                <div class="header-dropdown">
+                  <!-- Dropdown Trigger -->
+                  <a class="dropdown-button btn" data-beloworigin="true" href="http://inceptionsystem.us/themes/Material-News/index3.html#" data-activates="dropdown-mobile">Today
+                    <i class="mdi mdi-navigation-arrow-drop-down"></i>
+                  </a>
+                  <ul id="dropdown-mobile" class="dropdown-content">
+                    <li>
+                      <a href="javascript:void(0);">Today</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">Yesterday</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">1 Week</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">1 Month</a>
+                    </li>
+                  </ul>
+                  <!-- Dropdown Structure -->
 
+                </div>
+              </div>
+              <div class="col l4 col m4 col s3">
+                <!-- LogIn Link -->
+                <a href="http://inceptionsystem.us/themes/Material-News/login.html" class="login">Login</a>
+              </div>
+              <div class="col l4 col m4 col s2">
+                <!-- Search Button -->
+                <form class="searchbox">
+                  <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required="">
+                  <input type="submit" class="searchbox-submit">
+                  <span class="searchbox-icon">
+                    <i class="mdi-action-search"></i>
+                  </span>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer__left-section">
-          <div class="mdl-logo">Title</div>
-          <ul class="mdl-mini-footer__link-list">
+        <div class="bottom-header">
+          <div class="container">
+            <div class="row">
+              <div class="col l4 col m4 col s12">
+                <!-- Logo -->
+                <div class="logo">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index.html"><img src="./images/material-logo.png" alt="Logo"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav role="navigation" class="hide-on-small-only">
+        <div class="nav-wrapper menu-category">
+          <ul>
             <li>
-              <a href="#">Ayuda</a>
+              <ul class="news-category-dropdown">
+                <li>
+                  <a href="javascript:void(0);">Home Page
+                    <i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/index.html">Home Page 1</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/index2.html">Home Page 2</a>
+                    </li>
+                    <li class="active">
+                      <a href="http://inceptionsystem.us/themes/Material-News/index3.html">Home Page 3</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </li>
             <li>
-              <a href="#">Privacy & Terms</a>
+              <ul class="news-category-dropdown">
+                <li>
+                  <a href="javascript:void(0);">News Detail
+                    <i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/news-single1.html">News Detail 1</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/news-single2.html">News Detail 2</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/news-single3.html">News Detail 3</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </li>
+            <li>
+              <ul class="news-category-dropdown">
+                <li>
+                  <a href="javascript:void(0);">Category
+                    <i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/index-sport.html">Sports</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/index-life.html">Life</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/index-travel.html">Travel</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/index-money.html">Money</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/index-tech.html">Tech</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <ul class="news-category-dropdown">
+                <li>
+                  <a href="javascript:void(0);">pages<i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/profile.html">Profile</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/brand1.html">Brand Style 1</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/brand2.html">Brand Style 2</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <ul class="news-category-dropdown">
+                <li>
+                  <a href="javascript:void(0);">Shop
+                    <i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/shop.html">Shop Page</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/catalog.html">Catalog</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/product-detail.html">Product Detail</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/shopping-cart.html">Shopping Cart</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="http://inceptionsystem.us/themes/Material-News/about.html">About</a>
+            </li>
+            <li>
+              <ul class="news-category-dropdown">
+                <li>
+                  <a href="javascript:void(0);">Contact
+                    <i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/contact1.html">Contact Style 1</a>
+                    </li>
+                    <li>
+                      <a href="http://inceptionsystem.us/themes/Material-News/contact2.html">Contact Style 2</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
           </ul>
         </div>
-      </div>
+      </nav>
+    </header>
 
-      <!--
+    <!-- Sidebar Navigation -->
+    <ul id="slide-out" class="side-nav full" style="width: 300px; left: -310px;">
+      <li class="logo-title">
+        <a href="javascript:void(0);">Material News</a>
+      </li>
+      <!-- Dropdown Menu -->
+      <li class="dropdown-menu">
+        <ul class="collapsible" data-collapsible="expandable">
+          <li class="active">
+            <div class="collapsible-header waves-effect waves active">
+              <i class="fa fa-file"></i>
+              Home Page
+              <i class="fa fa-angle-right"></i>
+            </div>
+            <div style="display: block;" class="collapsible-body">
+              <ul>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index.html">
+                    <i class="fa fa-angle-right"></i>
+                    Home Page 1</a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index2.html">
+                    <i class="fa fa-angle-right"></i>
+                    Home Page 2</a>
+                </li>
+                <li class="waves-effect active">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index3.html">
+                    <i class="fa fa-angle-right"></i>
+                    Home Page 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="">
+            <div class="collapsible-header waves-effect waves">
+              <i class="fa fa-file-text"></i>
+              News Detail<i class="fa fa-angle-right"></i>
+            </div>
+            <div style="display: none;" class="collapsible-body">
+              <ul>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/news-single1.html">
+                    <i class="fa fa-angle-right"></i>
+                    News Detail 1</a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/news-single2.html">
+                    <i class="fa fa-angle-right"></i>
+                    News Detail 2</a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/news-single3.html">
+                    <i class="fa fa-angle-right"></i>
+                    News Detail 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="">
+            <div class="collapsible-header waves-effect waves">
+              <i class="fa fa-file-text"></i>
+              Category
+              <i class="fa fa-angle-right"></i>
+            </div>
+            <div style="display: none;" class="collapsible-body">
+              <ul>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index-sport.html">
+                    <i class="fa fa-angle-right"></i>
+                    Sport
+                  </a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index-life.html">
+                    <i class="fa fa-angle-right"></i>
+                    Life
+                  </a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index-travel.html">
+                    <i class="fa fa-angle-right"></i>
+                    Travel
+                  </a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index-money.html">
+                    <i class="fa fa-angle-right"></i>
+                    Money
+                  </a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index-tech.html">
+                    <i class="fa fa-angle-right"></i>
+                    Tech
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/shop.html">
+          <i class="fa fa-tag"></i>Shop</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/catalog.html">
+          <i class="fa fa-briefcase"></i>Catalog</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/product-detail.html">
+          <i class="fa fa-plus-square"></i>product Detail</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/shopping-cart.html">
+          <i class="fa fa-shopping-cart"></i>Shopping Cart</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/profile.html">
+          <i class="fa fa-user"></i>Profile</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/brand1.html">
+          <i class="fa fa-rocket"></i>Brand Style 1</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/brand2.html">
+          <i class="fa fa-plane"></i>Brand Style 2</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/about.html">
+          <i class="fa fa-users"></i>About</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/contact1.html">
+          <i class="fa fa-phone"></i>Contact Style 1</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/contact2.html">
+          <i class="fa fa-map-marker"></i>Contact Style 2</a>
+      </li>
+      <li class="waves-effect">
+        <a href="http://inceptionsystem.us/themes/Material-News/login.html">
+          <i class="fa fa-lock"></i>Login</a>
+      </li>
+    </ul>
+
+    <%- body %>
+
+    <!--
         Client-side Templates
         ========================
 
@@ -124,11 +471,11 @@
               stringfile before they're served.
     -->
 
-      <!--TEMPLATES-->
-      
-      <!--TEMPLATES END-->
+    <!--TEMPLATES-->
 
-      <!--
+    <!--TEMPLATES END-->
+
+    <!--
 
       Client-side Javascript
       ========================
@@ -151,19 +498,25 @@
 
     -->
 
-      <!--SCRIPTS-->
-      <script src="/js/dependencies/sails.io.js"></script>
-      <script src="/js/angular.min.js"></script>
-      <script src="/js/controllers_angular/ControllerHomePage.js"></script>
-      <script src="/js/jquery-2.2.1.min.js"></script>
-      <script src="/js/material.min.js"></script>
-      <script src="/js/moment-with-locales.min.js"></script>
-      <script src="/js/require.js"></script>
-      <!--SCRIPTS END-->
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/angular/angular.min.js"></script>
+    <script src="/js/controllers_angular/ControllerHomePage.js"></script>
+    <script src="/js/hammer-time.min.js"></script>
+    <script src="/js/jquery-2.2.1.min.js"></script>
+    <script src="/js/moment-with-locales.min.js"></script>
+    <script src="/js/style/camera.js"></script>
+    <script src="/js/style/init.js"></script>
+    <script src="/js/style/jquery-min.js"></script>
+    <script src="/js/style/jquery.liquid-slider.js"></script>
+    <script src="/js/style/jquery.touchSwipe.min.js"></script>
+    <script src="/js/style/materialize.js"></script>
+    <script src="/js/style/pgwslider.js"></script>
+    <!--SCRIPTS END-->
 
-      <script>
-        console.log("<<< " + moment());
-      </script>
-    </body>
-  </footer>
+    <script>
+      console.log("<<< " + moment());
+    </script>
+  </body>
+</footer>
 </html>
