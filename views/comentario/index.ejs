@@ -1,0 +1,39 @@
+<!-- Square card -->
+<style>
+  .demo-card-square.mdl-card {
+    width: 320px;
+    height: 320px;
+  }
+  .demo-card-square > .mdl-card__title {
+    color: #fff;
+    background: url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+  }
+
+</style>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+      <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">Comentario</th>
+          <th>Creado</th>
+          <th>Actualizado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(comentarios, function(value) { %>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric"><%= value.cuerpo %></td>
+            <td><%= value.createdAt %></td>
+            <td><%= value.updatedAt %></td>
+            <td>
+              <a href="/comentario/edit/<%= value.id %>">
+                Editar
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-# BLOG
+# Blogla
 
 a [Sails](http://sailsjs.org) application
-# Blogla
+
+´´sails generate scaffold user name:string age:integer email:email´´

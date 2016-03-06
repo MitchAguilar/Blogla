@@ -30,7 +30,6 @@
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/icon.css">
     <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/material.css">
     <link rel="stylesheet" href="/styles/material.min.css">
     <!--STYLES END-->
   </head>
@@ -50,12 +49,12 @@
         <!-- Top row, always visible -->
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Title</span>
+          <span class="mdl-layout-title">Blogla</span>
           <div class="mdl-layout-spacer"></div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                       mdl-textfield--floating-label mdl-textfield--align-right">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
-              <i class="material-icons">search</i>
+              <i class="material-icons">Buscar</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
               <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
@@ -75,7 +74,7 @@
         </div>
       </header>
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Title</span>
+        <span class="mdl-layout-title">Blogla</span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Link</a>
           <a class="mdl-navigation__link" href="">Link</a>
@@ -85,15 +84,26 @@
       </div>
       <main class="mdl-layout__content" ng-app>
         <div class="page-content">
-          <br>
 
           <%- body %>
 
         </div>
       </main>
-    </div>
+      <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">Title</div>
+          <ul class="mdl-mini-footer__link-list">
+            <li>
+              <a href="#">Ayuda</a>
+            </li>
+            <li>
+              <a href="#">Privacy & Terms</a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    <!--
+      <!--
         Client-side Templates
         ========================
 
@@ -114,11 +124,11 @@
               stringfile before they're served.
     -->
 
-    <!--TEMPLATES-->
-    
-    <!--TEMPLATES END-->
+      <!--TEMPLATES-->
+      
+      <!--TEMPLATES END-->
 
-    <!--
+      <!--
 
       Client-side Javascript
       ========================
@@ -141,26 +151,19 @@
 
     -->
 
-    <!--SCRIPTS-->
-    <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/controllers_angular/ControllerHomePage.js"></script>
-    <script src="/js/jquery-2.2.1.min.js"></script>
-    <script src="/js/material.js"></script>
-    <script src="/js/material.min.js"></script>
-    <!--SCRIPTS END-->
-  </body>
-  <footer class="mdl-mini-footer">
-    <div class="mdl-mini-footer__left-section">
-      <div class="mdl-logo">Title</div>
-      <ul class="mdl-mini-footer__link-list">
-        <li>
-          <a href="#">Help</a>
-        </li>
-        <li>
-          <a href="#">Privacy & Terms</a>
-        </li>
-      </ul>
-    </div>
+      <!--SCRIPTS-->
+      <script src="/js/dependencies/sails.io.js"></script>
+      <script src="/js/angular.min.js"></script>
+      <script src="/js/controllers_angular/ControllerHomePage.js"></script>
+      <script src="/js/jquery-2.2.1.min.js"></script>
+      <script src="/js/material.min.js"></script>
+      <script src="/js/moment-with-locales.min.js"></script>
+      <script src="/js/require.js"></script>
+      <!--SCRIPTS END-->
+
+      <script>
+        console.log("<<< " + moment());
+      </script>
+    </body>
   </footer>
 </html>
