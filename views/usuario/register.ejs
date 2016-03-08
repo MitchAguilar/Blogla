@@ -1,0 +1,67 @@
+<!-- Main Wrapper -->
+<div class="wrapper grey-background">
+  <div class="container">
+    <div class="row">
+      <div class="col l12 col m12 col s12 center-align">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="#">Home</a>
+          <i class="fa fa-angle-right"></i>
+          Login
+          <div class="page-title">
+            Registrarme
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col l12 col m12 col s12">
+        <div class="login-page z-depth-1">
+          <div class="col l4 col m6 col s12 offset-l4 offset-m3">
+            <form action="/usuario/create" method="post">
+              <div class="login-title">Welcome, You can login securely below.</div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input id="email" type="email" class="validate" required>
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="nombres" class="validate" required>
+                <label for="nombres">Nombres</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="apellidos" class="validate">
+                <label for="apellidos">Apellidos</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="nick" class="validate" required>
+                <label for="nick">Nick</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="date" name="fecha_nacimiento" class="validate">
+                <label for="nick">Fecha de nacimiento</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-lock-open prefix"></i>
+                <input name="contrasenia" type="password" class="validate" required>
+                <label for="name">Contraseña</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-lock-open prefix"></i>
+                <input name="contrasenia_confirmacion" type="password" class="validate" required>
+                <label for="name">Confirme su contraseña</label>
+              </div>
+              <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick=@"Materialize.toast('<span>Verificando</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">Registrarme</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

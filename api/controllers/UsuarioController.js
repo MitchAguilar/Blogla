@@ -7,11 +7,10 @@
 
 module.exports = {
 
-  nuevo: function(req, res) {
+  signin: function(req, res) {
     res.view();
   },
-  show: function(req, res) {
+  register: function(req, res) {
     res.view();
   }
-
 };

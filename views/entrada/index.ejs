@@ -1,0 +1,65 @@
+<!-- Main Wrapper -->
+<div class="wrapper grey-background">
+  <div class="container">
+    <div class="row">
+      <div class="col l12 col m12 col s12 center-align">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="#">Blogs</a>
+          <i class="fa fa-angle-right"></i>
+          About
+          <div class="page-title">
+            Entradas
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col l12 col m12 col s12">
+        <div class="about z-depth-1">
+          <!-- About Image
+          <img alt="news Image" src="/images/about.jpg" class="responsive-img">-->
+          <div class="col l8 offset-l2 col m12 col s12">
+            <!-- About Detail -->
+            <p>              
+              <% if(entradas.length == 0) {%>
+                <% Materialize.toast('No hay entradas publicadas!', 4000); %>
+                <h4>No entradas registradas</h4>
+              <%} else { %>
+                <table>
+                  <thead>
+                    <tr>
+                      <th data-field="name">Titulo</th>
+                      <th data-field="text">Cuerpo</th>
+                      <th data-field="date">Creado</th>
+                      <th data-field="date">Actualizado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% _.each(entradas, function(value) { %>
+                      <tr>
+                        <td>
+                          <%= value.titulo %>
+                        </td>
+                        <td>
+                          <%= value.cuerpo %>
+                        </td>
+                        <td>
+                          <%= value.createdAt %>
+                        </td>
+                        <td>
+                          <%= value.updatedAt %>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              <% } %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

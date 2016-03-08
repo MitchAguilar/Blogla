@@ -1,39 +1,49 @@
-<!-- Square card -->
-<style>
-  .demo-card-square.mdl-card {
-    width: 320px;
-    height: 320px;
-  }
-  .demo-card-square > .mdl-card__title {
-    color: #fff;
-    background: url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
-  }
+<!-- Main Wrapper -->
+<div class="wrapper grey-background">
+  <div class="container">
+    <div class="row">
+      <div class="col l12 col m12 col s12 center-align">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="#">Blogs</a>
+          <i class="fa fa-angle-right"></i>
+          About
+          <div class="page-title">
+            Comentarios
+          </div>
+        </div>
+      </div>
+    </div>
 
-</style>
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-      <thead>
-        <tr>
-          <th class="mdl-data-table__cell--non-numeric">Comentario</th>
-          <th>Creado</th>
-          <th>Actualizado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% _.each(comentarios, function(value) { %>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric"><%= value.cuerpo %></td>
-            <td><%= value.createdAt %></td>
-            <td><%= value.updatedAt %></td>
-            <td>
-              <a href="/comentario/edit/<%= value.id %>">
-                Editar
-              </a>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col l12 col m12 col s12">
+        <div class="about z-depth-1">
+          <!-- About Image
+          <img alt="news Image" src="/images/about.jpg" class="responsive-img">-->
+          <div class="col l8 offset-l2 col m12 col s12">
+            <!-- About Detail -->
+            <p>
+
+              <ul class="collection with-header">
+
+                <li class="collection-header">
+                  <h4>Comentarios</h4>
+                </li>
+                <% _.each(comentarios, function(value) { %>
+                  <li class="collection-item">
+                    <div title="Creado <%= value.createdAt %>">
+                      <%= value.cuerpo %>
+                      <a href="/comentario/edit/<%= value.id %>" class="secondary-content" title="Ultima actualizacion <%= value.updatedAt %>">
+                        <i class="material-icons">Editar</i>
+                      </a>
+                    </div>
+                  </li>
+                <% }) %>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
