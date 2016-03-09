@@ -19,6 +19,17 @@
       <div class="col l12 col m12 col s12">
         <div class="login-page z-depth-1">
           <div class="col l4 col m6 col s12 offset-l4 offset-m3">
+            <% if (flash && flash.err) { %>
+              <p>
+                <ul class="collection">
+                  <% Object.keys(flash.err).forEach(function (error) { %>
+                    <li class="collection-item">
+                      <%= JSON.stringify(flash.err[error]) %>
+                    </li>
+                  <% }) %>
+                </ul>
+              </p>
+            <% } %>
             <form action="/usuario/create" method="post">
               <div class="login-title">Welcome, You can login securely below.</div>
               <div class="input-field">
@@ -56,7 +67,7 @@
                 <input name="contrasenia_confirmacion" type="password" class="validate" required>
                 <label for="name">Confirme su contraseña</label>
               </div>
-              <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick=@"Materialize.toast('<span>Verificando</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">Registrarme</button>
+              <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right">Registrarme</button>
             </form>
           </div>
         </div>
