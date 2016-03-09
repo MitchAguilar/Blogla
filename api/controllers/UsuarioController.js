@@ -44,22 +44,24 @@ module.exports = {
           }
           if (!valid) {
             var contraseniaNoDontMatchError = [{
-              message: 'Las contraseñas no coinciden'
+              message: 'Contraseña incorrecta!'
             }];
             req.session.flash = {
               err: contraseniaNoDontMatchError
             }
             return res.redirect('/usuario/signin');
           }
+          req.session.authenticated = true;
+          req.session.User = value;
           return res.redirect('/usuario/perfil/' + value.id);
         });
       });
     }
   },
-  signin: function(req, res) {
+  signin: function(req, res) { /* Abre el formulario de iniciar sesion o login */
     res.view();
   },
-  register: function(req, res) {
+  register: function(req, res) { /* Abre el formulario de registrar usuario */
     res.view();
   },
   create: function(req, res) {
@@ -92,8 +94,28 @@ module.exports = {
           };
           return res.redirect('/usuario/register');
         }
+        req.session.authenticated = true;
+        req.session.User = value;
         return res.redirect('/usuario/show/' + value.id);
       });
     }
+  },
+  perfil: function(req, res) {
+    Usuario.findOne(req.param('id'), function usuarioFounded(err, value) {
+      if (err) {
+        console.log(JSON.stringify(err));
+        req.session.flash = {
+          err: err
+        };
+        return res.redirect('/usuario/register');
+      }
+      res.view({
+        usuario: value
+      });
+    });
+  },
+  signout: function(req, res) { /* Cerrar la sesion */
+    req.session.destroy();
+    req.redirect('/usuario/signin')
   }
 };

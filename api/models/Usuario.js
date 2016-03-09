@@ -40,6 +40,10 @@ module.exports = {
     contrasenia_encriptada: {
       type: 'string'
     },
+    rol: {
+      model: 'Rol',
+      via: 'nombre'
+    },
     toJSON: function() {
       var obj = this.toObject();
       delete obj.contrasenia;
