@@ -76,17 +76,9 @@ module.exports = {
       }
       return res.redirect('/usuario/register');
     } else {
-      var UserObj = {
-        email: req.param('email'),
-        nombres: req.param('nombres'),
-        apellidos: req.param('apellidos'),
-        nick: req.param('nick'),
-        fecha_nacimiento: req.param('fecha_nacimiento'),
-        contrasenia: req.param('contrasenia'),
-        contrasenia_confirmacion: req.param('contrasenia_confirmacion')
-      };
-
-      Usuario.create(UserObj, function(err, value) {
+      Rol.find({
+        nombre: ['Editor', 'editor', 'edit']
+      }, function RolFounded(err, value) {
         if (err) {
           console.log(JSON.stringify(err));
           req.session.flash = {
@@ -94,9 +86,32 @@ module.exports = {
           };
           return res.redirect('/usuario/register');
         }
-        req.session.authenticated = true;
-        req.session.User = value;
-        return res.redirect('/usuario/show/' + value.id);
+        console.log("Rol encontrado, " + value.id);
+        console.log("Rol encontrado, " + JSON.stringify(value[0]));
+
+        var UserObj = {
+          email: req.param('email'),
+          nombres: req.param('nombres'),
+          apellidos: req.param('apellidos'),
+          nick: req.param('nick'),
+          fecha_nacimiento: req.param('fecha_nacimiento'),
+          contrasenia: req.param('contrasenia'),
+          contrasenia_confirmacion: req.param('contrasenia_confirmacion'),
+          rol: value[0].id
+        }
+
+        Usuario.create(UserObj, function(err, value) {
+          if (err) {
+            console.log(JSON.stringify(err));
+            req.session.flash = {
+              err: err
+            };
+            return res.redirect('/usuario/register');
+          }
+          req.session.authenticated = true;
+          req.session.User = value;
+          return res.redirect('/usuario/perfil/' + value.id);
+        });
       });
     }
   },

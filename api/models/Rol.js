@@ -14,6 +14,10 @@ module.exports = {
     },
     descripcion: {
       type: 'string'
+    },
+    usuario: {
+      type: 'collection',
+      via: 'rol'
     }
   }
 };

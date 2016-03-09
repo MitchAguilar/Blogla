@@ -40,9 +40,9 @@ module.exports = {
     contrasenia_encriptada: {
       type: 'string'
     },
-    rol: {
+    rol: { /* Relacion con usuario */
       model: 'Rol',
-      via: 'nombre'
+      via: 'usuario'
     },
     toJSON: function() {
       var obj = this.toObject();
