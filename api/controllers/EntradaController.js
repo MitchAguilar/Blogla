@@ -11,12 +11,13 @@ moment.locale('es');
 
 module.exports = {
   nuevo: function(req, res) {
-    res.view();
+    localStorage.setItem('key', 'value');
+    res.view({});
   },
   index: function(req, res) {
     Entrada.find(function EntradaFounded(err, values) {
       if (err) {
-        console.log(JSON.stringify(err));        
+        console.log(JSON.stringify(err));
         return next(err);
       }
       for (var i = 0; i < values.length; i++) {

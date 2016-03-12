@@ -76,7 +76,7 @@ module.exports = {
       }
       return res.redirect('/usuario/register');
     } else {
-      Rol.find({
+      Rol.findOne({
         nombre: ['Editor', 'editor', 'edit']
       }, function RolFounded(err, value) {
         if (err) {
@@ -85,33 +85,41 @@ module.exports = {
             err: err
           };
           return res.redirect('/usuario/register');
-        }
-        console.log("Rol encontrado, " + value.id);
-        console.log("Rol encontrado, " + JSON.stringify(value[0]));
+        } else if (value.id == undefined) {
+          req.session.flash = {
+            err: {
+              message: 'No se puede registrar debido a que no existen roles.'
+            }
+          };
+          return res.redirect('/usuario/register');
+        } else {
+          console.log("Rol encontrado, " + value.id);
+          console.log("Rol encontrado, " + JSON.stringify(value));
 
-        var UserObj = {
-          email: req.param('email'),
-          nombres: req.param('nombres'),
-          apellidos: req.param('apellidos'),
-          nick: req.param('nick'),
-          fecha_nacimiento: req.param('fecha_nacimiento'),
-          contrasenia: req.param('contrasenia'),
-          contrasenia_confirmacion: req.param('contrasenia_confirmacion'),
-          rol: value[0].id
-        }
-
-        Usuario.create(UserObj, function(err, value) {
-          if (err) {
-            console.log(JSON.stringify(err));
-            req.session.flash = {
-              err: err
-            };
-            return res.redirect('/usuario/register');
+          var UserObj = {
+            email: req.param('email'),
+            nombres: req.param('nombres'),
+            apellidos: req.param('apellidos'),
+            nick: req.param('nick'),
+            fecha_nacimiento: req.param('fecha_nacimiento'),
+            contrasenia: req.param('contrasenia'),
+            contrasenia_confirmacion: req.param('contrasenia_confirmacion'),
+            rol: value.id //Se asigna el id del rol perteneciente a editor
           }
-          req.session.authenticated = true;
-          req.session.User = value;
-          return res.redirect('/usuario/perfil/' + value.id);
-        });
+
+          Usuario.create(UserObj, function(err, value) {
+            if (err) {
+              console.log(JSON.stringify(err));
+              req.session.flash = {
+                err: err
+              };
+              return res.redirect('/usuario/register');
+            }
+            req.session.authenticated = true;
+            req.session.User = value;
+            return res.redirect('/usuario/perfil/' + value.id);
+          });
+        }
       });
     }
   },

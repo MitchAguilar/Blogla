@@ -33,6 +33,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    publicaciones: {
+      collection: 'Entrada',
+      via: 'usuario_publicador'
+    },
     contrasenia_confirmacion: {
       type: 'string',
       required: true
