@@ -18,6 +18,10 @@ module.exports = {
       type: 'text',
       required: true
     },
+    categoria_entrada_ref: {
+      model: 'CategoriaEntrada',
+      via: 'entrada_ref'
+    },
     usuario_publicador: { //Usado para establecer la relacion con Usuario. Un usuario tiene muchas Publicaciones o entradas.
       model: 'Usuario'
     }

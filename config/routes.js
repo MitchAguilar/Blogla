@@ -47,11 +47,6 @@ module.exports.routes = {
     view: 'usuario/register',
     controller: 'UsuarioController',
     action: 'register'
-  },
-  '/entrada/nuevo': {
-    view: 'entrada/nuevo',
-    controller: 'EntradaController',
-    action: 'nuevo'
   }
 
 

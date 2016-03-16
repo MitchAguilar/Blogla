@@ -32,14 +32,14 @@ module.exports = {
           }];
           req.session.flash = {
             err: noUserFounded
-          }
+          };
           return res.redirect('/usuario/signin');
         }
         require('bcrypt').compare(contrasenia, value.contrasenia_encriptada, function passwordMatch(err, valid) {
           if (err) {
             req.session.flash = {
               err: err
-            }
+            };
             return res.redirect('/usuario/signin');
           }
           if (!valid) {
@@ -48,11 +48,13 @@ module.exports = {
             }];
             req.session.flash = {
               err: contraseniaNoDontMatchError
-            }
+            };
             return res.redirect('/usuario/signin');
           }
           req.session.authenticated = true;
           req.session.User = value;
+
+          console.log("REQ: " + JSON.stringify(req.session.User));
           return res.redirect('/usuario/perfil/' + value.id);
         });
       });
@@ -76,6 +78,7 @@ module.exports = {
       }
       return res.redirect('/usuario/register');
     } else {
+      /* Buscar rol de editor para asignarlo al nuevo usuario a registrar */
       Rol.findOne({
         nombre: ['Editor', 'editor', 'edit']
       }, function RolFounded(err, value) {
@@ -88,12 +91,11 @@ module.exports = {
         } else if (value.id == undefined) {
           req.session.flash = {
             err: {
-              message: 'No se puede registrar debido a que no existen roles.'
+              message: 'No se puede registrar debido a que NO existen roles.'
             }
           };
           return res.redirect('/usuario/register');
         } else {
-          console.log("Rol encontrado, " + value.id);
           console.log("Rol encontrado, " + JSON.stringify(value));
 
           var UserObj = {
@@ -115,15 +117,18 @@ module.exports = {
               };
               return res.redirect('/usuario/register');
             }
+            /* Se autentica el request para darle acceso al
+             usuario a las Politicas -> Authenticated */
             req.session.authenticated = true;
             req.session.User = value;
-            return res.redirect('/usuario/perfil/' + value.id);
+
+            return res.redirect('/usuario/perfil/' + value.id); //Refidigir a la pagina del perfil
           });
         }
       });
     }
   },
-  perfil: function(req, res) {
+  perfil: function(req, res) { /* Abre el perfil del usuario */
     Usuario.findOne(req.param('id'), function usuarioFounded(err, value) {
       if (err) {
         console.log(JSON.stringify(err));

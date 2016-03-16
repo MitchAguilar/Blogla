@@ -30,21 +30,28 @@
               <form name="sentMessage" id="contactForm" method="post" action="/entrada/create">
                 <div class="input-field">
                   <i class="mdi-action-perm-identity prefix"></i>
-                  <input id="name" name="titulo" type="text" class="validate" required>
+                  <input name="titulo" type="text" class="validate" required>
                   <label for="name">Titulo</label>
                 </div>
                 <div class="input-field">
                   <i class="mdi-communication-email prefix"></i>
-                  <input name="otro" type="text" class="validate" required>
-                  <label for="email">Otro</label>
-                </div>
-                <div class="input-field">
-                  <textarea id="textarea1" name="cuerpo" class="materialize-textarea"></textarea>
-                  <label for="textarea1">Cuerpo de texto</label>
-                </div>
-                <button class="btn btn-flat waves-effect waves-light shopping-cart-button right" type="submit" name="action">Publicar</button>
-              </form>
-            </div>
+                  <select name="categoria_entrada_ref">
+                    <% try {%>
+                      <% categorias.forEach(elem => { %>
+                        <option value="<%=elem.id%>"><%=elem.nombre_categoria%></option>
+                      <% }); %>
+                    <% } catch (err) {%>
+                    <option value="option">Error> No hay categorias<%=err%></option>
+                  <% } %>
+                </select>
+                <label for="email">Otro</label>
+              </div>
+              <div class="input-field">
+                <textarea name="cuerpo" class="materialize-textarea"></textarea>
+                <label for="textarea1">Cuerpo de texto</label>
+              </div>
+              <button class="btn btn-flat waves-effect waves-light shopping-cart-button right" type="submit" name="action">Publicar</button>
+            </form>
           </div>
         </div>
       </div>

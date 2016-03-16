@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="Blog">
   <head>
     <title>Sails</title>
 
@@ -38,7 +37,7 @@
     <!--STYLES END-->
   </head>
 
-  <body>
+  <body ng-controller="ControllerPage">
 
     <!-- Header -->
     <header class="">
@@ -133,7 +132,7 @@
               </div>
               <div class="col l4 col m4 col s3">
                 <!-- LogIn Link -->
-                <a href="http://inceptionsystem.us/themes/Material-News/login.html" class="login">Login</a>
+                <a href="/usuario/signin" class="login">Login</a>
               </div>
               <div class="col l4 col m4 col s2">
                 <!-- Search Button -->
@@ -309,11 +308,37 @@
     <!-- Sidebar Navigation -->
     <ul id="slide-out" class="side-nav full" style="width: 300px; left: -310px;">
       <li class="logo-title">
-        <a href="javascript:void(0);">Material News</a>
+        <a href="javascript:void(0);">Blogla</a>
       </li>
       <!-- Dropdown Menu -->
-      <li class="dropdown-menu">
+      <li class="dropdown-menu" ng-controller="ControllerPage">
         <ul class="collapsible" data-collapsible="expandable">
+          <li class="active">
+            <div class="collapsible-header waves-effect waves active">
+              <i class="fa fa-file"></i>
+              Publicaciones
+              <i class="fa fa-angle-right"></i>
+            </div>
+            <div style="display: block;" class="collapsible-body">
+              <ul>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index.html">
+                    <i class="fa fa-angle-right"></i>
+                    Home Page 1</a>
+                </li>
+                <li class="waves-effect">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index2.html">
+                    <i class="fa fa-angle-right"></i>
+                    Home Page 2</a>
+                </li>
+                <li class="waves-effect active">
+                  <a href="http://inceptionsystem.us/themes/Material-News/index3.html">
+                    <i class="fa fa-angle-right"></i>
+                    Home Page 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
           <li class="active">
             <div class="collapsible-header waves-effect waves active">
               <i class="fa fa-file"></i>
@@ -454,7 +479,11 @@
       </li>
     </ul>
 
+    <!-- ***********************************************************************
+                                          Body
+    -->
     <%- body %>
+
 
     <!-- Footer -->
     <footer class="page-footer">
@@ -593,30 +622,7 @@
                 <a href="javascript:void(0);">Videos</a>
               </li>
             </ul>
-
-            <!-- Footer Column 7 -->
-            <ul>
-              <li class="footer-title">Option</li>
-              <li>
-                <a href="javascript:void(0);">Cartoons</a>
-              </li>
-            </ul>
-
-            <!-- Footer Column 8 -->
-            <ul>
-              <li class="footer-title">Weather</li>
-              <li>
-                <a href="javascript:void(0);">Hurricans</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Climate</a>
-              </li>
-            </ul>
           </div>
-        </div>
-        <!-- Footer Logo -->
-        <div class="logo">
-          <a href="http://inceptionsystem.us/themes/Material-News/index.html"><img src="/images/material-logo.png" alt="Logo"></a>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -626,41 +632,6 @@
             <!-- Copyright Text -->
             <div class="col l4 col m12 col s12">
               © Copyright 2015 Material News by ThemeLeague
-            </div>
-            <div class="col l4 col m12 col s12">
-              <!-- Social Icon -->
-              <div class="social-icon">
-                <a href="javascript:void(0);">
-                  <i class="fa fa-facebook"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-twitter"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-pinterest"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-instagram"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-youtube"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-vine"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-google-plus"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-rss"></i>
-                </a>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-tumblr"></i>
-                </a>
-              </div>
             </div>
             <div class="col l4 col m12 col s12">
               <!-- Footer Menu -->
@@ -682,7 +653,6 @@
         </div>
       </div>
     </footer>
-
 
     <!--
         Client-side Templates
@@ -735,11 +705,10 @@
     <script src="/js/style/jquery-min.js"></script>
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/js/amplify-1.1.2/amplify-vsdoc.js"></script>
-    <script src="/js/amplify-1.1.2/amplify.js"></script>
     <script src="/js/amplify-1.1.2/amplify.min.js"></script>
     <script src="/js/angular/angular.min.js"></script>
     <script src="/js/controllers_angular/ControllerHomePage.js"></script>
+    <script src="/js/controllers_angular/ControllerPage.js"></script>
     <script src="/js/hammer-time.min.js"></script>
     <script src="/js/jquery-2.2.1.min.js"></script>
     <script src="/js/moment-with-locales.min.js"></script>
@@ -752,7 +721,7 @@
     <script src="/js/style/pgwslider.js"></script>
     <!--SCRIPTS END-->
 
-    <script>
+    <script type="text/javascript">
       console.log("momentjs cargando " + moment());
     </script>
   </body>

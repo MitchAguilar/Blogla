@@ -1,7 +1,8 @@
 angular.module('Blog', [])
 
-.controller('ControllerHomePage', ['$scope', function($scope) {
+.controller('ControllerPage', ['$scope', function($scope) {
   $scope.entradas_menu = [{
+    nombre_blog: 'Blogla',
     nombre: "Nuevo usuario",
     enlace: '#/usuario/nuevo'
   }];
