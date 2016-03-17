@@ -5,6 +5,10 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+/* is.js */
+/* Todo tipo de validaciones */
+var is = require('is.js');
+
 module.exports = {
 
   login: function(req, res) { /* Iniciar sesion, se verifican que las credenciales coincidan con el usuario registrado */
@@ -16,14 +20,15 @@ module.exports = {
       };
       req.session.flash = {
         err: credencialError
-      }
+      };
       return res.redirect('/usuario/signin');
     } else {
+      //if (is.email(email)) { //Validar email
       Usuario.findOneByEmail(email, function UsuarioFounded(err, value) {
         if (err) {
           req.session.flash = {
             err: err
-          }
+          };
           return res.redirect('/usuario/signin');
         }
         if (!value) {
@@ -54,10 +59,13 @@ module.exports = {
           req.session.authenticated = true;
           req.session.User = value;
 
-          console.log("REQ: " + JSON.stringify(req.session.User));
+          console.log("Usuario inicio sesion, id: " + JSON.stringify(req.session.User.id));
           return res.redirect('/usuario/perfil/' + value.id);
         });
       });
+      /*  } else {
+          console.log("Intento de acceso con email incorrecto: " + email);
+        }*/
     }
   },
   signin: function(req, res) { /* Abre el formulario de iniciar sesion o login */
@@ -75,7 +83,7 @@ module.exports = {
       };
       req.session.flash = {
         err: credencialError
-      }
+      };
       return res.redirect('/usuario/register');
     } else {
       /* Buscar rol de editor para asignarlo al nuevo usuario a registrar */
@@ -96,7 +104,7 @@ module.exports = {
           };
           return res.redirect('/usuario/register');
         } else {
-          console.log("Rol encontrado, " + JSON.stringify(value));
+          console.log("Roles encontrados: " + (value.length));
 
           var UserObj = {
             email: req.param('email'),
@@ -137,9 +145,13 @@ module.exports = {
         };
         return res.redirect('/usuario/register');
       }
-      res.view({
-        usuario: value
-      });
+      if (value != undefined) {
+        res.view({
+          usuario: value
+        });
+      } else {
+        return res.redirect('/'); // Si se inserta un id de usuario incorrecto, se redirige al index
+      }
     });
   },
   signout: function(req, res) { /* Cerrar la sesion */

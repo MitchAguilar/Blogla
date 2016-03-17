@@ -36,7 +36,7 @@
                 <div class="input-field">
                   <i class="mdi-communication-email prefix"></i>
                   <select name="categoria_entrada_ref">
-                    <% try {%>
+                    <% try { %>
                       <% categorias.forEach(elem => { %>
                         <option value="<%=elem.id%>"><%=elem.nombre_categoria%></option>
                       <% }); %>

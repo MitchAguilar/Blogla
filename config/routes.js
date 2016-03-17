@@ -31,23 +31,18 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
-  '/': {
-    view: 'homepage/homepage'
-  },
+  'GET /': 'HomePageController.index',
   '/index': {
-    view: 'index'
-  },
-  '/comentario/nuevo': {
-    view: 'comentario/nuevo',
-    controller: 'ComentarioController',
-    action: 'nuevo'
+    view: 'homepage/homepage',
+    controller: 'HomePageController',
+    action: 'index'
   },
   '/usuario/nuevo': {
     view: 'usuario/register',
     controller: 'UsuarioController',
     action: 'register'
   }
+
 
 
   /***************************************************************************

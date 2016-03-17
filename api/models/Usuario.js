@@ -8,6 +8,9 @@
 module.exports = {
 
   attributes: {
+    /***************************
+            Datos personales
+     */
     email: {
       type: 'email',
       required: true,
@@ -29,25 +32,51 @@ module.exports = {
     fecha_nacimiento: {
       type: 'datetime'
     },
+    /*************************
+            Seguridad
+    */
     contrasenia: {
       type: 'string',
       required: true
-    },
-    publicaciones: {
-      collection: 'Entrada',
-      via: 'usuario_publicador'
     },
     contrasenia_confirmacion: {
       type: 'string',
       required: true
     },
     contrasenia_encriptada: {
+      type: 'string',
+      required: true
+    },
+    /************************
+          Redes sociales
+    */
+    id_twitter: {
       type: 'string'
     },
+    link_facebook: {
+      type: 'string'
+    },
+    canal_youtube: {
+      type: 'string'
+    },
+    /************************
+            Relaciones
+    */
     rol: { /* Relacion con usuario */
       model: 'Rol',
       via: 'usuario'
     },
+    publicaciones: { /* Relacion con publicaciones */
+      collection: 'Entrada',
+      via: 'usuario_publicador'
+    },
+    usuario_publicador_ref: { /* Relacion con  */
+      type: 'collection',
+      via: 'usuario_publicador_ref'
+    },
+    /************************
+        Retorno de Datos
+    */
     toJSON: function() {
       var obj = this.toObject();
       delete obj.contrasenia;
@@ -56,6 +85,9 @@ module.exports = {
       return obj;
     }
   },
+  /***************************
+        "Triggers"
+  */
   beforeCreate: function(values, next) {
     console.log('Entro al beforeCreate de Usuario');
     var pass = values.contrasenia;

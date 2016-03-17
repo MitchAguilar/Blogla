@@ -1,10 +1,11 @@
-<html ng-app="Blog">
+<html ng-app="Blog" lang="es">
   <head>
     <title>Sails</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
     <!--
         Stylesheets and Preprocessors
         ==============================
@@ -37,7 +38,7 @@
     <!--STYLES END-->
   </head>
 
-  <body ng-controller="ControllerPage">
+  <body ng-controller="ControllerHomePage">
 
     <!-- Header -->
     <header class="">
@@ -311,7 +312,7 @@
         <a href="javascript:void(0);">Blogla</a>
       </li>
       <!-- Dropdown Menu -->
-      <li class="dropdown-menu" ng-controller="ControllerPage">
+      <li class="dropdown-menu">
         <ul class="collapsible" data-collapsible="expandable">
           <li class="active">
             <div class="collapsible-header waves-effect waves active">
@@ -483,7 +484,6 @@
                                           Body
     -->
     <%- body %>
-
 
     <!-- Footer -->
     <footer class="page-footer">
@@ -708,7 +708,8 @@
     <script src="/js/amplify-1.1.2/amplify.min.js"></script>
     <script src="/js/angular/angular.min.js"></script>
     <script src="/js/controllers_angular/ControllerHomePage.js"></script>
-    <script src="/js/controllers_angular/ControllerPage.js"></script>
+    <script src="/js/controllers_angular/ControllerPerfil.js"></script>
+    <script src="/js/controllers_angular/app.js"></script>
     <script src="/js/hammer-time.min.js"></script>
     <script src="/js/jquery-2.2.1.min.js"></script>
     <script src="/js/moment-with-locales.min.js"></script>

@@ -22,8 +22,9 @@ module.exports = {
       model: 'CategoriaEntrada',
       via: 'entrada_ref'
     },
-    usuario_publicador: { //Usado para establecer la relacion con Usuario. Un usuario tiene muchas Publicaciones o entradas.
-      model: 'Usuario'
+    usuario_publicador: { /* Relacion con usuario */
+      model: 'Usuario',
+      via: 'usuario_publicador_ref'
     }
   }
 };

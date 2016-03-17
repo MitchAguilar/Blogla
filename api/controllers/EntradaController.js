@@ -5,18 +5,18 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+/* momentjs */
 var moment = require('moment');
 moment.locale('es');
 
 module.exports = {
   nuevo: function(req, res) { //Abre el formulario de registrar Entrada
-    console.log("Holaaaaaaaaaaaaaaaaaaaaaal");
     CategoriaEntrada.find(function CategoriaEntradaFounded(err, values) {
       if (err) {
         console.log('Error al consultar las categorias de las entradas. ' + err);
         return next(err);
       }
-      console.log("CategoriaEntrada: -->" + JSON.stringify(values));
+      console.log("Se han consultado " + (values.length) + " categorias de entrada");
       res.view({
         categorias: values
       });
@@ -36,14 +36,21 @@ module.exports = {
         entradas: values
       });
     });
-  }
-  /*,
+  },
+  /* Crear Entrada */
+  /* Inserta una nueva entrada,
+  @param titulo
+  @param cuerpo
+  @param categoria_entrada
+  */
   create: function(req, res, next) {
     console.log("Peticion> " + JSON.stringify(req.params));
+    console.log("ID del usuario que publica: " + req.session.User.id);
     var entrada = {
       titulo: req.param('titulo'),
       cuerpo: req.param('cuerpo'),
-      categoria_entrada: req.param('categoria_entrada')
+      categoria_entrada_ref: req.param('categoria_entrada_ref'),
+      usuario_publicador_ref: req.session.User.id
     }
     console.log("Peticion & entrada> " + JSON.stringify(entrada));
 
@@ -53,6 +60,8 @@ module.exports = {
         //return res.redirect('comentario/nuevo');
         return next(err);
       }
+      return res.json(value);
     });
-  }*/
+
+  }
 };

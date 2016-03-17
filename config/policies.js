@@ -26,15 +26,14 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
-  //'*': 'flash',
+  '*': 'flash',
   'usuario': {
-    register: 'flash',
-    create: 'flash',
-    signin: 'flash',
+    '*': 'flash',
     'perfil': 'authenticated'
   },
   'entrada': {
     'nuevo': 'authenticated',
+    'create': 'authenticated',
     index: true
   }
 
