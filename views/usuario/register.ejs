@@ -32,6 +32,8 @@
             <% } %>
             <form action="/usuario/create" method="post">
               <div class="login-title">Welcome, You can login securely below.</div>
+
+              <!-- Informacion personal -->
               <div class="input-field">
                 <i class="mdi-action-perm-identity prefix"></i>
                 <input id="email" type="email" name="email" class="validate" required>
@@ -57,6 +59,31 @@
                 <input type="date" name="fecha_nacimiento" class="validate">
                 <label for="date">Fecha de nacimiento</label>
               </div>
+
+              <!-- Redes sociales
+
+              <div class="input-field" title="Direccion de la cuenta de facebook, ej> ingresar solamente las XXXXX de https://www.facebook.com/XXXXX">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="facebook" class="validate">
+                <label for="facebook">Facebook</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="googleplus" class="validate">
+                <label for="googleplus">Google plus</label>
+              </div>
+              <div class="input-field" title="@su">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="twitter" class="validate">
+                <label for="twitter">Twitter</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="youtube" class="validate">
+                <label for="youtube">Youtube</label>
+              </div>
+-->
+              <!-- Seguridad -->
               <div class="input-field">
                 <i class="mdi-action-lock-open prefix"></i>
                 <input name="contrasenia" type="password" class="validate" required>

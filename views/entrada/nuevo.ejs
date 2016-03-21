@@ -1,4 +1,5 @@
-<!-- Main Wrapper -->
+<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+
 <div class="wrapper grey-background">
   <div class="container">
     <div class="row">
@@ -18,15 +19,8 @@
     <div class="row">
       <div class="col l12">
         <div class="contact z-depth-1">
-          <!-- Contact Image -->
           <div class="contact-detail">
-            <div class="col l7 col m6 col s12">
-              <div class="title">Nueva entrada</div>
-              <p>Yeah, Accessories is Greate and this the fun part. we'd to talkabout your project or just chat about Accessories. So either fill out the form, pick up the phone.
-              </p>
-            </div>
-
-            <div class="col l5 col m6 col s12">
+            <div class="">
               <form name="sentMessage" id="contactForm" method="post" action="/entrada/create">
                 <div class="input-field">
                   <i class="mdi-action-perm-identity prefix"></i>
@@ -47,9 +41,14 @@
                 <label for="email">Otro</label>
               </div>
               <div class="input-field">
-                <textarea name="cuerpo" class="materialize-textarea"></textarea>
-                <label for="textarea1">Cuerpo de texto</label>
+                <textarea name="cuerpo" id="editor1" rows="10" cols="80">
+                  Escriba aqui su publicacion
+                </textarea>
+                <script>
+                  CKEDITOR.replace('cuerpo');
+                </script>
               </div>
+              <br>
               <button class="btn btn-flat waves-effect waves-light shopping-cart-button right" type="submit" name="action">Publicar</button>
             </form>
           </div>

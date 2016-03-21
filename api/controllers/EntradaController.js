@@ -44,7 +44,7 @@ module.exports = {
   @param categoria_entrada
   */
   create: function(req, res, next) {
-    console.log("Peticion> " + JSON.stringify(req.params));
+    console.log("Peticion: " + JSON.stringify(req.params));
     console.log("ID del usuario que publica: " + req.session.User.id);
     var entrada = {
       titulo: req.param('titulo'),

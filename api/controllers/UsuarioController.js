@@ -157,5 +157,12 @@ module.exports = {
   signout: function(req, res) { /* Cerrar la sesion */
     req.session.destroy();
     req.redirect('/usuario/signin')
+  },
+  index: function(req, res) {
+    console.log("Mostrando todos los usuarios.");
+    Usuario.find({}).populateAll().exec(function(e, r) {
+      //console.log(r[0].toJSON())
+      res.json(r);
+    });
   }
 };

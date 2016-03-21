@@ -1469,7 +1469,7 @@ header.header-fix{ background: #2f3e9b !important; }
 .cart-menu li ul{ top: 45px; }
 .header-fix .searchbox{ margin: 0 !important; }
 .searchbox-open{ width: 100%; }
-.bottom-header {padding: 10px 0; }
+.bottom-header {padding: 1px 0; }
 .top-header .row, .bottom-header .row{ margin-bottom: 0; }
 header.header-fix{  background-color: #3f51b5;}
 .header-dropdown{ margin: 0; }

@@ -50,13 +50,16 @@ module.exports = {
     /************************
           Redes sociales
     */
-    id_twitter: {
+    twitter: {
       type: 'string'
     },
-    link_facebook: {
+    facebook: {
       type: 'string'
     },
-    canal_youtube: {
+    youtube: {
+      type: 'string'
+    },
+    googleplus: {
       type: 'string'
     },
     /************************
