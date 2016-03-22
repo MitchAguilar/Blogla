@@ -81,7 +81,7 @@
             </div>
             <div class="col l4 col m4 col s12 pull-right">
               <!-- Search Button -->
-              <form class="searchbox">
+              <form class="searchbox" action="/entrada/search/">
                 <input type="text" placeholder="<%= __('Busqueda') %>" name="search" class="searchbox-input" required>
                 <input type="submit" class="searchbox-submit">
                 <span class="searchbox-icon">
@@ -136,8 +136,8 @@
               </div>
               <div class="col l4 col m4 col s2">
                 <!-- Search Button -->
-                <form class="searchbox">
-                  <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required="">
+                <form class="searchbox" action="/entrada/search">
+                  <input type="text" placeholder="<%= __('Busqueda') %>" name="search" class="searchbox-input" required>
                   <input type="submit" class="searchbox-submit">
                   <span class="searchbox-icon">
                     <i class="mdi-action-search"></i>

@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row margin-bottom-0">
       <% if (entradas.length == 0) { %>
-        <h1>No hay entradas</h1>
+        <h1>
+          <%= __('NoEntrada') %>
+        </h1>
       <% } else { %>
         <div class="col l9 m12">
           <div class="row">
@@ -38,7 +40,7 @@
                     </div>
                   </div>
                 </div>
-              <% } else { break; }%>
+              <% } else { break; } %>
               <% } %>
             </div>
 
@@ -124,7 +126,7 @@
               <!-- Sidebar -->
               <div class="sidbar-box z-depth-1">
                 <div class="sidebar-title">
-                  Top publicaciones
+                  <%= __('TopPublicacion') %>
                 </div>
                 <div class="news-sidebar">
                   <% entradas.forEach(elem => { %>
@@ -143,7 +145,7 @@
                         </div>
                         <!-- News Sidebar Title -->
                         <div class="news-title">
-                          <a href="javascript:void(0)">
+                          <a href="/entrada/showOne/<%= elem.id %>">
                             <%= elem.titulo %>
                           </a>
                         </div>

@@ -23,7 +23,10 @@ module.exports = {
     });
   },
   index: function(req, res) { //Pagina principal de todas las entradas
-    Entrada.find({}).populateAll().exec(function(e, r) {
+    Entrada.find({
+      limit: 50,
+      sort: 'createdAt DESC'
+    }).populateAll().exec(function(e, r) {
       //console.log(r[0].toJSON())
       //res.json(r);
       if (e) {
@@ -39,6 +42,34 @@ module.exports = {
         entradas: r
       });
     });
+  },
+  search: function(req, res) {
+    var search = req.param('search');
+    console.log("Buscando entradas con: " + search);
+    if (search != undefined) {
+      Entrada.find({
+        titulo: {
+          'like': '%' + search
+        },
+        sort: 'createdAt DESC'
+      }).populateAll().exec(function(e, r) {
+        //console.log(r[0].toJSON())
+        //res.json(r);
+        //console.log("Resultados de busqueda: \n" + JSON.stringify(r));
+        if (e) {
+          console.log(JSON.stringify(e));
+          return next(e);
+        }
+        for (var i = 0; i < r.length; i++) {
+          r[i].createdAt = moment(r[i].createdAt).fromNow();
+          r[i].updatedAt = moment(r[i].updatedAt).fromNow();
+        }
+        //console.log("R: " + JSON.stringify(r));
+        res.view('entrada/index', {
+          entradas: r
+        });
+      });
+    }
   },
   /* Crear Entrada */
   create: function(req, res, next) {
