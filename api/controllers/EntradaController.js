@@ -48,8 +48,9 @@ module.exports = {
       titulo: req.param('titulo'),
       cuerpo: req.param('cuerpo'),
       fondo: req.param('fondo'),
+      resumen: req.param('resumen'),
       categoria_entrada_ref: req.param('categoria_entrada_ref'),
-      usuario_publicador_ref: req.session.User.id
+      entrada_usuario: req.session.User.id
     }
     if (entrada.titulo != undefined && entrada.cuerpo != undefined && entrada.fondo != undefined) {
       //console.log("Peticion & entrada> " + JSON.stringify(entrada));
@@ -67,7 +68,7 @@ module.exports = {
     }
   },
   showOne: function(req, res) {
-    Entrada.findOne(req.param('id'), function usuarioFounded(err, value) {
+    Entrada.findOneById(req.param('id')).populateAll().exec(function(err, value) {
       if (err) {
         req.session.flash = {
           err: err
@@ -76,8 +77,8 @@ module.exports = {
         return res.redirect('/entrada');
       }
       if (value != undefined) {
-          value.createdAt = moment(value.createdAt).fromNow();
-          value.updatedAt = moment(value.updatedAt).fromNow();
+        value.createdAt = moment(value.createdAt).fromNow();
+        value.updatedAt = moment(value.updatedAt).fromNow();
         res.view({
           entrada: value
         });
@@ -85,6 +86,12 @@ module.exports = {
         console.log("No se encontro la entrada.");
         return res.redirect('/entrada');
       }
+    });
+  },
+  todas: function(req, res) {
+    Entrada.find({}).populateAll().exec(function(e, r) {
+      //console.log(r[0].toJSON())
+      res.json(r);
     });
   }
 };

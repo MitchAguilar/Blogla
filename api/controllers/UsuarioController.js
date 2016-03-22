@@ -121,6 +121,7 @@ module.exports = {
             foto: req.param('foto'),
             portada: req.param('portada'),
             fecha_nacimiento: req.param('fecha_nacimiento'),
+            biografia: req.param('biografia'),
             contrasenia: req.param('contrasenia'),
             contrasenia_confirmacion: req.param('contrasenia_confirmacion'),
             rol: value.id //Se asigna el id del rol perteneciente a editor

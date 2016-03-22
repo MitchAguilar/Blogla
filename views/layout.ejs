@@ -82,7 +82,7 @@
             <div class="col l4 col m4 col s12 pull-right">
               <!-- Search Button -->
               <form class="searchbox">
-                <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required="">
+                <input type="text" placeholder="<%= __('Busqueda') %>" name="search" class="searchbox-input" required>
                 <input type="submit" class="searchbox-submit">
                 <span class="searchbox-icon">
                   <i class="mdi-action-search"></i>
@@ -212,7 +212,9 @@
     <!-- Sidebar Navigation -->
     <ul id="slide-out" class="side-nav full" style="width: 300px; left: -310px;">
       <li class="logo-title">
-        <a href="javascript:void(0);">Blogla</a>
+        <a href="javascript:void(0);">
+          <%= __('Nombre') %>
+        </a>
       </li>
       <!-- Dropdown Menu -->
       <li class="dropdown-menu">
@@ -246,32 +248,7 @@
           <li class="">
             <div class="collapsible-header waves-effect waves">
               <i class="fa fa-file-text"></i>
-              News Detail<i class="fa fa-angle-right"></i>
-            </div>
-            <div style="display: none;" class="collapsible-body">
-              <ul>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/news-single1.html">
-                    <i class="fa fa-angle-right"></i>
-                    News Detail 1</a>
-                </li>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/news-single2.html">
-                    <i class="fa fa-angle-right"></i>
-                    News Detail 2</a>
-                </li>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/news-single3.html">
-                    <i class="fa fa-angle-right"></i>
-                    News Detail 3</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="">
-            <div class="collapsible-header waves-effect waves">
-              <i class="fa fa-file-text"></i>
-              Category
+              Categoria
               <i class="fa fa-angle-right"></i>
             </div>
             <div style="display: none;" class="collapsible-body">
@@ -312,34 +289,6 @@
         </ul>
       </li>
       <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/shop.html">
-          <i class="fa fa-tag"></i>Shop</a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/catalog.html">
-          <i class="fa fa-briefcase"></i>Catalog</a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/product-detail.html">
-          <i class="fa fa-plus-square"></i>product Detail</a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/shopping-cart.html">
-          <i class="fa fa-shopping-cart"></i>Shopping Cart</a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/profile.html">
-          <i class="fa fa-user"></i>Profile</a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/brand1.html">
-          <i class="fa fa-rocket"></i>Brand Style 1</a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/brand2.html">
-          <i class="fa fa-plane"></i>Brand Style 2</a>
-      </li>
-      <li class="waves-effect">
         <a href="http://inceptionsystem.us/themes/Material-News/about.html">
           <i class="fa fa-users"></i>About</a>
       </li>
@@ -364,95 +313,6 @@
 
     <!-- Footer -->
     <footer class="page-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col l12 col m12 col s12">
-            <!-- Footer Column 1 -->
-            <ul>
-              <li class="footer-title">News</li>
-              <li>
-                <a href="javascript:void(0);">Nation</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">World</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Washington</a>
-              </li>
-            </ul>
-
-            <!-- Footer Column 2 -->
-            <ul>
-              <li class="footer-title">Sport</li>
-              <li>
-                <a href="javascript:void(0);">NFL</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">MLB</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">NBA</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">NHL</a>
-              </li>
-            </ul>
-
-            <!-- Footer Column 3 -->
-            <ul>
-              <li class="footer-title">Life</li>
-              <li>
-                <a href="javascript:void(0);">People</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Movies</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Music</a>
-              </li>
-            </ul>
-
-            <!-- Footer Column 4 -->
-            <ul>
-              <li class="footer-title">Money</li>
-              <li>
-                <a href="javascript:void(0);">Market</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Business</a>
-              </li>
-            </ul>
-
-            <!-- Footer Column 5 -->
-            <ul>
-              <li class="footer-title">Tech</li>
-              <li>
-                <a href="javascript:void(0);">Personal Tech</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Gaming</a>
-              </li>
-            </ul>
-
-            <!-- Footer Column 6 -->
-            <ul>
-              <li class="footer-title">Travel</li>
-              <li>
-                <a href="javascript:void(0);">Travel Advice</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Experience Travel</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Destinations</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Flights</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
       <!-- Footer Bottom -->
       <div class="footer-copyright">
         <div class="container">
@@ -466,13 +326,19 @@
               <div class="footer-menu">
                 <ul>
                   <li>
-                    <a href="javascript:void(0);">Privacy</a>
+                    <a href="javascript:void(0);">
+                      <%= __('Privacidad') %>
+                    </a>
                   </li>
                   <li>
-                    <a href="javascript:void(0);">Advertisement</a>
+                    <a href="javascript:void(0);">
+                      <%= __('Advertencias') %>
+                    </a>
                   </li>
                   <li>
-                    <a href="javascript:void(0);">Contact us</a>
+                    <a href="javascript:void(0);">
+                      <%= __('Contacto') %>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -504,7 +370,7 @@
     -->
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
     <!--

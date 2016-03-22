@@ -10,6 +10,10 @@
       <div class="news-description">
         <div class="news-time">
           <i class="fa fa-clock-o"></i>
+          Publicado por
+          <strong>
+            <%=entrada.entrada_usuario.nick%>
+          </strong>,
           <%= entrada.createdAt %>
 
           <% if (entrada.createdAt != entrada.updatedAt) { %>
@@ -26,7 +30,7 @@
           <p>
             <%- entrada.cuerpo %>
           </p>
-          <br><br>
+          <br>
         </div>
       </div>
     </div>

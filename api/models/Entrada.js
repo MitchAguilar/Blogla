@@ -18,6 +18,10 @@ module.exports = {
       type: 'text',
       required: true
     },
+    resumen: {
+      type: 'text',
+      required: true
+    },
     cuerpo: {
       type: 'text',
       required: true
@@ -26,7 +30,7 @@ module.exports = {
       model: 'CategoriaEntrada',
       via: 'entrada_ref'
     },
-    usuario_publicador: { /* Relacion con usuario */
+    entrada_usuario: { /* Relacion con usuario */
       model: 'Usuario',
       via: 'usuario_publicador_ref'
     }

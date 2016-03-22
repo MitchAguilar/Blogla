@@ -1725,7 +1725,7 @@ nav ul a{ padding-left: 15px !important; padding-right: 15px !important; font-si
 .footer-copyright {
   height: auto !important;
   line-height: 40px !important;
-  padding: 20px 0 0 0;
+  padding: 0px 0 0 0;
   text-align: center;
 }
 .advertis{ margin-bottom: 30px;}

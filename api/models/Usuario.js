@@ -77,13 +77,9 @@ module.exports = {
       model: 'Rol',
       via: 'usuario'
     },
-    publicaciones: { /* Relacion con publicaciones */
-      collection: 'Entrada',
-      via: 'usuario_publicador'
-    },
-    usuario_publicador_ref: { /* Relacion con  */
-      type: 'collection',
-      via: 'usuario_publicador_ref'
+    entrada: { /* Relacion con Entrada */
+      model: 'Entrada',
+      via: 'entrada_usuario'
     },
     /************************
         Retorno de Datos
@@ -92,6 +88,7 @@ module.exports = {
       var obj = this.toObject();
       delete obj.contrasenia;
       delete obj.contrasenia_confirmacion;
+      delete obj.contrasenia_encriptada;
       delete obj._csrf;
       return obj;
     }

@@ -1,42 +1,12 @@
 <div class="wrapper grey-background">
   <div class="container">
     <div class="row">
-      <div class="col l12 col m12 col s12 center-align">
-        <!-- Breadcrumb -->
-        <div class="breadcrumb">
-          <a href="#">Home</a>
-          <i class="fa fa-angle-right"></i>
-          Blog
-          <i class="fa fa-angle-right"></i>
-          profile
-          <div class="page-title">
-            <%= __('Perfil') %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
       <div class="col l12">
         <img alt="Profile" src="http://wallpapercave.com/wp/8OVmF4U.jpg" class="responsive-img">
         <!-- Profile Image -->
         <div class="profile-image">
           <img alt="Profile" src="http://wallpapercave.com/wp/8OVmF4U.jpg" class="responsive-img">
         </div>
-
-        <div class="right">
-          <!-- Profile View ( Grid or List ) -->
-          <div class="view-style">
-            <a id="gridview">
-              <i class="fa fa-th-large active"></i>
-            </a>
-            <a id="listview">
-              <i class="fa fa-th-list"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="clearfix"></div>
 
         <div class="profil-content">
           <div class="col l3 col m4 col s12 no-padding">
@@ -48,12 +18,17 @@
               <div class="city">
                 <i class="fa fa-map-marker"></i>Vancouvar, CAN</div>
               <!-- Profile Detail -->
-              <p>Sed malesuada nulla ac libero vestibulum egestas. Proin vitae purus elementum, luctus enim at, placerat elit. Sed luctus egestas enim in elementum</p>
+              <p>
+                <% if (usuario.resumen) { %>
+                  <%= usuario.resumen %>
+                <% } %>
+              </p>
               <!-- Following Button -->
               <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button">following</button>
               <!-- Message Button -->
               <a type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" href="/usuario/signout">Salir</a>
-              <!-- Sollower -->
+              <!-- Nueva Publicacion -->
+              <a type="submit" href="/entrada/nuevo" class="btn btn-flat waves-effect waves-light shopping-cart-button">Publicar</a>
               <div class="follower">
                 <div class="col l6 col m6 col s6">Followers
                   <br>
@@ -90,64 +65,11 @@
           </div>
 
           <div class="col l9 col m8 col s12">
+
             <div class="profile">
               <div class="border"></div>
               <!-- Profile Grid View -->
               <div id="grid-view">
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/small-news1.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">termit</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$198.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/profile2.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">arogami</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$98.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/small-news2.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">oscar</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$111.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
                 <div class="col l4 col m6">
                   <!-- Profile Box -->
                   <div class="profile-box z-depth-1">
@@ -161,78 +83,6 @@
                       </div>
                       <!-- Profile Value -->
                       <div class="value">$198.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/profile5.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">arogami</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$98.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/small-news4.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">oscar</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$111.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/small-news5.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">termit</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$198.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/small-news6.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">arogami</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$98.00</div>
                       <!-- Profile By -->
                       <div class="profile-by">by Hezy</div>
                     </div>
