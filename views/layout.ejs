@@ -1,6 +1,6 @@
-<html ng-app="Blog" lang="es">
+<html lang="es">
   <head>
-    <title>Sails</title>
+    <title><%= __('Nombre') %></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -38,7 +38,7 @@
     <!--STYLES END-->
   </head>
 
-  <body ng-controller="ControllerHomePage">
+  <body>
 
     <!-- Header -->
     <header class="">
@@ -52,7 +52,7 @@
               </a>
               <!-- Dropdown -->
               <div class="header-dropdown">
-                <!-- Dropdown Trigger -->
+                <!-- Dropdown Trigger
                 <a class="dropdown-button btn" data-beloworigin="true" href="/" data-activates="dropdown">Today
                   <i class="mdi-navigation-arrow-drop-down"></i>
                 </a>
@@ -69,9 +69,8 @@
                   <li>
                     <a href="javascript:void(0);">1 Month</a>
                   </li>
-                </ul>
+                </ul>-->
                 <!-- Dropdown Structure -->
-
               </div>
             </div>
             <div class="col l4 col m3 col s12">
@@ -102,7 +101,7 @@
           <div class="container">
             <div class="row">
               <div class="col l4 col m5 col s2">
-                <a href="http://inceptionsystem.us/themes/Material-News/index3.html#" data-activates="slide-out" class="button-collapse show-on-large">
+                <a href="/" data-activates="slide-out" class="button-collapse show-on-large">
                   <i class="mdi mdi-navigation-menu"></i>
                 </a>
               </div>
@@ -181,109 +180,9 @@
                     <li>
                       <a href="/entrada/nuevo">Nueva</a>
                     </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index.html">Home Page 1</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index2.html">Home Page 2</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index3.html">Home Page 3</a>
-                    </li>
                   </ul>
                 </li>
               </ul>
-            </li>
-            <li>
-              <ul class="news-category-dropdown">
-                <li>
-                  <a href="javascript:void(0);">News Detail
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/news-single1.html">News Detail 1</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/news-single2.html">News Detail 2</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/news-single3.html">News Detail 3</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <ul class="news-category-dropdown">
-                <li>
-                  <a href="javascript:void(0);">Category
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index-sport.html">Sports</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index-life.html">Life</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index-travel.html">Travel</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index-money.html">Money</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/index-tech.html">Tech</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <ul class="news-category-dropdown">
-                <li>
-                  <a href="javascript:void(0);">pages<i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/profile.html">Profile</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/brand1.html">Brand Style 1</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/brand2.html">Brand Style 2</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <ul class="news-category-dropdown">
-                <li>
-                  <a href="javascript:void(0);">Shop
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/shop.html">Shop Page</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/catalog.html">Catalog</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/product-detail.html">Product Detail</a>
-                    </li>
-                    <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/shopping-cart.html">Shopping Cart</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="http://inceptionsystem.us/themes/Material-News/about.html">About</a>
             </li>
             <li>
               <ul class="news-category-dropdown">
@@ -302,7 +201,9 @@
                 </li>
               </ul>
             </li>
-
+            <li>
+              <a href="http://inceptionsystem.us/themes/Material-News/about.html">About</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -492,13 +393,6 @@
       <div class="container">
         <div class="row">
           <div class="col l12 col m12 col s12">
-            <!-- Footer Button -->
-            <div class="footer-button center-align">
-              <span class="mdi-action-history"></span>
-            </div>
-          </div>
-
-          <div class="col l12 col m12 col s12">
             <!-- Footer Column 1 -->
             <ul>
               <li class="footer-title">News</li>
@@ -510,9 +404,6 @@
               </li>
               <li>
                 <a href="javascript:void(0);">Washington</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Elections</a>
               </li>
             </ul>
 
@@ -531,15 +422,6 @@
               <li>
                 <a href="javascript:void(0);">NHL</a>
               </li>
-              <li>
-                <a href="javascript:void(0);">NCAAF</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">NCAAB</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">More</a>
-              </li>
             </ul>
 
             <!-- Footer Column 3 -->
@@ -554,18 +436,6 @@
               <li>
                 <a href="javascript:void(0);">Music</a>
               </li>
-              <li>
-                <a href="javascript:void(0);">TV</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Books</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Entertain This</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">We to Watch</a>
-              </li>
             </ul>
 
             <!-- Footer Column 4 -->
@@ -576,15 +446,6 @@
               </li>
               <li>
                 <a href="javascript:void(0);">Business</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Personal Finance</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Cars</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Careers</a>
               </li>
             </ul>
 
@@ -613,15 +474,6 @@
               </li>
               <li>
                 <a href="javascript:void(0);">Flights</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Cruises</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Deals</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);">Videos</a>
               </li>
             </ul>
           </div>
@@ -678,7 +530,7 @@
     -->
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
     <!--
@@ -709,8 +561,6 @@
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/amplify-1.1.2/amplify.min.js"></script>
     <script src="/js/angular/angular.min.js"></script>
-    <script src="/js/controllers_angular/ControllerHomePage.js"></script>
-    <script src="/js/controllers_angular/ControllerPerfil.js"></script>
     <script src="/js/controllers_angular/app.js"></script>
     <script src="/js/hammer-time.min.js"></script>
     <script src="/js/jquery-2.2.1.min.js"></script>

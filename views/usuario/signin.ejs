@@ -1,15 +1,14 @@
-<!-- Main Wrapper -->
 <div class="wrapper grey-background">
   <div class="container">
     <div class="row">
       <div class="col l12 col m12 col s12 center-align">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-          <a href="#">Home</a>
+          <a href="/">Home</a>
           <i class="fa fa-angle-right"></i>
-          Login
+          <%= __('Login') %>
           <div class="page-title">
-            Sign in
+            <%= __('Login') %>
           </div>
         </div>
       </div>
@@ -30,24 +29,36 @@
                 </ul>
               </p>
             <% } %>
-            <div class="login-title">Bienvenido, inicia sesion de forma segura en Blogla.</div>
+            <div class="login-title">
+              <%= __('BienvenidaLogin') %>
+              <%= __('Nombre') %>
+            </div>
             <form action="/usuario/login" method="post">
               <div class="input-field">
                 <i class="mdi-action-perm-identity prefix"></i>
-                <input id="email" name="email" type="email" class="validate">
-                <label for="email">Login</label>
+                <input id="email" name="email" type="email" class="validate" required>
+                <label for="email">
+                  <%= __('Email') %>
+                </label>
               </div>
               <div class="input-field">
                 <i class="mdi-action-lock-open prefix"></i>
-                <input id="name" name="contrasenia" type="password" class="validate">
-                <label for="name">Contraseña</label>
+                <input id="name" name="contrasenia" type="password" class="validate" required>
+                <label for="name">
+                  <%= __('Contrasenia') %>
+                </label>
               </div>
               <div class="forgot-password left">
-                <a href="javascript:void(0);">Forgot your Password?</a>
+                <a href="javascript:void(0);">
+                  <%= __('ContraseniaOlvidada') %>
+                </a>
                 <br>
-                <a href="/usuario/register">No estas registrado?</a>
+                <a href="/usuario/register">
+                  <%= __('NoRegistrado') %>
+                </a>
               </div>
-              <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick="Materialize.toast('<span>Login Successful</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">Login</button>
+              <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick="Materialize.toast('<span>Login Successful</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">
+                <%= __('LoginButton') %></button>
             </form>
           </div>
         </div>

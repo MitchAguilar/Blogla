@@ -9,7 +9,7 @@
           <i class="fa fa-angle-right"></i>
           Login
           <div class="page-title">
-            Registrarme
+            <%= __('Registrarme') %>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
               </p>
             <% } %>
             <form action="/usuario/create" method="post">
-              <div class="login-title">Welcome, You can login securely below.</div>
+              <div class="login-title"></div>
 
               <!-- Informacion personal -->
               <div class="input-field">
@@ -58,6 +58,18 @@
                 <i class="mdi-action-perm-identity prefix"></i>
                 <input type="date" name="fecha_nacimiento" class="validate">
                 <label for="date">Fecha de nacimiento</label>
+              </div>
+
+              <!-- Multimedia -->
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="portada" class="validate">
+                <label for="nick">URL de foto de portada</label>
+              </div>
+              <div class="input-field">
+                <i class="mdi-action-perm-identity prefix"></i>
+                <input type="text" name="foto" class="validate">
+                <label for="foto">URL de foto de perfil</label>
               </div>
 
               <!-- Redes sociales

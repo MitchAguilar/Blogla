@@ -1,64 +1,270 @@
-<!-- Main Wrapper -->
 <div class="wrapper">
   <div class="container">
     <% if (entradas.length == 0) { %>
       <h1>No hay entradas</h1>
     <% } else { %>
-      <% entradas.forEach(elem => { %>
-        <div class="row margin-bottom-0">
-          <div class="col l9 m12">
-            <div class="row">
-              <div class="col l8 col m12 col s12">
-                <!-- News Blog Box -->
-                <div class="news-blog z-depth-1">
-                  <!-- News Blog Image -->
-                  <div class="image">
-                    <img alt="news Image" src="./images/big-news2.jpg" class="responsive-img"/>
+      <div class="row margin-bottom-0">
+        <div class="col l9 m12">
+          <div class="row">
+            <div class="col l8 col m12 col s12">
+              <!-- News Blog Box -->
+              <div class="news-blog z-depth-1">
+                <!-- News Blog Image -->
+                <a class="image" href="/entrada/showOne/<%= entradas[0].id %>">
+                  <img alt="news Image" src="<%= entradas[0].fondo %>" class="responsive-img" height="10px">
+                </a>
+                <!-- News Blog Category -->
+                <div class="news-category">
+                  <span class="green">
+                    <%= entradas[0].categoria_entrada_ref.nombre_categoria %>
+                  </span>
+                  <!-- Dropdown -->
+                  <div class="news-dropdown">
+                    <a class="dropdown-button" href="javascript:void(0);" data-activates="dropdown1">
+                      <i class="fa fa-ellipsis-v "></i>
+                    </a>
+                    <ul id="dropdown1" class="dropdown-content">
+                      <li>
+                        <a href="/entrada/showOne/<%= entradas[0].id %>">Ver</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0);">Me gusta</a>
+                      </li>
+                    </ul>
                   </div>
-                  <!-- News Blog Category -->
-                  <div class="news-category">
-                    <span class="green">
-                      <%= elem.titulo %>
-                    </span>
-                    <!-- Dropdown -->
-                    <div class="news-dropdown">
-                      <a class="dropdown-button" href="javascript:void(0);" data-activates="dropdown1">
-                        <i class="fa fa-ellipsis-v "></i>
-                      </a>
-                      <ul id="dropdown1" class="dropdown-content">
-                        <li>
-                          <a href="#">Option 1</a>
-                        </li>
-                        <li>
-                          <a href="#">Option 1</a>
-                        </li>
-                        <li>
-                          <a href="#">Option 1</a>
-                        </li>
-                      </ul>
+                </div>
+                <!-- News Blog Description -->
+                <div class="news-description">
+                  <div class="news-time">
+                    <%= entradas[0].createdAt %>
+                  </div>
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      <%= entradas[0].titulo %>
+                    </a>
+                  </div>
+                  <!--<div class="news-content">
+                      <p>et bibendum leo metus vel magna. In dapibus
+                        <br>
+                        ac tellus non rutrum. Integer.</p>
+                    </div>-->
+                </div>
+              </div>
+            </div>
+            <div class="col l4 col m12 col s12">
+              <!-- vertical News Box -->
+              <div class="news vertical z-depth-1">
+                <!-- vertical News Image -->
+                <div class="news-image">
+                  <img class="responsive-img" src="./images/small-news2.jpg" alt="news Image">
+                </div>
+                <!-- vertical News Description -->
+                <div class="news-description">
+                  <div class="news-time">
+                    <i class="fa fa-clock-o"></i>
+                    9 min ago
+                  </div>
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.
+                    </a>
+                  </div>
+                  <div class="news-content">
+                    <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus In dapibus ac tellus non rutrum et bibendum leo metus vel magna. In dapibus ac tellus</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row">
+            <div class="col l8 col m12 col s12">
+              <div class="z-depth-1">
+                <!-- horizontal News Box -->
+                <div class="news horizontal">
+                  <div class="col l4 col m4 col s12 no-padding">
+                    <!-- horizontal News Image -->
+                    <div class="news-image">
+                      <img alt="news Image" class="responsive-img" src="./images/hor-news4.jpg">
                     </div>
                   </div>
-                  <!-- News Blog Description -->
-                  <div class="news-description">
-                    <div class="news-time">
-                      <%= elem.createdAt %>
+                  <div class="col l8 col m8 col s12 no-padding">
+                    <!-- horizontal News  Description -->
+                    <div class="news-description">
+                      <div class="news-time">
+                        <i class="fa fa-clock-o"></i>
+                        9 min ago
+                      </div>
+                      <div class="news-title">
+                        <a href="javascript:void(0)">
+                          Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.
+                        </a>
+                      </div>
+                      <div class="news-content">
+                        <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. Mauris bibendum semper quam.</p>
+                      </div>
                     </div>
-                    <div class="news-title">
-                      <a href="javascript:void(0)">
-                        <%= elem.titulo %>
+                  </div>
+                </div>
+
+                <!-- horizontal News Box -->
+                <div class="news horizontal no-border">
+                  <div class="col l4 col m4 col s12 no-padding">
+                    <!-- horizontal News Image -->
+                    <div class="news-image">
+                      <img alt="news Image" class="responsive-img" src="./images/hor-news6.jpg">
                     </div>
-                    <div class="news-content">
-                      <p>
-                        <%= elem.cuerpo %>
-                      </p>
+                  </div>
+                  <div class="col l8 col m8 col s12 no-padding">
+                    <!-- horizontal News Description -->
+                    <div class="news-description">
+                      <div class="news-time">
+                        <i class="fa fa-clock-o"></i>
+                        9 min ago
+                      </div>
+                      <div class="news-title">
+                        <a href="javascript:void(0)">
+                          Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.</a>
+                      </div>
+                      <div class="news-content">
+                        <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. Mauris bibendum semper quam.</p>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 col m12 col s12">
+              <!-- vertical News Box -->
+              <div class="news vertical z-depth-1">
+                <!-- vertical News Image -->
+                <div class="news-image">
+                  <img alt="news Image" class="responsive-img" src="./images/profile5.jpg">
+                </div>
+                <!-- vertical News Description -->
+                <div class="news-description">
+                  <div class="news-time">
+                    <i class="fa fa-clock-o"></i>
+                    9 min ago
+                  </div>
+                  <div class="news-title">
+                    <a href="javascript:void(0)">
+                      Nam erat nulla, auctor a eros vitae, hendrerit efficitur.
+                    </a>
+                  </div>
+                  <div class="news-content">
+                    <p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      <% }); %>
+
+        <div class="col l3 m12 s12 no-padding">
+          <!-- Average Box -->
+          <div class="average">
+            <div class="col l6 m3 s6">
+              <div class="average-box">
+                <div class="top">
+                  <div class="average-symbol">
+                    <i class="fa fa-usd"></i>
+                  </div>
+                  <div class="average-name">Usd</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">26.00
+                    <i class="fa fa-caret-down"></i>
+                  </div>
+                  <div class="average-point">-1.03</div>
+                </div>
+              </div>
+            </div>
+            <div class="col l6 m3 s6">
+              <div class="average-box">
+                <div class="top">
+                  <div class="average-symbol">
+                    <i class="fa fa-eur"></i>
+                  </div>
+                  <div class="average-name">Eur</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">28.88
+                    <i class="fa fa-caret-down"></i>
+                  </div>
+                  <div class="average-point">-1.43</div>
+                </div>
+              </div>
+            </div>
+            <div class="col l6 m3 s6">
+              <div class="average-box third">
+                <div class="top">
+                  <div class="average-symbol grey darken-3">
+                    <i class="fa fa-tint  grey darken-3"></i>
+                  </div>
+                  <div class="average-name">oil</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">46.75<i class="fa fa-caret-up"></i>
+                  </div>
+                  <div class="average-point">+1.25</div>
+                </div>
+              </div>
+            </div>
+            <div class="col l6 m3 s6">
+              <div class="average-box fourth">
+                <div class="top">
+                  <div class="average-symbol">
+                    <i class="fa fa-usd"></i>
+                  </div>
+                  <div class="average-name">Rain</div>
+                </div>
+                <div class="bottom">
+                  <div class="average-value">+12
+                  </div>
+                  <div class="average-point">New york</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col l12 col m12 col s12">
+            <!-- Sidebar -->
+            <div class="sidbar-box z-depth-1">
+              <div class="sidebar-title">Top Stories</div>
+              <ul>
+                <li>
+                  <a href="javascript:void(0)">
+                    5 Things you Need To Know Wenesday</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Auti-austeriry Protest Turns Violent In Germany</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Flying Cars: The near Future, From SXSW</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">No end in Signt for California Drought</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Boehner Coup by Conservatives.</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Market Reaction to fed rate talk: 3 scenarious</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">fed deny visas for 'Specialized' foreign workers</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Flying Cars: The near Future.</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     <% } %>
   </div>
 </div>

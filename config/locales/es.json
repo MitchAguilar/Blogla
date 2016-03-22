@@ -1,4 +1,15 @@
 {
+  "Nombre": "Blogla",
+  "Login": "Iniciar sesión",
+  "LoginButton": "Iniciar sesión",
+  "Email": "Correo electronico",
+  "Contrasenia": "Contraseña",
+  "ContraseniaOlvidada": "¿has olvidado tu contraseña?",
+  "NoRegistrado": "¿aún no estas registrado?",
+  "BienvenidaLogin": "Bienvenido, inicia sesion de forma segura ",
+  "Perfil": "Mi Perfil",
+  "Registrarme": "Registrarme",
+  "": "",
   "Welcome": "Bienvenido",
   "A brand new app.": "Una nueva aplicación."
 }

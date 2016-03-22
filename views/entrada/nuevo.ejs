@@ -28,17 +28,21 @@
                   <label for="name">Titulo</label>
                 </div>
                 <div class="input-field">
+                  <i class="mdi-action-perm-identity prefix"></i>
+                  <input name="fondo" type="text" class="validate" required>
+                  <label for="fondo">URL de imagen de fondo, min 600x800px</label>
+                </div>
+                <div class="input-field">
                   <i class="mdi-communication-email prefix"></i>
                   <select name="categoria_entrada_ref">
                     <% try { %>
                       <% categorias.forEach(elem => { %>
                         <option value="<%=elem.id%>"><%=elem.nombre_categoria%></option>
                       <% }); %>
-                    <% } catch (err) {%>
+                    <% } catch (err) { %>
                     <option value="option">Error> No hay categorias<%=err%></option>
                   <% } %>
                 </select>
-                <label for="email">Otro</label>
               </div>
               <div class="input-field">
                 <textarea name="cuerpo" id="editor1" rows="10" cols="80">

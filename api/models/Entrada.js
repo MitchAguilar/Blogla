@@ -14,6 +14,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    fondo: {
+      type: 'text',
+      required: true
+    },
     cuerpo: {
       type: 'text',
       required: true

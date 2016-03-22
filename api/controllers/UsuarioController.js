@@ -69,7 +69,14 @@ module.exports = {
     }
   },
   signin: function(req, res) { /* Abre el formulario de iniciar sesion o login */
-    res.view();
+    if (req.session.User == undefined) { //Si NO se ha iniciado sesion entonces se dirige a signin
+      res.view();
+    } else {
+      //El Usuario se encuentra Logeado, se dirige al menu del Perfil
+      console.log("Intento de entrar a login pero el Usuario " + req.session.User.id + " está Logeado, redigiendo al menu Perfil ");
+      console.log("EL ID: " + req.session.User.id);
+      res.redirect('/usuario/perfil/' + req.session.User.id);
+    }
   },
   register: function(req, res) { /* Abre el formulario de registrar usuario */
     res.view();
@@ -111,11 +118,13 @@ module.exports = {
             nombres: req.param('nombres'),
             apellidos: req.param('apellidos'),
             nick: req.param('nick'),
+            foto: req.param('foto'),
+            portada: req.param('portada'),
             fecha_nacimiento: req.param('fecha_nacimiento'),
             contrasenia: req.param('contrasenia'),
             contrasenia_confirmacion: req.param('contrasenia_confirmacion'),
             rol: value.id //Se asigna el id del rol perteneciente a editor
-          }
+          };
 
           Usuario.create(UserObj, function(err, value) {
             if (err) {
@@ -130,7 +139,7 @@ module.exports = {
             req.session.authenticated = true;
             req.session.User = value;
 
-            return res.redirect('/usuario/perfil/' + value.id); //Refidigir a la pagina del perfil
+            return res.redirect('/usuario/perfil/' + value.id); //Refidigir a la pagina del perfil despues de un registro exitoso
           });
         }
       });
@@ -155,8 +164,10 @@ module.exports = {
     });
   },
   signout: function(req, res) { /* Cerrar la sesion */
-    req.session.destroy();
-    req.redirect('/usuario/signin')
+    console.log("Usuario cerrando session: " + req.session.User.id);
+    req.session.authenticated = undefined;
+    req.session.User = undefined;
+    res.redirect('/usuario/signin')
   },
   index: function(req, res) {
     console.log("Mostrando todos los usuarios.");

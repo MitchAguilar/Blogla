@@ -44,8 +44,16 @@ module.exports = {
       required: true
     },
     contrasenia_encriptada: {
-      type: 'string',
-      required: true
+      type: 'string'
+    },
+    /************************
+          Multimedia
+    */
+    portada: {
+      type: 'string'
+    },
+    foto: {
+      type: 'string'
     },
     /************************
           Redes sociales

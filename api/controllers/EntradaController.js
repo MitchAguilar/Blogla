@@ -23,45 +23,68 @@ module.exports = {
     });
   },
   index: function(req, res) { //Pagina principal de todas las entradas
-    Entrada.find(function EntradaFounded(err, values) {
-      if (err) {
-        console.log(JSON.stringify(err));
-        return next(err);
+    Entrada.find({}).populateAll().exec(function(e, r) {
+      //console.log(r[0].toJSON())
+      //res.json(r);
+      if (e) {
+        console.log(JSON.stringify(e));
+        return next(e);
       }
-      for (var i = 0; i < values.length; i++) {
-        values[i].createdAt = moment(values[i].createdAt).fromNow();
-        values[i].updatedAt = moment(values[i].updatedAt).fromNow();
+      for (var i = 0; i < r.length; i++) {
+        r[i].createdAt = moment(r[i].createdAt).fromNow();
+        r[i].updatedAt = moment(r[i].updatedAt).fromNow();
       }
+      //console.log("R: " + JSON.stringify(r));
       res.view({
-        entradas: values
+        entradas: r
       });
     });
   },
   /* Crear Entrada */
-  /* Inserta una nueva entrada,
-  @param titulo
-  @param cuerpo
-  @param categoria_entrada
-  */
   create: function(req, res, next) {
-    console.log("Peticion: " + JSON.stringify(req.params));
+    //console.log("Peticion: " + JSON.stringify(req.params));
     console.log("ID del usuario que publica: " + req.session.User.id);
     var entrada = {
       titulo: req.param('titulo'),
       cuerpo: req.param('cuerpo'),
+      fondo: req.param('fondo'),
       categoria_entrada_ref: req.param('categoria_entrada_ref'),
       usuario_publicador_ref: req.session.User.id
     }
-    console.log("Peticion & entrada> " + JSON.stringify(entrada));
-
-    Entrada.create(entrada, function(err, value) {
+    if (entrada.titulo != undefined && entrada.cuerpo != undefined && entrada.fondo != undefined) {
+      //console.log("Peticion & entrada> " + JSON.stringify(entrada));
+      Entrada.create(entrada, function(err, value) {
+        if (err) {
+          console.log("Error al crear una entrada, error: " + err);
+          //return res.redirect('comentario/nuevo');
+          return next(err);
+        }
+        return res.json(value);
+      });
+    } else {
+      console.log("Error al crear una entrada, Faltan campos. ");
+      return next(err);
+    }
+  },
+  showOne: function(req, res) {
+    Entrada.findOne(req.param('id'), function usuarioFounded(err, value) {
       if (err) {
-        console.log("Error al crear una entrada, error: " + err);
-        //return res.redirect('comentario/nuevo');
-        return next(err);
+        req.session.flash = {
+          err: err
+        };
+        console.log("Error al buscar una entrada.");
+        return res.redirect('/entrada');
       }
-      return res.json(value);
+      if (value != undefined) {
+          value.createdAt = moment(value.createdAt).fromNow();
+          value.updatedAt = moment(value.updatedAt).fromNow();
+        res.view({
+          entrada: value
+        });
+      } else {
+        console.log("No se encontro la entrada.");
+        return res.redirect('/entrada');
+      }
     });
-
   }
 };
