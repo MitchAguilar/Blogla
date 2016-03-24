@@ -18,7 +18,8 @@ module.exports = {
       }
       console.log("Se han consultado " + (values.length) + " categorias de entrada");
       res.view({
-        categorias: values
+        categorias: values,
+        direccion: 'create'
       });
     });
   },
@@ -112,6 +113,39 @@ module.exports = {
         value.updatedAt = moment(value.updatedAt).fromNow();
         res.view({
           entrada: value
+        });
+      } else {
+        console.log("No se encontro la entrada.");
+        return res.redirect('/entrada');
+      }
+    });
+  },
+  editar: function(req, res, next) {
+    console.log("Editando la entrada: " + req.param('id'));
+    Entrada.findOneById(req.param('id')).populateAll().exec(function(err, value) {
+      if (err) {
+        req.session.flash = {
+          err: err
+        };
+        console.log("Error al buscar una entrada.");
+        return res.redirect('/entrada');
+      }
+      if (value != undefined) {
+        value.createdAt = moment(value.createdAt).fromNow();
+        value.updatedAt = moment(value.updatedAt).fromNow();
+
+        CategoriaEntrada.find(function CategoriaEntradaFounded(err, values) {
+          if (err) {
+            console.log('Error al consultar las categorias de las entradas. ' + err);
+            return next(err);
+          }
+          console.log("Se han consultado " + (values.length) + " categorias de entrada, form editar");
+
+          res.view('entrada/nuevo', {
+            categorias: values,
+            direccion: 'update',
+            entrada: value
+          });
         });
       } else {
         console.log("No se encontro la entrada.");

@@ -42,6 +42,9 @@ module.exports.routes = {
     view: 'usuario/register',
     controller: 'UsuarioController',
     action: 'register'
+  },
+  'GET /acercade': {
+    view: 'acercade'
   }
 
 

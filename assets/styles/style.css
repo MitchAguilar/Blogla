@@ -54,7 +54,7 @@
 
 /**************************************************** 1. General Style **************************************************************/
 
-body{ background-color: #eaeaea; font-size: 14px; }
+body{ background-color: #F5F5F5; font-size: 14px; }
 a:focus { outline: none; }
 .container { width: 100%; }
 .wrapper{
@@ -588,7 +588,7 @@ ul.pgwSlider > li span, .pgwSlider > .ps-list > li span
 /*.news.horizontal .news-time { padding-top: 10px; }*/
 .news.vertical:hover .news-image img,
 .news.horizontal:hover .news-image img{ transform: scale(1.1); transition-duration: 1.2s; }
-.z-depth-1{ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+.z-depth-1{ box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2); }
 .news-image { overflow: hidden; }
 .news-description{ padding: 8px 20px; }
 .news-blog.white .news-title > a{ color: #444;}

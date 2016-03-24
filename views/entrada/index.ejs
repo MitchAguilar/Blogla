@@ -8,155 +8,186 @@
       <% } else { %>
         <div class="col l9 m12">
           <div class="row">
-            <% for (var i = 0; i < entradas.length; i++) { %>
-              <% if (i < 3) { %>
-                <div class="col l4 col m12 col s12">
-                  <!-- vertical News Box -->
+            <% for (var i = 0; i < entradas.length && i < 3; i++) { %>
+              <div class="col l4 col m12 col s12">
+                <!-- vertical News Box -->
+                <div class="news vertical z-depth-1">
+                  <!-- vertical News Image -->
+                  <div class="news-image">
+                    <img class="responsive-img" src="<%= entradas[i].fondo %>" alt="news Image">
+                  </div>
+                  <!-- vertical News Description -->
+                  <div class="news-description">
+                    <div class="news-time">
+                      <i class="fa fa-clock-o"></i>
+                      <%= __('PublicadoBy') %>
+                      <strong>
+                        <%= entradas[i].entrada_usuario.nick %>
+                      </strong>
+                      <%= entradas[i].createdAt %>
+                    </div>
+                    <div class="news-title">
+                      <a href="/entrada/showOne/<%= entradas[i].id %>">
+                        <%= entradas[i].titulo %>
+                      </a>
+                    </div>
+                    <div class="news-content">
+                      <p>
+                        <%- entradas[i].resumen %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+
+          <div class="row">
+            <div class="col l8 col m12 col s12">
+              <div class="z-depth-1">
+                <!-- horizontal News Box -->
+                <% if (entradas.length > 3) { %>
+                  <% for (var i = 3; i < entradas.length && i <= 5; i++) { %>
+                    <% try { %>
+                      <div class="news horizontal">
+                        <div class="col l4 col m4 col s12 no-padding">
+                          <!-- horizontal News Image -->
+                          <div class="news-image">
+                            <img alt="news Image" class="responsive-img" src="<%= entradas[i].fondo %>">
+                          </div>
+                        </div>
+                        <div class="col l8 col m8 col s12 no-padding">
+                          <!-- horizontal News  Description -->
+                          <div class="news-description">
+                            <div class="news-time">
+                              <i class="fa fa-clock-o"></i>
+                              <%= __('PublicadoBy') %>
+                              <strong>
+                                <%= entradas[i].entrada_usuario.nick %>
+                              </strong>
+                              <%= entradas[i].createdAt %>
+                            </div>
+                            <div class="news-title">
+                              <a href="/entrada/showOne/<%= entradas[i].id %>">
+                                <%= entradas[i].titulo %>
+                              </a>
+                            </div>
+                            <div class="news-content">
+                              <p><%= entradas[i].resumen %></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } catch (err) { console.log("Error> " + i + "\n" + err); }%>
+                  <% } %>
+                <% } %>
+              </div>
+            </div>
+
+            <div class="col l4 col m12 col s12">
+              <!-- vertical News Box -->
+
+              <% if (entradas.length >= 5) { %>
+                <% for (var i = 6; i < entradas.length && i < 10; i++) { %>
                   <div class="news vertical z-depth-1">
                     <!-- vertical News Image -->
                     <div class="news-image">
-                      <img class="responsive-img" src="<%= entradas[i].fondo %>" alt="news Image">
+                      <img alt="news Image" class="responsive-img" src="<%= entradas[i].fondo %>">
                     </div>
                     <!-- vertical News Description -->
                     <div class="news-description">
                       <div class="news-time">
                         <i class="fa fa-clock-o"></i>
-                        <%= __('PublicadoBy') %>
-                        <strong>
-                          <%= entradas[i].entrada_usuario.nick %>
-                        </strong>
                         <%= entradas[i].createdAt %>
                       </div>
                       <div class="news-title">
-                        <a href="javascript:void(0)">
+                        <a href="/entrada/showOne/<%= entradas[i].id %>">
                           <%= entradas[i].titulo %>
                         </a>
                       </div>
                       <div class="news-content">
                         <p>
-                          <%- entradas[i].resumen %>
+                          <%= entradas[i].resumen %>
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
-              <% } else { break; } %>
+                <% } %>
               <% } %>
             </div>
+          </div>
+        </div>
 
-            <div class="row">
-              <div class="col l8 col m12 col s12">
-                <div class="z-depth-1">
-                  <!-- horizontal News Box -->
-                  <% if (entradas.length > 3) { %>
-                    <% for (var i = 3; i < entradas.length && i <= 10; i++) { %>
-                      <% try { %>
-                        <div class="news horizontal">
-                          <div class="col l4 col m4 col s12 no-padding">
-                            <!-- horizontal News Image -->
-                            <div class="news-image">
-                              <img alt="news Image" class="responsive-img" src="<%= entradas[i].fondo %>">
-                            </div>
-                          </div>
-                          <div class="col l8 col m8 col s12 no-padding">
-                            <!-- horizontal News  Description -->
-                            <div class="news-description">
-                              <div class="news-time">
-                                <i class="fa fa-clock-o"></i>
-                                <%= __('PublicadoBy') %>
-                                <strong>
-                                  <%= entradas[i].entrada_usuario.nick %>
-                                </strong>
-                                <%= entradas[i].createdAt %>
-                              </div>
-                              <div class="news-title">
-                                <a href="javascript:void(0)">
-                                  <%= entradas[i].titulo %>
-                                </a>
-                              </div>
-                              <div class="news-content">
-                                <p><%= entradas[i].resumen %></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      <% } catch (err) { console.log("Error> " + i + "\n" + err); }%>
-                    <% } %>
-                  <% } %>
-                </div>
+        <div class="col l3 m12 s12 no-padding">
+          <div class="col l12 col m12 col s12">
+            <!-- Sidebar, Top-->
+            <div class="sidbar-box z-depth-1">
+              <div class="sidebar-title">
+                <%= __('TopPublicacion') %>
               </div>
-
-              <div class="col l4 col m12 col s12">
-                <!-- vertical News Box -->
-
-                <% if (entradas.length >= 11) { %>
-                  <% for (var i = 10; i < entradas.length; i++) { %>
-                    <div class="news vertical z-depth-1">
-                      <!-- vertical News Image -->
-                      <div class="news-image">
-                        <img alt="news Image" class="responsive-img" src="<%= entradas[i] %>">
-                      </div>
-                      <!-- vertical News Description -->
-                      <div class="news-description">
-                        <div class="news-time">
-                          <i class="fa fa-clock-o"></i>
+              <div class="news-sidebar">
+                <% for (var i = 0; i < entradas.length && i <= 6 ; i++) { %>
+                  <br>
+                  <div class="news-box">
+                    <!-- News Sidebar Image -->
+                    <div class="image">
+                      <img alt="news Image" src="<%= entradas[i].fondo %>"/>
+                    </div>
+                    <!-- News Sidebar Detail -->
+                    <div class="news-detail">
+                      <!-- News Sidebar Category -->
+                      <div class="news-category">
+                        <a href="/entrada/showOne/<%= entradas[i].id %>">
                           <%= entradas[i].createdAt %>
-                        </div>
-                        <div class="news-title">
-                          <a href="javascript:void(0)">
-                            <%= entradas[i].titulo %>
-                          </a>
-                        </div>
-                        <div class="news-content">
-                          <p>
-                            <%= entradas[i].resumen %>
-                          </p>
-                        </div>
+                        </a>
+                      </div>
+                      <!-- News Sidebar Title -->
+                      <div class="news-title">
+                        <a href="/entrada/showOne/<%= entradas[i].id %>">
+                          <%= entradas[i].titulo %>
+                        </a>
                       </div>
                     </div>
-                  <% } %>
-                <% } %>
-
+                  </div>
+                <% }; %>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="col l3 m12 s12 no-padding">
-            <div class="col l12 col m12 col s12">
-              <!-- Sidebar -->
-              <div class="sidbar-box z-depth-1">
-                <div class="sidebar-title">
-                  <%= __('TopPublicacion') %>
+        <% for (var i = 7; i < entradas.length && i < 30; i++) { %>
+          <div class="col l4 col m12 col s12">
+            <!-- vertical News Box -->
+            <div class="news vertical z-depth-1">
+              <!-- vertical News Image -->
+              <div class="news-image">
+                <img class="responsive-img" src="<%= entradas[i].fondo %>" alt="news Image">
+              </div>
+              <!-- vertical News Description -->
+              <div class="news-description">
+                <div class="news-time">
+                  <i class="fa fa-clock-o"></i>
+                  <%= __('PublicadoBy') %>
+                  <strong>
+                    <%= entradas[i].entrada_usuario.nick %>
+                  </strong>
+                  <%= entradas[i].createdAt %>
                 </div>
-                <div class="news-sidebar">
-                  <% entradas.forEach(elem => { %>
-                    <div class="news-box">
-                      <!-- News Sidebar Image -->
-                      <div class="image">
-                        <img alt="news Image" src="<%= elem.fondo %>"/>
-                      </div>
-                      <!-- News Sidebar Detail -->
-                      <div class="news-detail">
-                        <!-- News Sidebar Category -->
-                        <div class="news-category">
-                          <a href="javascript:void(0)">
-                            <%= elem.createdAt %>
-                          </a>
-                        </div>
-                        <!-- News Sidebar Title -->
-                        <div class="news-title">
-                          <a href="/entrada/showOne/<%= elem.id %>">
-                            <%= elem.titulo %>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  <% }); %>
+                <div class="news-title">
+                  <a href="/entrada/showOne/<%= entradas[i].id %>">
+                    <%= entradas[i].titulo %>
+                  </a>
+                </div>
+                <div class="news-content">
+                  <p>
+                    <%= entradas[i].resumen %>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        <% } %>
-      </div>
+        <% }%>
+      <% } %>
     </div>
   </div>
+</div>

@@ -34,7 +34,6 @@
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/materialize.css">
     <link rel="stylesheet" href="/styles/pgwslider.css">
-    <link rel="stylesheet" href="/styles/progression.min.css">
     <link rel="stylesheet" href="/styles/style.css">
     <!--STYLES END-->
   </head>
@@ -110,7 +109,7 @@
                 <!-- Dropdown -->
                 <div class="header-dropdown">
                   <!-- Dropdown Trigger -->
-                  <a class="dropdown-button btn" data-beloworigin="true" href="http://inceptionsystem.us/themes/Material-News/index3.html#" data-activates="dropdown-mobile">Today
+                  <!--<a class="dropdown-button btn" data-beloworigin="true" href="http://inceptionsystem.us/themes/Material-News/index3.html#" data-activates="dropdown-mobile">Today
                     <i class="mdi mdi-navigation-arrow-drop-down"></i>
                   </a>
                   <ul id="dropdown-mobile" class="dropdown-content">
@@ -127,8 +126,8 @@
                       <a href="javascript:void(0);">1 Month</a>
                     </li>
                   </ul>
-                  <!-- Dropdown Structure -->
-
+                  <!-- Dropdown Structure -
+-->
                 </div>
               </div>
               <div class="col l4 col m4 col s3">
@@ -186,24 +185,22 @@
               </ul>
             </li>
             <li>
+              <!-- Buscar  categorias de entradas -->
               <ul class="news-category-dropdown">
                 <li>
-                  <a href="javascript:void(0);">Contact
+                  <a href="javascript:void(0);">Categorias
                     <i class="fa fa-angle-down"></i>
                   </a>
                   <ul>
                     <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/contact1.html">Contact Style 1</a>
+                      <a href="/">Contact Style 1</a>
                     </li>
                     <li>
-                      <a href="http://inceptionsystem.us/themes/Material-News/contact2.html">Contact Style 2</a>
+                      <a href="/">Contact Style 2</a>
                     </li>
                   </ul>
                 </li>
               </ul>
-            </li>
-            <li>
-              <a href="http://inceptionsystem.us/themes/Material-News/about.html">About</a>
             </li>
           </ul>
         </div>
@@ -231,17 +228,17 @@
                 <li class="waves-effect">
                   <a href="/entrada">
                     <i class="fa fa-angle-right"></i>
-                    Publicaciones</a>
+                    Todas</a>
                 </li>
                 <li class="waves-effect">
                   <a href="/">
                     <i class="fa fa-angle-right"></i>
-                    Hoy</a>
+                    Recientes</a>
                 </li>
                 <li class="waves-effect active">
                   <a href="/">
                     <i class="fa fa-angle-right"></i>
-                    Pasados</a>
+                    Anteriores</a>
                 </li>
               </ul>
             </div>
@@ -271,27 +268,17 @@
                     <i class="fa fa-angle-right"></i>
                     Travel
                   </a>
-                </li>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/index-money.html">
-                    <i class="fa fa-angle-right"></i>
-                    Money
-                  </a>
-                </li>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/index-tech.html">
-                    <i class="fa fa-angle-right"></i>
-                    Tech
-                  </a>
-                </li>
+                </li>  
               </ul>
             </div>
           </li>
         </ul>
       </li>
       <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/about.html">
-          <i class="fa fa-users"></i>About</a>
+        <a href="/acercade">
+          <i class="fa fa-users"></i>
+          <%= __('Acercade') %>
+        </a>
       </li>
       <li class="waves-effect">
         <a href="http://inceptionsystem.us/themes/Material-News/contact1.html">
@@ -302,7 +289,7 @@
           <i class="fa fa-map-marker"></i>Contact Style 2</a>
       </li>
       <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/login.html">
+        <a href="/usuario/signin">
           <i class="fa fa-lock"></i>Login</a>
       </li>
     </ul>
@@ -320,7 +307,7 @@
           <div class="row">
             <!-- Copyright Text -->
             <div class="col l4 col m12 col s12">
-              © Copyright 2015 Material News by ThemeLeague
+              <%= __('Copyright') %>
             </div>
             <div class="col l4 col m12 col s12">
               <!-- Footer Menu -->
@@ -337,7 +324,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void(0);">
+                    <a href="/acercade">
                       <%= __('Contacto') %>
                     </a>
                   </li>
@@ -406,7 +393,6 @@
     <script src="/js/hammer-time.min.js"></script>
     <script src="/js/jquery-2.2.1.min.js"></script>
     <script src="/js/moment-with-locales.min.js"></script>
-    <script src="/js/progression.min.js"></script>
     <script src="/js/style/camera.js"></script>
     <script src="/js/style/init.js"></script>
     <script src="/js/style/jquery-min.js"></script>

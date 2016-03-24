@@ -6,22 +6,32 @@
       <div class="col l12 col m12 col s12 center-align">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-          <a href="/">Home</a>
+          <a href="/">
+            <%= __('Nombre') %>
+          </a>
           <i class="fa fa-angle-right"></i>
           Entrada
           <div class="page-title">
-            Nueva entrada
+            <% if (direccion == "create") { %>
+              Nueva entrada
+            <% } else { %>
+              Actualizar entrada
+            <% } %>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col l12">
         <div class="contact z-depth-1">
           <div class="contact-detail">
-            <div class="">
-              <form name="sentMessage" id="contactForm" method="post" action="/entrada/create">
+            <div>
+              <form name="sentMessage" id="contactForm" method="post" action="/entrada/<%= direccion %>">
+                <!-- ID de la entrada -->
+                <input type="hidden" name="id" value="<%= entrada.id %>" class="validate" required>
+                <!-- ID del usuario que edita -->
+                <input type="hidden" name="name" value="<%= entrada.entrada_usuario.id %>">
                 <div class="input-field">
                   <i class="mdi-action-perm-identity prefix"></i>
                   <input name="titulo" type="text" class="validate" required>
