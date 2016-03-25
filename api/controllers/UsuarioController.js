@@ -5,9 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-/* is.js */
-/* Todo tipo de validaciones */
-var is = require('is.js');
+var moment = require('moment');
+moment.locale('es');
 
 module.exports = {
 
@@ -147,7 +146,7 @@ module.exports = {
     }
   },
   perfil: function(req, res) { /* Abre el perfil del usuario */
-    Usuario.findOne(req.param('id'), function usuarioFounded(err, value) {
+    Usuario.findOne(req.param('id'), function usuarioFounded(err, value_user) {
       if (err) {
         console.log(JSON.stringify(err));
         req.session.flash = {
@@ -155,9 +154,33 @@ module.exports = {
         };
         return res.redirect('/usuario/register');
       }
-      if (value != undefined) {
-        res.view({
-          usuario: value
+      if (value_user != undefined) {
+
+        //Buscar entradas publicadas por un usuario
+        Entrada.find({
+          entrada_usuario: value_user.id,
+          sort: 'createdAt DESC'
+        }).populateAll().exec(function(e, r) {
+          //console.log(r[0].toJSON())
+          //res.json(r);
+          //console.log("Resultados de busqueda: \n" + JSON.stringify(r));
+          if (e) {
+            console.log(JSON.stringify(e));
+            return next(e);
+          }
+          for (var i = 0; i < r.length; i++) {
+            r[i].createdAt = moment(r[i].createdAt).fromNow();
+            r[i].updatedAt = moment(r[i].updatedAt).fromNow();
+          }
+          //console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
+          /*res.json({
+            entradas: r,
+            usuario: value_user
+          });*/
+          res.view({
+            entradas: r,
+            usuario: value_user
+          });
         });
       } else {
         return res.redirect('/'); // Si se inserta un id de usuario incorrecto, se redirige al index

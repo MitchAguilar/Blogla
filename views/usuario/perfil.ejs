@@ -1,144 +1,66 @@
-<div class="wrapper grey-background">
-  <div class="container">
-    <div class="row">
-      <div class="col l12">
-        <img alt="Profile" src="http://wallpapercave.com/wp/8OVmF4U.jpg" class="responsive-img">
-        <!-- Profile Image -->
-        <div class="profile-image">
-          <img alt="Profile" src="http://wallpapercave.com/wp/8OVmF4U.jpg" class="responsive-img">
-        </div>
+<div class="page-header">
+  <h2>
+    <%= usuario.nombres %>
+    <%= usuario.apellidos %>
+    <small><%= usuario.nick %></small>
+  </h2>
+</div>
 
-        <div class="profil-content">
-          <div class="col l3 col m4 col s12 no-padding">
-            <!-- Profile Sidebar -->
-            <div class="profile-sidebar z-depth-1">
-              <!-- Profiler Name -->
-              <div class="name"><%= usuario.nombres %></div>
-              <!-- Profiler City -->
-              <div class="city">
-                <i class="fa fa-map-marker"></i>Vancouvar, CAN</div>
-              <!-- Profile Detail -->
-              <p>
-                <% if (usuario.resumen) { %>
-                  <%= usuario.resumen %>
-                <% } %>
-              </p>
-              <!-- Following Button -->
-              <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button">following</button>
-              <!-- Message Button -->
-              <a type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" href="/usuario/signout">Salir</a>
-              <!-- Nueva Publicacion -->
-              <a type="submit" href="/entrada/nuevo" class="btn btn-flat waves-effect waves-light shopping-cart-button">Publicar</a>
-              <div class="follower">
-                <div class="col l6 col m6 col s6">Followers
-                  <br>
-                  <span>45</span>
-                </div>
-                <div class="col l6 col m6 col s6">Following
-                  <br>
-                  <span>47</span>
-                </div>
-              </div>
-              <div class="bottom">
-                <i class="fa fa-laptop"></i>
-                <p>www.ThemeLeague.com</p>
-                <!-- Social Icon -->
-                <div class="social-icon">
-                  <a href="javascript:void(0);">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                  <a href="javascript:void(0);">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                  <a href="javascript:void(0);">
-                    <i class="fa fa-pinterest"></i>
-                  </a>
-                  <a href="javascript:void(0);">
-                    <i class="fa fa-instagram"></i>
-                  </a>
-                  <a href="javascript:void(0);">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col l9 col m8 col s12">
-
-            <div class="profile">
-              <div class="border"></div>
-              <!-- Profile Grid View -->
-              <div id="grid-view">
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/small-news3.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">termit</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$198.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l4 col m6">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <!-- Profile Image -->
-                    <img alt="Profile" src="images/small-news7.jpg" class="responsive-img">
-                    <!-- Profile Detail -->
-                    <div class="profile-detail">
-                      <!-- Profile Name -->
-                      <div class="profiler-name">
-                        <a href="javascript:void(0);">oscar</a>
-                      </div>
-                      <!-- Profile Value -->
-                      <div class="value">$111.00</div>
-                      <!-- Profile By -->
-                      <div class="profile-by">by Hezy</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Profile List View -->
-              <div id="list-view" class="listview" style="display:none">
-                <div class="col l12 col m12">
-                  <!-- Profile Box -->
-                  <div class="profile-box z-depth-1">
-                    <div class="col l3">
-                      <!-- Profile Image -->
-                      <img alt="Profile" src="images/profile7.jpg" class="responsive-img">
-                    </div>
-                    <div class="col l9">
-                      <!-- Profile Detail -->
-                      <div class="profile-detail">
-                        <p>Sed malesuada nulla ac libero vestibulum egestas, placerat elit. Sed luctus egestas enim in elementumSed malesuada nulla ac libero vestibulum egestas. Proin vitae purus elementum, luctus enim at, placerat elit. Sed luctus egestas enim in elementumSed malesuada nulla
-                        </p>
-                        <!-- Profile Value -->
-                        <div class="value">$198.00</div>
-                        <!-- Profile Name -->
-                        <div class="profiler-name">
-                          <a href="javascript:void(0);">termit</a>
-                        </div>
-                        <!-- Profile By -->
-                        <div class="profile-by">by Hezy</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<ul class="list-group">
+  <li class="list-group-item">
+    Tienes
+    <%= entradas.length %>
+    publicaciones
+    <span class="badge"><%= entradas.length %></span>
+    <br>
+    <br>
+    <div class="btn-group" role="group" aria-label="opciones">
+      <a type="button" class="btn btn-success">Publicar</a>
+      <a type="button" class="btn btn-default">Informacion</a>
     </div>
-  </div>
+  </li>
+</ul>
+
+<h2 class="sub-header">Mis publicaciones</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Titulo</th>
+        <th>Categoria</th>
+        <th>Creación</th>
+        <th>Actualizado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (var i = 0; i < entradas.length; i++) { %>
+        <tr>
+          <td>
+            <%= (i+1)  %>
+          </td>
+          <td>
+            <%= entradas[i].titulo %>
+          </td>
+          <td>
+            <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
+          </td>
+          <td>
+            <%= entradas[i].createdAt %>
+          </td>
+          <td>
+            <%= entradas[i].updatedAt %>
+          </td>
+          <td>
+            <div class="btn-group" role="group" aria-label="opciones">
+              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-default">Ver</a>
+              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-default">Editar</a>
+              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-danger">Eliminar</a>
+              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-info">Ocultar</a>
+            </div>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
 </div>

@@ -1,70 +1,31 @@
-<div class="wrapper grey-background">
-  <div class="container">
-    <div class="row">
-      <div class="col l12 col m12 col s12 center-align">
-        <!-- Breadcrumb -->
-        <div class="breadcrumb">
-          <a href="/">Home</a>
-          <i class="fa fa-angle-right"></i>
-          <%= __('Login') %>
-          <div class="page-title">
-            <%= __('Login') %>
-          </div>
-        </div>
-      </div>
+<% if (flash && flash.err) { %>
+  <p>
+    <div class="alert alert-warning" role="alert">
+      <% Object.keys(flash.err).forEach(function (error) { %>
+        <%= JSON.stringify(flash.err[error]) %>
+      <% }) %>
     </div>
+  </p>
+<% } %>
 
-    <div class="row">
-      <div class="col l12 col m12 col s12">
-        <div class="login-page z-depth-1">
-          <div class="col l4 col m6 col s12 offset-l4 offset-m3">
-            <% if (flash && flash.err) { %>
-              <p>
-                <ul class="collection">
-                  <% Object.keys(flash.err).forEach(function (error) { %>
-                    <li class="collection-item">
-                      <%= JSON.stringify(flash.err[error]) %>
-                    </li>
-                  <% }) %>
-                </ul>
-              </p>
-            <% } %>
-            <div class="login-title">
-              <%= __('BienvenidaLogin') %>
-              <%= __('Nombre') %>
-            </div>
-            <form action="/usuario/login" method="post">
-              <div class="input-field">
-                <i class="mdi-action-perm-identity prefix"></i>
-                <input id="email" name="email" type="email" class="validate" required>
-                <label for="email">
-                  <%= __('Email') %>
-                </label>
-              </div>
-              <div class="input-field">
-                <i class="mdi-action-lock-open prefix"></i>
-                <input id="name" name="contrasenia" type="password" class="validate" required>
-                <label for="name">
-                  <%= __('Contrasenia') %>
-                </label>
-              </div>
-              <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-              <div class="forgot-password left">
-                <a href="javascript:void(0);">
-                  <%= __('ContraseniaOlvidada') %>
-                </a>
-                <br>
-                <a href="/usuario/register">
-                  <%= __('NoRegistrado') %>
-                </a>
-              </div>
-              <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick="Materialize.toast('<span>Login Successful</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">
-                <%= __('LoginButton') %></button>
-            </form>
-          </div>
-        </div>
-      </div>
+<center>
+  <form class="form-signin" action="/usuario/login" method="post" style="width: 40%">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">
+      <%= __('Contrasenia') %>
+    </label>
+    <input type="password" name="contrasenia" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me">
+        <%= __('Recordar') %>
+      </label>
     </div>
-
-  </div>
-</div>
+    <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <%= __('LoginButton') %>
+    </button>
+  </form>
+</center>

@@ -1,4 +1,4 @@
-<html lang="es">
+<html lang="es" ng-app="Blog">
   <head>
     <title><%= __('Nombre') %></title>
 
@@ -28,312 +28,129 @@
     -->
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/camera.css">
-    <link rel="stylesheet" href="/styles/css.css">
-    <link rel="stylesheet" href="/styles/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/bootstrap-theme.css">
+    <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/styles/bootstrap.css">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/materialize.css">
-    <link rel="stylesheet" href="/styles/pgwslider.css">
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/normalize.min.css">
     <!--STYLES END-->
   </head>
 
-  <body>
+  <body ng-controller="ControllerHomePage" ng-cloak>
 
-    <!-- Header -->
-    <header class="">
-      <!-- Header Top Display In large and Tablet Device -->
-      <div class="header-top hide-on-small-only">
-        <div class="container">
-          <div class="row">
-            <div class="col l4 col m5 col s12">
-              <a href="/" data-activates="slide-out" class="button-collapse show-on-large">
-                <i class="mdi-navigation-menu"></i>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <%= __('Nombre') %>
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-init="op=1">
+          <ul class="nav navbar-nav">
+            <li class="{{op==1? active: '' }}" ng-click="op=1">
+              <a href="/entrada">
+                <%= __('Publicaciones') %>
+                <span class="sr-only">(current)</span>
               </a>
-              <!-- Dropdown -->
-              <div class="header-dropdown">
-                <!-- Dropdown Trigger
-                <a class="dropdown-button btn" data-beloworigin="true" href="/" data-activates="dropdown">Today
-                  <i class="mdi-navigation-arrow-drop-down"></i>
-                </a>
-                <ul id="dropdown" class="dropdown-content">
-                  <li>
-                    <a href="javascript:void(0);">Today</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">Yesterday</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">1 Week</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">1 Month</a>
-                  </li>
-                </ul>-->
-                <!-- Dropdown Structure -->
-              </div>
-            </div>
-            <div class="col l4 col m3 col s12">
-              <!-- Logo -->
-              <div class="logo">
-                <a href="/"><img src="/images/material-logo.png" alt="Logo"></a>
-              </div>
-            </div>
-            <div class="col l4 col m4 col s12 pull-right">
-              <!-- Search Button -->
-              <form class="searchbox" action="/entrada/search/">
-                <input type="text" placeholder="<%= __('Busqueda') %>" name="search" class="searchbox-input" required>
-                <input type="submit" class="searchbox-submit">
-                <span class="searchbox-icon">
-                  <i class="mdi-action-search"></i>
-                </span>
-              </form>
-              <!-- LogIn Link -->
-              <a href="/usuario/signin" class="right login">Login</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Header top Display On Mobile -->
-      <div class="header hide-on-med-and-up">
-        <div class="top-header">
-          <div class="container">
-            <div class="row">
-              <div class="col l4 col m5 col s2">
-                <a href="/" data-activates="slide-out" class="button-collapse show-on-large">
-                  <i class="mdi mdi-navigation-menu"></i>
-                </a>
-              </div>
-              <div class="col l4 col m4 col s5">
-                <!-- Dropdown -->
-                <div class="header-dropdown">
-                  <!-- Dropdown Trigger -->
-                  <!--<a class="dropdown-button btn" data-beloworigin="true" href="http://inceptionsystem.us/themes/Material-News/index3.html#" data-activates="dropdown-mobile">Today
-                    <i class="mdi mdi-navigation-arrow-drop-down"></i>
-                  </a>
-                  <ul id="dropdown-mobile" class="dropdown-content">
-                    <li>
-                      <a href="javascript:void(0);">Today</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);">Yesterday</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);">1 Week</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);">1 Month</a>
-                    </li>
-                  </ul>
-                  <!-- Dropdown Structure -
--->
-                </div>
-              </div>
-              <div class="col l4 col m4 col s3">
-                <!-- LogIn Link -->
-                <a href="/usuario/signin" class="login">Login</a>
-              </div>
-              <div class="col l4 col m4 col s2">
-                <!-- Search Button -->
-                <form class="searchbox" action="/entrada/search">
-                  <input type="text" placeholder="<%= __('Busqueda') %>" name="search" class="searchbox-input" required>
-                  <input type="submit" class="searchbox-submit">
-                  <span class="searchbox-icon">
-                    <i class="mdi-action-search"></i>
-                  </span>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--   <div class="bottom-header">
-          <div class="container">
-            <div class="row">
-              <div class="col l4 col m4 col s12">
-              Logo
-                <div class="logo">
-                  <a href="http://inceptionsystem.us/themes/Material-News/index.html"><img src="/images/material-logo.png" alt="Logo"></a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-         -->
-      </div>
-
-      <!-- Navigation -->
-      <nav role="navigation" class="hide-on-small-only">
-        <div class="nav-wrapper menu-category">
-          <ul>
+            </li>
             <li>
-              <ul class="news-category-dropdown">
+              <a href="#">Link</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
                 <li>
-                  <a href="javascript:void(0);">Entradas
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="/entrada">Ver todas</a>
-                    </li>
-                    <li>
-                      <a href="/entrada/nuevo">Nueva</a>
-                    </li>
-                  </ul>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="#">One more separated link</a>
                 </li>
               </ul>
             </li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search" action="/entrada/search/" method="get">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="<%= __('Busqueda') %>" name="search">
+            </div>
+            <button type="submit" class="btn btn-default">
+              <%= __('Buscar') %>
+            </button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
             <li>
-              <!-- Buscar  categorias de entradas -->
-              <ul class="news-category-dropdown">
+              <a href="/usuario/signin">Login</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
                 <li>
-                  <a href="javascript:void(0);">Categorias
-                    <i class="fa fa-angle-down"></i>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="/">Contact Style 1</a>
-                    </li>
-                    <li>
-                      <a href="/">Contact Style 2</a>
-                    </li>
-                  </ul>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
                 </li>
               </ul>
             </li>
           </ul>
         </div>
-      </nav>
-    </header>
-
-    <!-- Sidebar Navigation -->
-    <ul id="slide-out" class="side-nav full" style="width: 300px; left: -310px;">
-      <li class="logo-title">
-        <a href="javascript:void(0);">
-          <%= __('Nombre') %>
-        </a>
-      </li>
-      <!-- Dropdown Menu -->
-      <li class="dropdown-menu">
-        <ul class="collapsible" data-collapsible="expandable">
-          <li class="active">
-            <div class="collapsible-header waves-effect waves active">
-              <i class="fa fa-file"></i>
-              Publicaciones
-              <i class="fa fa-angle-right"></i>
-            </div>
-            <div style="display: block;" class="collapsible-body">
-              <ul>
-                <li class="waves-effect">
-                  <a href="/entrada">
-                    <i class="fa fa-angle-right"></i>
-                    Todas</a>
-                </li>
-                <li class="waves-effect">
-                  <a href="/">
-                    <i class="fa fa-angle-right"></i>
-                    Recientes</a>
-                </li>
-                <li class="waves-effect active">
-                  <a href="/">
-                    <i class="fa fa-angle-right"></i>
-                    Anteriores</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="">
-            <div class="collapsible-header waves-effect waves">
-              <i class="fa fa-file-text"></i>
-              Categoria
-              <i class="fa fa-angle-right"></i>
-            </div>
-            <div style="display: none;" class="collapsible-body">
-              <ul>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/index-sport.html">
-                    <i class="fa fa-angle-right"></i>
-                    Sport
-                  </a>
-                </li>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/index-life.html">
-                    <i class="fa fa-angle-right"></i>
-                    Life
-                  </a>
-                </li>
-                <li class="waves-effect">
-                  <a href="http://inceptionsystem.us/themes/Material-News/index-travel.html">
-                    <i class="fa fa-angle-right"></i>
-                    Travel
-                  </a>
-                </li>  
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
-      <li class="waves-effect">
-        <a href="/acercade">
-          <i class="fa fa-users"></i>
-          <%= __('Acercade') %>
-        </a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/contact1.html">
-          <i class="fa fa-phone"></i>Contact Style 1</a>
-      </li>
-      <li class="waves-effect">
-        <a href="http://inceptionsystem.us/themes/Material-News/contact2.html">
-          <i class="fa fa-map-marker"></i>Contact Style 2</a>
-      </li>
-      <li class="waves-effect">
-        <a href="/usuario/signin">
-          <i class="fa fa-lock"></i>Login</a>
-      </li>
-    </ul>
-
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
     <!-- ***********************************************************************
                                           Body
     -->
-    <%- body %>
+    <div class="container">
+      <br>
+      <br>
+      <br>
+      <%- body %>
+    </div>
 
     <!-- Footer -->
-    <footer class="page-footer">
-      <!-- Footer Bottom -->
-      <div class="footer-copyright">
-        <div class="container">
-          <div class="row">
-            <!-- Copyright Text -->
-            <div class="col l4 col m12 col s12">
-              <%= __('Copyright') %>
-            </div>
-            <div class="col l4 col m12 col s12">
-              <!-- Footer Menu -->
-              <div class="footer-menu">
-                <ul>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <%= __('Privacidad') %>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <%= __('Advertencias') %>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/acercade">
-                      <%= __('Contacto') %>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+    <footer class="blog-footer">
+      <center>
+        <p>Blog template built for
+          <a href="http://getbootstrap.com">Bootstrap</a>
+          by
+          <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        <p>
+          <a href="#">Back to top</a>
+        </p>
+      </center>
     </footer>
 
     <!--
@@ -384,22 +201,16 @@
 
     -->
 
-    <script src="/js/style/jquery-min.js"></script>
+    <script src="/js/vendor/jquery.min.js"></script>
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/js/amplify-1.1.2/amplify.min.js"></script>
     <script src="/js/angular/angular.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/controllers_angular/app.js"></script>
-    <script src="/js/hammer-time.min.js"></script>
-    <script src="/js/jquery-2.2.1.min.js"></script>
     <script src="/js/moment-with-locales.min.js"></script>
-    <script src="/js/style/camera.js"></script>
-    <script src="/js/style/init.js"></script>
-    <script src="/js/style/jquery-min.js"></script>
-    <script src="/js/style/jquery.liquid-slider.js"></script>
-    <script src="/js/style/jquery.touchSwipe.min.js"></script>
-    <script src="/js/style/materialize.js"></script>
-    <script src="/js/style/pgwslider.js"></script>
+    <script src="/js/require.js"></script>
+    <script src="/js/vendor/jquery.min.js"></script>
     <!--SCRIPTS END-->
 
     <script type="text/javascript">
