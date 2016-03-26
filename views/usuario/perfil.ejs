@@ -1,5 +1,6 @@
 <div class="page-header">
   <h2>
+    Bienvenido,
     <%= usuario.nombres %>
     <%= usuario.apellidos %>
     <small><%= usuario.nick %></small>
@@ -13,9 +14,8 @@
     publicaciones
     <span class="badge"><%= entradas.length %></span>
     <br>
-    <br>
     <div class="btn-group" role="group" aria-label="opciones">
-      <a type="button" class="btn btn-success">Publicar</a>
+      <a href="/entrada/nuevo" type="button" class="btn btn-success">Publicar</a>
       <a type="button" class="btn btn-default">Informacion</a>
     </div>
   </li>

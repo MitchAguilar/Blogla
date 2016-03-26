@@ -191,7 +191,8 @@ module.exports = {
     console.log("Usuario cerrando session: " + req.session.User.id);
     req.session.authenticated = undefined;
     req.session.User = undefined;
-    res.redirect('/usuario/signin')
+//    res.redirect('/usuario/signin'); //Refidigir a iniciar sesion
+    res.redirect('/entrada'); //Refidigir a la pagina principal
   },
   index: function(req, res) {
     console.log("Mostrando todos los usuarios.");

@@ -1,113 +1,369 @@
-<div class="blog-header">
-  <h1 class="blog-title">The Bootstrap Blog</h1>
-  <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
-</div>
-
-<% for (var i = 0; i < entradas.length; i++) { %><% } %>
-
-<div class="row">
-  <div class="col-sm-8 blog-main">
-    <% for (var i = 0; i < entradas.length; i++) { %>
-      <div class="blog-post">
-        <div class="row">
-          <h2 class="blog-post-title">
+<% for (var i = 0; i < entradas.length; i++) { %>
+  <article id="post-82" class="post-82 post type-post status-publish format-standard has-post-thumbnail hentry category-image tag-image-2 tag-space tag-standard-2">
+    <!-- The Post Badge -->
+    <!-- <div class="post-format-badge post-format-standard"><i class="icon-calendar-3"></i></div> -->
+    <div class="entry-image">
+      <img width="800" height="450" src="<%= entradas[i].fondo %>" class="attachment-original wp-post-image" alt="earth"/>
+    </div>
+    <div class="entry-container box ">
+      <div class="post-title ">
+        <!-- The Author -->
+        <div class="post-author"></div>
+        <!-- The Title -->
+        <h1 class="entry-title">
+          <a href="/entrada/showOne/<%= entradas[i].id %>">
             <%= entradas[i].titulo %>
-          </h2>
-          <p class="blog-post-meta">
-            <%= __('PublicadoBy') %>
-            <a href="#">
-              <%= entradas[i].entrada_usuario.nick %>
-            </a>
-            <%= entradas[i].createdAt %>
-          </p>
+          </a>
+          <div class="post-format-badge post-format-standard">
+            <i class="icon-calendar-3"></i>
+          </div>
+        </h1>
+        <!-- The Meta -->
+        <div class="post-meta">
+          <ul>
+            <li>
+              <time class="entry-date updated" datetime="2013-12-06T11:18:23+00:00"><%= entradas[i].createdAt %></time>
+            </li>
+            <li class="divider">/</li>
+            <li>
+              <a href="<%= entradas[i].fondo %>" title="View all posts in Image">Image</a>
+            </li>
+            <!--     <li class="divider">/</li>
+       <li>
+              <a href="http://www.bluthemes.com/themes/breeze/2013/12/06/space-shouldnt-be-the-final-frontier/#comments">No Comments</a>
+            </li> -->
+          </ul>
         </div>
-        <p>
-          <%- entradas[i].cuerpo %>
-
-          <a href="/entrada/showOne/<%= entradas[i].id %>">Ver <span class="badge">42</span></a>
-        </p>
-        <hr>
       </div>
+      <div class="entry-content">
+        <p>
+          <%= entradas[i].resumen %>
+        </p>
+        <a class="moretag" href="/entrada/showOne/<%= entradas[i].id %>">
+          <%= __('ContinuaLeyendo') %>
+        </a>
+        <footer class="entry-meta clearfix">
+
+          <ul class="post-tags clearfix">
+            <li>
+              <a href="http://www.bluthemes.com/themes/breeze/tag/image-2/" rel="tag">image</a>
+              <a href="http://www.bluthemes.com/themes/breeze/tag/space/" rel="tag">space</a>
+            </li>
+          </ul>
+          <div class="share-story-container">
+            <h4 class="muted">Share story</h4>
+            <ul class="share-story">
+              <li>
+                <a class="tips" data-title="Facebook" href="javascript:void(0);" onClick="social_share('http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&t=Space+shouldn%E2%80%99t+be+the+final+frontier');">
+                  <i class="icon-facebook-1"></i>
+                </a>
+              </li>
+              <li>
+                <a class="tips" data-title="Google+" href="javascript:void(0);" onClick="social_share('https://plus.google.com/share?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F');">
+                  <i class="icon-gplus-1"></i>
+                </a>
+              </li>
+              <li>
+                <a class="tips" data-title="Twitter" href="javascript:void(0);" onClick="social_share('http://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&text=Space shouldn&#8217;t be the final frontier');">
+                  <i class="icon-twitter-1"></i>
+                </a>
+              </li>
+              <li>
+                <a class="tips" data-title="Pinterest" href="javascript:void(0);" onClick="social_share('http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&media=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2Fwp-content%2Fuploads%2Fsites%2F4%2F2013%2F12%2Fearth-300x169.jpg');" data-pin-do="buttonPin" data-pin-config="above">
+                  <i class="icon-pinterest-1"></i>
+                </a>
+              </li>
+              <li>
+                <a class="tips" data-title="Linkedin" href="javascript:void(0);" onClick="social_share('http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&title=Space+shouldn%E2%80%99t+be+the+final+frontier');">
+                  <i class="icon-linkedin-1"></i>
+                </a>
+              </li>
+              <li>
+                <a class="tips" data-title="Email" href="javascript:void(0);" onClick="social_share('mailto:?subject=Space+shouldn%E2%80%99t+be+the+final+frontier&amp;body=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F');">
+                  <i class="icon-mail-1"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+        <!-- .entry-meta -->
+      </div>
+      <!-- .entry-content -->
+    </div>
+    <!-- .entry-container -->
+  </article>
+<% } %>
+
+<!-- Barra lateral -->
+<div class="bl_customizer active visible-lg visible-md">
+  <button id="bl_toggle_customizer">
+    <i class="icon-cog-1"></i>
+  </button>
+  <div class="bl_customizer_wrap">
+    <% if (autenticado) { %>
+      <section id="bl_customizer_patterns" class="clearfix">
+        <a href="/usuario/perfil/<%= id_usuario %>">
+          <h5>Mi perfil
+            <small class="muted" style="display:block;">Dashboard</small>
+          </h5>
+        </a>
+        <!--<div class="child">
+          <a title="Az_subtle" href="#" data-name="az_subtle.png"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/sample/az_subtle_50.png"></a>
+        </div>-->
+      </section>
+      <section id="bl_customizer_header" class="clearfix">
+        <a href="#">
+          <h5>Post</h5>
+        </a>
+        <div class="child">
+          <select>
+            <optgroup label="Header layouts">
+              <option data-type="normal" selected="">Crear publicacion</option>
+              <option data-type="full_width_background">Todas las publicaciones</option>
+            </optgroup>
+            <optgroup label="Header styling">
+              <option data-type="no_image">Cerrar sesión</option>
+            </optgroup>
+          </select>
+        </div>
+      </section>
+      <section id="bl_customizer_images" class="clearfix">
+        <a href="/entrada/nuevo">
+          <h5>Crear publicación
+            <small class="muted" style="display:block;">Crear un nuevo post o entrada.</small>
+          </h5>
+        </a>
+        <!--  <div class="child">
+          <a title="Bg" href="#" data-name="bg.jpg"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/demo/img/50/bg.png"></a>
+          <a title="Blur" href="#" data-name="blur.jpg"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/demo/img/50/blur.png"></a>
+          <a title="Clouds" href="#" data-name="clouds.jpg"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/demo/img/50/clouds.png"></a>
+        </div>-->
+      </section>
+      <section id="bl_customizer_patterns" class="clearfix">
+        <a href="/usuario/signout">
+          <h5>Cerrar sesión
+            <small class="muted" style="display:block;">Salir de tu perfil</small>
+          </h5>
+        </a>
+        <!--<div class="child">
+          <a title="Az_subtle" href="#" data-name="az_subtle.png"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/sample/az_subtle_50.png"></a>
+          <a title="Cloth_alike" href="#" data-name="cloth_alike.png"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/sample/cloth_alike_50.png"></a>
+          <a title="Cream_pixels" href="#" data-name="cream_pixels.png"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/sample/cream_pixels_50.png"></a>
+          <a title="Gray_jean" href="#" data-name="gray_jean.png"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/sample/gray_jean_50.png"></a>
+          <a title="Grid" href="#" data-name="grid.png"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/sample/grid_50.png"></a>
+        </div>-->
+      </section>
+    <% } else { %>
+      <section id="bl_customizer_images" class="clearfix">
+        <a href="/usuario/signin">
+          <h5>Iniciar sesión
+            <small class="muted" style="display:block;">Ver tu perfil personal.</small>
+          </h5>
+        </a>
+        <!--  <div class="child">
+          <a title="Bg" href="#" data-name="bg.jpg"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/demo/img/50/bg.png"></a>
+          <a title="Blur" href="#" data-name="blur.jpg"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/demo/img/50/blur.png"></a>
+          <a title="Clouds" href="#" data-name="clouds.jpg"><img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/themes/breeze/demo/img/50/clouds.png"></a>
+        </div>-->
+      </section>
     <% } %>
-    <!-- /.blog-post -->
-
-    <nav>
-      <ul class="pager">
-        <li>
-          <a href="#">Previous</a>
-        </li>
-        <li>
-          <a href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
+    <!--<section id="bl_customizer_heading_font" class="clearfix">
+      <a href="#">
+        <h5>Heading Font
+          <small class="muted" style="display:block;">600+ fonts available</small>
+        </h5>
+      </a>
+      <div class="child">
+        <select>
+          <option data-class="h_crete" data-font="Crete+Round" selected="">Crete Round (default)</option>
+          <option data-class="h_roboto" data-font="Roboto+Slab">Roboto Slab</option>
+          <option data-class="h_droid" data-font="Droid+Serif">Droid Serif</option>
+          <option data-class="h_oswald" data-font="Oswald">Oswald</option>
+          <option data-class="h_arvo" data-font="Arvo">Arvo</option>
+        </select>
+      </div>
+    </section>
+    <section id="bl_customizer_text_font" class="clearfix">
+      <a href="#">
+        <h5>Main Font
+          <small class="muted" style="display:block;">600+ fonts available</small>
+        </h5>
+      </a>
+      <div class="child">
+        <select>
+          <option data-class="h_lato" data-font="Lato" selected="">Lato (default)</option>
+          <option data-class="h_open" data-font="Open+Sans">Open Sans</option>
+          <option data-class="h_arimo" data-font="Arimo">Arimo</option>
+          <option data-class="h_vollkorn" data-font="Vollkorn">Vollkorn</option>
+        </select>
+      </div>
+    </section>-->
   </div>
-
-  <!-- /.blog-main -->
-  <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-    <div class="sidebar-module sidebar-module-inset">
-      <h4>About</h4>
-      <p>Etiam porta
-        <em>sem malesuada magna</em>
-        mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-    </div>
-    <div class="sidebar-module">
-      <h4>Archives</h4>
-      <ol class="list-unstyled">
-        <li>
-          <a href="#">March 2014</a>
-        </li>
-        <li>
-          <a href="#">February 2014</a>
-        </li>
-        <li>
-          <a href="#">January 2014</a>
-        </li>
-        <li>
-          <a href="#">December 2013</a>
-        </li>
-        <li>
-          <a href="#">November 2013</a>
-        </li>
-        <li>
-          <a href="#">October 2013</a>
-        </li>
-        <li>
-          <a href="#">September 2013</a>
-        </li>
-        <li>
-          <a href="#">August 2013</a>
-        </li>
-        <li>
-          <a href="#">July 2013</a>
-        </li>
-        <li>
-          <a href="#">June 2013</a>
-        </li>
-        <li>
-          <a href="#">May 2013</a>
-        </li>
-        <li>
-          <a href="#">April 2013</a>
-        </li>
-      </ol>
-    </div>
-    <div class="sidebar-module">
-      <h4>Elsewhere</h4>
-      <ol class="list-unstyled">
-        <li>
-          <a href="#">GitHub</a>
-        </li>
-        <li>
-          <a href="#">Twitter</a>
-        </li>
-        <li>
-          <a href="#">Facebook</a>
-        </li>
-      </ol>
-    </div>
-  </div>
-  <!-- /.blog-sidebar -->
-
 </div>
-<!-- /.row -->
+
+<style type="text/css">
+  .bl_customizer {
+    position: fixed;
+    background: #fff;
+    top: 110px;
+    left: -200px;
+    width: 200px;
+    -webkit-transition: left 0.2s ease-in-out;
+    -moz-transition: left 0.2s ease-in-out;
+    -o-transition: left 0.2s ease-in-out;
+    -ms-transition: left 0.2s ease-in-out;
+    transition: left 0.2s ease-in-out;
+    border-color: #DDDDDD;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    z-index: 1000000;
+  }
+  .bl_customizer.active {
+    left: 0;
+  }
+  .bl_customizer_wrap {
+    position: relative;
+  }
+  .bl_customizer_wrap select {
+    /*width: 100%;*/
+  }
+  .bl_customizer_wrap input[type="checkbox"] {
+    vertical-align: text-top;
+  }
+  .bl_customizer_wrap hr {
+    margin: 10px 0;
+  }
+  .bl_customizer_wrap section p {
+    line-height: 12px;
+    margin: 0;
+  }
+  .bl_customizer_wrap section select {
+    font-family: arial;
+    height: 25px;
+  }
+  .bl_customizer_wrap section p,
+  .bl_customizer_wrap section small {
+    font-family: Arial;
+  }
+  #bl_toggle_customizer {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #DDDDDD;
+    border-radius: 0 1px 1px 0;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    color: #85CCB1;
+    font-size: 22px;
+    position: absolute;
+    right: -41px;
+    text-shadow: 0 1px 0 #FFFFFF;
+    top: -1px;
+    width: 41px;
+    box-shadow: none;
+    padding: 7px;
+  }
+  #bl_customizer_patterns .child > a {
+    display: inline-block;
+    width: 50px;
+    padding-bottom: 5px;
+  }
+  #bl_customizer_patterns .child > a img {
+    max-width: 50px;
+  }
+  #bl_customizer_images .child > a {
+    display: inline-block;
+    width: 50px;
+    padding-bottom: 5px;
+  }
+  #page.h_crete h1,
+  #page.h_crete h2,
+  #page.h_crete h3,
+  #page.h_crete h4,
+  #page.h_crete h5 {
+    font-family: "Crete Round",serif !important;
+  }
+  #page.h_roboto h1,
+  #page.h_roboto h2,
+  #page.h_roboto h3,
+  #page.h_roboto h4,
+  #page.h_roboto h5 {
+    font-family: "Roboto Slab",serif !important;
+  }
+  #page.h_droid h1,
+  #page.h_droid h2,
+  #page.h_droid h3,
+  #page.h_droid h4,
+  #page.h_droid h5 {
+    font-family: "Droid Serif",serif !important;
+  }
+  #page.h_oswald h1,
+  #page.h_oswald h2,
+  #page.h_oswald h3,
+  #page.h_oswald h4,
+  #page.h_oswald h5 {
+    font-family: "Oswald",serif !important;
+  }
+  #page.h_arvo h1,
+  #page.h_arvo h2,
+  #page.h_arvo h3,
+  #page.h_arvo h4,
+  #page.h_arvo h5 {
+    font-family: "Arvo",serif !important;
+  }
+
+  #page.h_lato {
+    font-family: 'Lato', serif !important;
+  }
+  #page.h_open {
+    font-family: 'Open Sans', serif !important;
+  }
+  #page.h_arimo {
+    font-family: 'Arimo', serif !important;
+  }
+  #page.h_vollkorn {
+    font-family: 'Vollkorn', serif !important;
+  }
+
+  .bl_customizer_wrap > section > a {
+    padding: 5px 10px;
+    display: block;
+    border-bottom: 1px solid #DDDDDD;
+  }
+  .bl_customizer_wrap > section {
+    position: relative;
+    width: auto;
+  }
+  .bl_customizer_wrap > section:hover {
+    background-color: #F0F0F0;
+  }
+  .bl_customizer_wrap > section:hover .child,
+  .bl_customizer_wrap > section.open .child {
+    display: block;
+  }
+  .bl_customizer_wrap > section > .child {
+    display: none;
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    left: 100%;
+    background-color: #FFFFFF;
+    width: auto;
+    border: 1px solid #DDDDDD;
+    border-radius: 1px;
+  }
+
+  /*.bl-custom-menu{
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #DDDDDD;
+    margin: 10px 0;
+  }
+  .bl-custom-menu li{
+    display: none;
+    padding: 2px;
+  }
+  .bl-custom-menu li.selected{
+    display: block;
+  }*/
+
+</style>

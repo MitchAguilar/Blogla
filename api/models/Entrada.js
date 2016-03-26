@@ -26,6 +26,14 @@ module.exports = {
       type: 'text',
       required: true
     },
+    eliminado: {
+      type: 'boolean',
+      default: false
+    },
+    oculto: {
+      type: 'boolean',
+      default: false
+    },
     categoria_entrada_ref: {
       model: 'CategoriaEntrada',
       via: 'entrada_ref'

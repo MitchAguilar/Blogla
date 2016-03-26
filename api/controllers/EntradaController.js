@@ -40,6 +40,8 @@ module.exports = {
       }
       //console.log("R: " + JSON.stringify(r));
       res.view({
+        autenticado: (req.session.authenticated && req.session.authenticated != undefined) ? true : false,
+        id_usuario: req.session.User != undefined ? req.session.User.id : undefined,
         entradas: r
       });
     });
