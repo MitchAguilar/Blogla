@@ -81,12 +81,12 @@
                   <div class="btn-group" role="group" aria-label="opciones">
                     <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-success">Ver</a>
                     <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-success">Editar</a>
-                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-danger">Eliminar</a>
                     <% if(entradas[i].oculto) { %>
                       <a href="/entrada/ocultar/<%= entradas[i].id %>" type="button" class="btn btn-warning">Desocultar</a>
                     <% } else { %>
                       <a href="/entrada/ocultar/<%= entradas[i].id %>" type="button" class="btn btn-warning">Ocultar</a>
                     <% } %>
+                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-danger">Eliminar</a>
                   </div>
                 </td>
               </tr>
