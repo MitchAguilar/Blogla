@@ -1,20 +1,20 @@
-<% if (flash && flash.err) { %>
-  <p>
-    <div class="alert alert-warning" role="alert">
-      <% Object.keys(flash.err).forEach(function (error) { %>
-        <%= JSON.stringify(flash.err[error]) %>
-      <% }) %>
-    </div>
-  </p>
-<% } %>
-
 <center>
   <form class="form-signin" action="/usuario/login" method="post" style="width: 40%">
+    <% if (flash && flash.err) { %>
+      <p>
+        <div class="alert alert-warning" role="alert">
+          <% Object.keys(flash.err).forEach(function (error) { %>
+            <%= flash.err[error].message %>
+          <% }) %>
+        </div>
+      </p>
+    <% } %>
     <h2 class="form-signin-heading">Please sign in</h2>
     <label for="inputEmail" class="sr-only">
       <%= __('Email')%>
     </label>
     <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+    <br>
     <label for="inputPassword" class="sr-only">
       <%= __('Contrasenia') %>
     </label>

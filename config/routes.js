@@ -32,7 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
   'GET /': 'HomePageController.index',
+  /* Routes entrada */
   'GET /entrada/search': 'EntradaController.search',
+  'GET /entrada/ocultar': 'EntradaController.ocultar',
   '/index': {
     view: 'homepage/homepage',
     controller: 'HomePageController',

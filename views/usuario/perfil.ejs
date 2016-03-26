@@ -1,66 +1,99 @@
-<div class="page-header">
-  <h2>
-    Bienvenido,
-    <%= usuario.nombres %>
-    <%= usuario.apellidos %>
-    <small><%= usuario.nick %></small>
-  </h2>
-</div>
+<div ng-controller="CtrlPerfil">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h2 class="sub-header">
+        <h2>
+          Bienvenido,
+          <%= usuario.nombres %>
+          <%= usuario.apellidos %>
+          <br>
+          <small>
+            <%= usuario.nick %>
+          </small>
+        </h2>
+      </h2>
+    </li>
+  </ul>
 
-<ul class="list-group">
-  <li class="list-group-item">
-    Tienes
-    <%= entradas.length %>
-    publicaciones
-    <span class="badge"><%= entradas.length %></span>
-    <br>
-    <div class="btn-group" role="group" aria-label="opciones">
-      <a href="/entrada/nuevo" type="button" class="btn btn-success">Publicar</a>
-      <a type="button" class="btn btn-default">Informacion</a>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h2>Información</h2>
+    </li>
+    <li class="list-group-item">
+      Tienes
+      <strong>
+        <%= entradas.length %>
+      </strong>
+      publicaciones activas
+      <span class="badge"><%= entradas.length %></span>
+    </li>
+    <li class="list-group-item">
+      <strong>
+        <%= entradas.length %>
+      </strong>
+      publicaciones ocultas
+      <span class="badge"><%= entradas.length %></span>
+    </li>
+    <li class="list-group-item">
+      <div class="btn-group" role="group" aria-label="opciones">
+        <a href="/entrada/nuevo" type="button" class="btn btn-success">Publicar</a>
+        <a href="/entrada" type="button" class="btn btn-success">Menú principal</a>
+        <a href="/usuario/signout" type="button" class="btn btn-danger">Cerrar sesion</a>
+      </div>
+    </li>
+  </ul>
+
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h2 class="sub-header">Mis publicaciones</h2>
+    </li>
+    <li class="list-group-item">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Titulo</th>
+              <th>Categoria</th>
+              <th>Creado</th>
+              <th>Actualizado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (var i = 0; i < entradas.length; i++) { %>
+              <tr>
+                <td>
+                  <%= (i+1)  %>
+                </td>
+                <td>
+                  <%= entradas[i].titulo %>
+                </td>
+                <td>
+                  <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
+                </td>
+                <td>
+                  <%= entradas[i].createdAt %>
+                </td>
+                <td>
+                  <%= entradas[i].updatedAt %>
+                </td>
+                <td>
+                  <div class="btn-group" role="group" aria-label="opciones">
+                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-success">Ver</a>
+                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-success">Editar</a>
+                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-danger">Eliminar</a>
+                    <% if(entradas[i].oculto) { %>
+                      <a href="/entrada/ocultar/<%= entradas[i].id %>" type="button" class="btn btn-warning">Desocultar</a>
+                    <% } else { %>
+                      <a href="/entrada/ocultar/<%= entradas[i].id %>" type="button" class="btn btn-warning">Ocultar</a>
+                    <% } %>
+                  </div>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </li>
 </ul>
-
-<h2 class="sub-header">Mis publicaciones</h2>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Titulo</th>
-        <th>Categoria</th>
-        <th>Creación</th>
-        <th>Actualizado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for (var i = 0; i < entradas.length; i++) { %>
-        <tr>
-          <td>
-            <%= (i+1)  %>
-          </td>
-          <td>
-            <%= entradas[i].titulo %>
-          </td>
-          <td>
-            <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
-          </td>
-          <td>
-            <%= entradas[i].createdAt %>
-          </td>
-          <td>
-            <%= entradas[i].updatedAt %>
-          </td>
-          <td>
-            <div class="btn-group" role="group" aria-label="opciones">
-              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-default">Ver</a>
-              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-default">Editar</a>
-              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-danger">Eliminar</a>
-              <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-info">Ocultar</a>
-            </div>
-          </td>
-        </tr>
-      <% } %>
-    </tbody>
-  </table>
-</div>

@@ -23,10 +23,33 @@ module.exports = {
       });
     });
   },
+  ocultar: function (req, res) {
+    console.log("Ocultando: " + req.param('id'));
+    /*if (req.session.authenticated) {
+      console.log("Ocultando: " + req.param('id'));
+    }*/
+    res.redirect('/usuario/perfil/' + req.session.User.id)
+  },
+  ocultar: function (req, res) {
+    console.log("Desocultando: " + req.param('id'));
+    /*if (req.session.authenticated) {
+      console.log("Ocultando: " + req.param('id'));
+    }*/
+    res.redirect('/usuario/perfil/' + req.session.User.id)
+  },
+  eliminar: function (req, res) {
+    console.log("Eliminando: " + req.param('id'));
+    /*if (req.session.authenticated) {
+      console.log("Ocultando: " + req.param('id'));
+    }*/
+    res.redirect('/usuario/perfil/' + req.session.User.id)
+  },
   index: function(req, res) { //Pagina principal de todas las entradas
     Entrada.find({
-      limit: 50,
-      sort: 'createdAt DESC'
+      limit: 30,
+      sort: 'createdAt DESC',
+      eliminado: [false, undefined],
+      oculto: [false, undefined]
     }).populateAll().exec(function(e, r) {
       //console.log(r[0].toJSON())
       //res.json(r);

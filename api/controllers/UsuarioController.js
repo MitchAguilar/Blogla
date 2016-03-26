@@ -156,10 +156,11 @@ module.exports = {
       }
       if (value_user != undefined) {
 
-        //Buscar entradas publicadas por un usuario
+        //Buscar entradas publicadas por un usuario, muestra todas excepto las eliminadas
         Entrada.find({
           entrada_usuario: value_user.id,
-          sort: 'createdAt DESC'
+          sort: 'createdAt DESC',
+          eliminado: [false, undefined]
         }).populateAll().exec(function(e, r) {
           //console.log(r[0].toJSON())
           //res.json(r);
