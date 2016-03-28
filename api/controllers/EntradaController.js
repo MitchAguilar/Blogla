@@ -47,7 +47,7 @@ module.exports = {
   index: function(req, res) { //Pagina principal de todas las entradas
     Entrada.find({
       limit: 30,
-      sort: 'createdAt DESC',
+      sort: 'updatedAt DESC',
       eliminado: [false, undefined],
       oculto: [false, undefined]
     }).populateAll().exec(function(e, r) {
@@ -77,7 +77,7 @@ module.exports = {
         titulo: {
           'like': '%' + search
         },
-        sort: 'createdAt DESC'
+        sort: 'updatedAt DESC'
       }).populateAll().exec(function(e, r) {
         //console.log(r[0].toJSON())
         //res.json(r);
@@ -136,6 +136,8 @@ module.exports = {
       if (value != undefined) {
         value.createdAt = moment(value.createdAt).fromNow();
         value.updatedAt = moment(value.updatedAt).fromNow();
+
+        res.locals.layout = 'layouts/public';
         res.view({
           entrada: value
         });

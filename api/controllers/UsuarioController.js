@@ -191,7 +191,7 @@ module.exports = {
   },
   signout: function(req, res) { /* Cerrar la sesion */
     console.log("Usuario cerrando session: " + req.session.User.id);
-    req.session.authenticated = undefined;
+    req.session.authenticated = false;
     req.session.User = undefined;
     //    res.redirect('/usuario/signin'); //Refidigir a iniciar sesion
     res.redirect('/entrada'); //Refidigir a la pagina principal
