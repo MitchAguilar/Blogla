@@ -58,17 +58,8 @@ module.exports = {
     /************************
           Redes sociales
     */
-    twitter: {
-      type: 'string'
-    },
-    facebook: {
-      type: 'string'
-    },
-    youtube: {
-      type: 'string'
-    },
-    googleplus: {
-      type: 'string'
+    social: {
+      type: 'json'
     },
     /************************
             Relaciones

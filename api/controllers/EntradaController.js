@@ -71,11 +71,11 @@ module.exports = {
   },
   search: function(req, res) {
     var search = req.param('search');
-    console.log("Buscando entradas con: " + search);
     if (search != undefined) {
+      console.log("Buscando entradas con: " + search);
       Entrada.find({
         titulo: {
-          'like': '%' + search
+          'like': '%' + search + '%'
         },
         sort: 'updatedAt DESC'
       }).populateAll().exec(function(e, r) {
@@ -92,6 +92,7 @@ module.exports = {
         }
         //console.log("R: " + JSON.stringify(r));
         res.view('entrada/index', {
+          autenticado: (req.session.authenticated && req.session.authenticated != undefined) ? true : false,
           entradas: r
         });
       });

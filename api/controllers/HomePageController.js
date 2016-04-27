@@ -8,9 +8,9 @@
 module.exports = {
   index: function(req, res, next) {
     console.log("Accediendo al index.");
-  /*  res.view('homepage/homepage', {
+    res.view('homepage/homepage', {
       auth: req.session.authenticated
-    });*/
-    res.redirect('entrada');
+    });
+    //res.redirect('entrada');
   }
 };
