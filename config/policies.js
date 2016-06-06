@@ -37,6 +37,24 @@ module.exports.policies = {
     'update': 'authenticated',
     'delete': 'authenticated',
     'index': 'flash'
+  },
+  'rol': {
+    '*': 'authenticated'
+  },
+  'comentario': {
+    '*': 'authenticated'
+  },
+  'categoriaentrada': {
+    'index': false,
+    'create': false
+  },
+  'usuario': {
+    'login': 'flash',
+    'signin': 'flash',
+    'register': 'flash',
+    'perfil': 'authenticated',
+    'signout': 'authenticated',
+    'index': false
   }
 
   /***************************************************************************

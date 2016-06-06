@@ -1,88 +1,89 @@
 <br>
 <br>
 <% for (var i = 0; i < entradas.length; i++) { %>
-    <div class="entry-image">
-      <img width="200" height="100" src="<%= entradas[i].fondo %>" class="attachment-original wp-post-image" alt="earth"/>
+  <br>
+  <div class="entry-image">
+    <img width="200" height="100" src="<%= entradas[i].fondo %>" class="attachment-original wp-post-image" alt="earth"/>
+  </div>
+  <div class="entry-container box ">
+    <div class="post-title ">
+      <!-- The Title -->
+      <h1 class="entry-title">
+        <a href="/entrada/showOne/<%= entradas[i].id %>">
+          <%= entradas[i].titulo %>
+        </a>
+        <div class="post-format-badge post-format-standard">
+          <i class="icon-calendar-3"></i>
+        </div>
+      </h1>
+      <!-- The Meta -->
+      <div class="post-meta">
+        <ul>
+          <li>
+            <time class="entry-date updated" datetime="2013-12-06T11:18:23+00:00"><%= entradas[i].createdAt %></time>
+          </li>
+          <li class="divider">/</li>
+          <li>
+            <a href="<%= entradas[i].fondo %>" title="View all posts in Image">Image</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="entry-container box ">
-      <div class="post-title ">
-        <!-- The Title -->
-        <h1 class="entry-title">
-          <a href="/entrada/showOne/<%= entradas[i].id %>">
-            <%= entradas[i].titulo %>
-          </a>
-          <div class="post-format-badge post-format-standard">
-            <i class="icon-calendar-3"></i>
-          </div>
-        </h1>
-        <!-- The Meta -->
-        <div class="post-meta">
-          <ul>
+    <div class="entry-content">
+      <p>
+        <%= entradas[i].resumen %>
+      </p>
+      <a class="moretag" href="/entrada/showOne/<%= entradas[i].id %>">
+        <%= __('ContinuaLeyendo') %>
+      </a>
+      <footer class="entry-meta clearfix">
+        <ul class="post-tags clearfix">
+          <li>
+            <a href="http://www.bluthemes.com/themes/breeze/tag/image-2/" rel="tag">image</a>
+            <a href="http://www.bluthemes.com/themes/breeze/tag/space/" rel="tag">space</a>
+          </li>
+        </ul>
+        <div class="share-story-container">
+          <h4 class="muted">
+            <%= __('Compartir') %>
+          </h4>
+          <ul class="share-story">
             <li>
-              <time class="entry-date updated" datetime="2013-12-06T11:18:23+00:00"><%= entradas[i].createdAt %></time>
+              <a class="tips" data-title="Facebook" href="javascript:void(0);" onClick="social_share('http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&t=Space+shouldn%E2%80%99t+be+the+final+frontier');">
+                <i class="fa fa-facebook"></i>
+              </a>
             </li>
-            <li class="divider">/</li>
             <li>
-              <a href="<%= entradas[i].fondo %>" title="View all posts in Image">Image</a>
+              <a class="tips" data-title="Google+" href="javascript:void(0);" onClick="social_share('https://plus.google.com/share?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F');">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </li>
+            <li>
+              <a class="tips" data-title="Twitter" href="javascript:void(0);" onClick="social_share('http://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&text=Space shouldn&#8217;t be the final frontier');">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a class="tips" data-title="Pinterest" href="javascript:void(0);" onClick="social_share('http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&media=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2Fwp-content%2Fuploads%2Fsites%2F4%2F2013%2F12%2Fearth-300x169.jpg');" data-pin-do="buttonPin" data-pin-config="above">
+                <i class="fa fa-pinterest"></i>
+              </a>
+            </li>
+            <li>
+              <a class="tips" data-title="Linkedin" href="javascript:void(0);" onClick="social_share('http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&title=Space+shouldn%E2%80%99t+be+the+final+frontier');">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+            <li>
+              <a class="tips" data-title="Email" href="javascript:void(0);" onClick="social_share('mailto:?subject=Space+shouldn%E2%80%99t+be+the+final+frontier&amp;body=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F');">
+                <i class="fa fa-mail-forward"></i>
+              </a>
             </li>
           </ul>
         </div>
-      </div>
-      <div class="entry-content">
-        <p>
-          <%= entradas[i].resumen %>
-        </p>
-        <a class="moretag" href="/entrada/showOne/<%= entradas[i].id %>">
-          <%= __('ContinuaLeyendo') %>
-        </a>
-        <footer class="entry-meta clearfix">
-          <ul class="post-tags clearfix">
-            <li>
-              <a href="http://www.bluthemes.com/themes/breeze/tag/image-2/" rel="tag">image</a>
-              <a href="http://www.bluthemes.com/themes/breeze/tag/space/" rel="tag">space</a>
-            </li>
-          </ul>
-          <div class="share-story-container">
-            <h4 class="muted">
-              <%= __('Compartir') %>
-            </h4>
-            <ul class="share-story">
-              <li>
-                <a class="tips" data-title="Facebook" href="javascript:void(0);" onClick="social_share('http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&t=Space+shouldn%E2%80%99t+be+the+final+frontier');">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li>
-                <a class="tips" data-title="Google+" href="javascript:void(0);" onClick="social_share('https://plus.google.com/share?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F');">
-                  <i class="fa fa-google-plus"></i>
-                </a>
-              </li>
-              <li>
-                <a class="tips" data-title="Twitter" href="javascript:void(0);" onClick="social_share('http://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&text=Space shouldn&#8217;t be the final frontier');">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a class="tips" data-title="Pinterest" href="javascript:void(0);" onClick="social_share('http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&media=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2Fwp-content%2Fuploads%2Fsites%2F4%2F2013%2F12%2Fearth-300x169.jpg');" data-pin-do="buttonPin" data-pin-config="above">
-                  <i class="fa fa-pinterest"></i>
-                </a>
-              </li>
-              <li>
-                <a class="tips" data-title="Linkedin" href="javascript:void(0);" onClick="social_share('http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F&title=Space+shouldn%E2%80%99t+be+the+final+frontier');">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-              <li>
-                <a class="tips" data-title="Email" href="javascript:void(0);" onClick="social_share('mailto:?subject=Space+shouldn%E2%80%99t+be+the+final+frontier&amp;body=http%3A%2F%2Fwww.bluthemes.com%2Fthemes%2Fbreeze%2F2013%2F12%2F06%2Fspace-shouldnt-be-the-final-frontier%2F');">
-                  <i class="fa fa-mail-forward"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </footer>
-        <!-- .entry-meta -->
-      </div>
-      <!-- .entry-content -->
+      </footer>
+      <!-- .entry-meta -->
     </div>
-    <hr>
+    <!-- .entry-content -->
+  </div>
+  <hr>
 <% } %>

@@ -2,6 +2,9 @@
   app.controller('ControllerPerfil', [
     '$scope',
     function($scope) {
+
+      $scope.entradas = [];
+
       $scope.entradas_menu = [
         {
           nombre: "Nuevo usuario",
@@ -74,18 +77,18 @@
             </a>
           </li>
           <li>
-            <a ng-click="click_publicaciones()" href>
+            <a href>
               <i class="fa fa-desktop"></i>
               Publicaciones</a>
             <ul>
               <li>
-                <a href="/entrada/nuevo">Nuevo</a>
+                <a href>Nuevo</a>
               </li>
               <li>
-                <a href="/entrada/listar">Listar</a>
+                <a ng-click="click_publicaciones()" href>Listar</a>
               </li>
               <li>
-                <a href="/entrada/ocultos">Ocultos</a>
+                <a href>Ocultos</a>
               </li>
             </ul>
           </li>
@@ -283,6 +286,11 @@
                             <td>
                               <a href="/entrada/showOne/<%= entradas[i].id %>">
                                 Ver
+                              </a>
+                            </td>
+                            <td>
+                              <a href="/entrada/ocultar/<%= entradas[i].id %>">
+                                Ocultar
                               </a>
                             </td>
                           </tr>

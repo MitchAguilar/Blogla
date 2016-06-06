@@ -155,7 +155,6 @@ module.exports = {
 				return res.redirect('/usuario/register');
 			}
 			if (value_user != undefined) {
-
 				//Buscar entradas publicadas por un usuario, muestra todas excepto las eliminadas
 				Entrada.find({
 					entrada_usuario: value_user.id,
