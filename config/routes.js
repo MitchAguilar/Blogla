@@ -31,10 +31,12 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-  'GET /': 'HomePageController.index',
+  'GET /': 'EntradaController.index',
+  //'GET /': 'HomePageController.index',
   /* Routes entrada */
   'GET /entrada/search': 'EntradaController.search',
   'GET /entrada/ocultar': 'EntradaController.ocultar',
+  'PUT /entrada/update': 'EntradaController.update',
   '/index': {
     view: 'homepage/homepage',
     controller: 'HomePageController',

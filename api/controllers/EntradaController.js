@@ -30,13 +30,6 @@ module.exports = {
     }*/
     res.redirect('/usuario/perfil/' + req.session.User.id)
   },
-  ocultar: function (req, res) {
-    console.log("Desocultando: " + req.param('id'));
-    /*if (req.session.authenticated) {
-      console.log("Ocultando: " + req.param('id'));
-    }*/
-    res.redirect('/usuario/perfil/' + req.session.User.id)
-  },
   eliminar: function (req, res) {
     console.log("Eliminando: " + req.param('id'));
     /*if (req.session.authenticated) {
@@ -48,8 +41,8 @@ module.exports = {
     Entrada.find({
       limit: 30,
       sort: 'updatedAt DESC',
-      eliminado: [false, undefined],
-      oculto: [false, undefined]
+      eliminado: [false, undefined], // Consultar solamente los no eliminados
+      oculto: [false, undefined] // Consultar solamente los no ocultos
     }).populateAll().exec(function(e, r) {
       //console.log(r[0].toJSON())
       //res.json(r);
@@ -80,7 +73,6 @@ module.exports = {
         sort: 'updatedAt DESC'
       }).populateAll().exec(function(e, r) {
         //console.log(r[0].toJSON())
-        //res.json(r);
         //console.log("Resultados de busqueda: \n" + JSON.stringify(r));
         if (e) {
           console.log(JSON.stringify(e));
@@ -107,6 +99,8 @@ module.exports = {
       cuerpo: req.param('cuerpo'),
       fondo: req.param('fondo'),
       resumen: req.param('resumen'),
+      oculto: false,
+      eliminado: false,
       categoria_entrada_ref: req.param('categoria_entrada_ref'),
       entrada_usuario: req.session.User.id
     }
@@ -135,8 +129,8 @@ module.exports = {
         return res.redirect('/entrada');
       }
       if (value != undefined) {
-        value.createdAt = moment(value.createdAt).fromNow();
-        value.updatedAt = moment(value.updatedAt).fromNow();
+        value.createdAt = momentParse(value.createdAt);
+        value.updatedAt = momentParse(value.updatedAt);
 
         res.locals.layout = 'layouts/public';
         res.view({
@@ -148,7 +142,7 @@ module.exports = {
       }
     });
   },
-  editar: function(req, res, next) {
+  editar: function(req, res, next) { //Abre el formulario de edicion de entrada
     console.log("Editando la entrada: " + req.param('id'));
     Entrada.findOneById(req.param('id')).populateAll().exec(function(err, value) {
       if (err) {
@@ -159,8 +153,8 @@ module.exports = {
         return res.redirect('/entrada');
       }
       if (value != undefined) {
-        value.createdAt = moment(value.createdAt).fromNow();
-        value.updatedAt = moment(value.updatedAt).fromNow();
+        value.createdAt = momentParse(value.createdAt);
+        value.updatedAt = momentParse(value.updatedAt);
 
         CategoriaEntrada.find(function CategoriaEntradaFounded(err, values) {
           if (err) {
@@ -181,6 +175,41 @@ module.exports = {
       }
     });
   },
+  update: function(req, res, next) {
+    console.log("Actualizando entrada");
+    if (!req.param('id')) {
+      res.status(400);
+      res.view('400', {message: 'Error al actualizar entrada, error 4333, contacte al administrador del blog!'});
+    } else {
+      var _id = req.param('id');
+      console.log("El id a actualizar: " + _id);
+
+      var update_ent = {
+        titulo: req.param('titulo'),
+        cuerpo: req.param('cuerpo'),
+        fondo: req.param('fondo'),
+        resumen: req.param('resumen'),
+        oculto: false,
+        eliminado: false,
+        categoria_entrada_ref: req.param('categoria_entrada_ref'),
+        entrada_usuario: req.session.User.id
+      }
+
+      updateEntrada(_id, update_ent, function(err, updated) {
+        if (err) {
+          res.status(400);
+          return res.view('400', {message: 'Error al actualizar entrada, error 4454, error de parametros, contacte al administrador del blog!'});
+        }
+        console.log('Updated entrada con id ' + updated[0].id);
+
+        findEntrada(updated[0].id, function(err, value) {
+          return res.view('entrada/showOne', {
+            entrada: value
+          });
+        })
+      });
+    }
+  },
   todas: function(req, res) {
     Entrada.find({}).populateAll().exec(function(e, r) {
       //console.log(r[0].toJSON())
@@ -188,3 +217,40 @@ module.exports = {
     });
   }
 };
+
+/**
+ * Convertir fecha a rango de tiempo, --> hace 2 horas...
+ * @param  {[type]} string [description]
+ * @return {[type]}        [description]
+ */
+var momentParse = function(string) {
+  return moment(string).fromNow();
+}
+
+/**
+ * Busca una entrada por id
+ * @param  {[type]}   _id      [description]
+ * @param  {Function} callback [description]
+ * @return {[type]}            [description]
+ */
+var findEntrada = function(_id, callback) {
+  Entrada.findOneById(_id).populateAll().exec(function(err, value) {
+    value.createdAt = momentParse(value.createdAt);
+    value.updatedAt = momentParse(value.updatedAt);
+    callback(err, value);
+  });
+}
+
+/**
+ * Actualiza una entrada
+ * @param  {[type]}   _id       [description]
+ * @param  {[type]}   atributos [description]
+ * @param  {Function} callback  [description]
+ * @return {[type]}             [description]
+ */
+var updateEntrada = function(_id, atributos, callback) {
+  Entrada.update({id: _id}, atributos).exec(function afterwards(err, updated){
+    console.log('Updated entrada con id ' + updated[0].id);
+    callback(err, updated);
+  });
+}

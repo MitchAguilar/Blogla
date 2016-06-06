@@ -32,33 +32,16 @@
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/bootstrap-theme.css">
     <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/styles/bootstrap.css">
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="/styles/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/style2.css">
     <!--STYLES END-->
     <link rel="stylesheet" href="/styles/font-awesome.min.css">
   </head>
 
   <body ng-app="Blog">
-
-    <style type="text/css">
-      img.wp-smiley,
-      img.emoji {
-        display: inline !important;
-        border: none !important;
-        box-shadow: none !important;
-        height: 1em !important;
-        width: 1em !important;
-        margin: 0 0.07em !important;
-        vertical-align: -0.1em !important;
-        background: none !important;
-        padding: 0 !important;
-      }
-    </style>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -147,164 +130,12 @@
       <!-- /.container-fluid -->
     </nav>
     <br>
-    <br>
     <!-- ***********************************************************************
                                           Body
     -->
-    <div class="page page-id-194 page-template page-template-demo page-template-page-blog-twocolumn page-template-demopage-blog-twocolumn-php">
-      <div style="background-image: url('/images/pw_pattern.png')" id="background_pattern"></div>
-      <div id="page" class="site">
-        <div id="masthead" class="masthead-container header_normal container header_background_color">
-        <!--  <header role="banner" class="">
-            <div class="masthead-background box clearfix" style=""></div>
-            <div class="masthead-group clearfix ">
-               < Brand and toggle get grouped for better mobile display
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <i class="icon-menu-1"></i>
-                </button>
-                <a class="navbar-brand brand-image" href="/" title="Breeze" rel="home">
-                  <img src="http://blu.fullstackehf.netdna-cdn.com/themes/breeze/wp-content/uploads/sites/4/2013/11/breeze-logo-small-transparent.png" alt="Breeze">
-                  <h1></h1>
-                </a>
-              </div>
-              <div class="blu_search pull-right hidden-sm hidden-xs">
-                <form action="/entrada/search/" method="get" class="searchform" role="search">
-                  <fieldset>
-                    <a href="#">
-                      <i class="icon-search-1"></i>
-                    </a>
-                    <input type="text" name="search" value="" placeholder="<%= __('Busqueda') %>"/>
-                  </fieldset>
-                </form>
-              </div>
-              <nav class="pull-right" role="navigation">
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                  <ul id="menu-menu-1" class="nav navbar-nav">
-                    <li id="menu-item-395" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-395 dropdown">
-                      <a title="Posts" href="#">Posts
-                        <span class="caret"></span>
-                      </a>
-                      <ul role="menu" class=" dropdown-menu">
-                        <li role="presentation" class="title">
-                          <a>Categorias</a>
-                        </li>
-                        <li id="menu-item-452" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-452">
-                          <a title="Standard" href="/entrada/nuevo">Publicar</a>
-                        </li>
-                        <li id="menu-item-452" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-452">
-                          <a title="Standard" href="http://www.bluthemes.com/themes/breeze/tag/standard-2/">Standard</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-407 dropdown">
-                      <a title="Demo" href="#">Demo
-                        <span class="caret"></span>
-                      </a>
-                      <ul role="menu" class=" dropdown-menu">
-                        <li id="menu-item-439" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-439">
-                          <a title="Featured Image" href="http://www.bluthemes.com/themes/breeze/featured-image/">Featured Image</a>
-                        </li>
-                        <li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408">
-                          <a title="Shortcodes" href="http://www.bluthemes.com/themes/breeze/shortcodes/">Shortcodes</a>
-                        </li>
-                        <li role="presentation" class="title">
-                          <a>PAGES</a>
-                        </li>
-                        <li id="menu-item-441" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-441">
-                          <a title="About Us #1" href="http://www.bluthemes.com/themes/breeze/about-us-3/">About Us #1</a>
-                        </li>
-                        <li id="menu-item-440" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-440">
-                          <a title="About Us #2" href="http://www.bluthemes.com/themes/breeze/about-us-2-2/">About Us #2</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-            </div>
-          </header>-->
-        </div>
-
-        <div id="main" class="container">
-          <div id="primary" class="row right_side">
-            <div id="content" class="twocolumn col-xs-12 col-sm-12 col-md-12 col-lg-12" role="main">
-              <div class="columns">
-                <div>
-                  <%- body %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <style type="text/css">
-
-      /* Sticky footer styles
-      -------------------------------------------------- */
-
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
-
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
-
-      /* Set the fixed height of the footer here */
-      #push,
-      #footer {
-        height: 60px;
-      }
-      #footer {
-        background-color: #f5f5f5;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
-
-
-      /* Custom page CSS
-      -------------------------------------------------- */
-      /* Not required for template or sticky footer method. */
-
-      #wrap > .container {
-        padding-top: 60px;
-      }
-      .container .credit {
-        margin: 20px 0;
-      }
-
-      code {
-        font-size: 80%;
-      }
-
-    </style>
-    <div id="footer">
-      <div class="container">
-        <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
-      </div>
-    </div>
-
+    <br>
+    <br>
+    <%- body %>
     <!--
         Client-side Templates
         ========================
@@ -360,7 +191,6 @@
     <script src="/js/angular/angular.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/chartData.js"></script>
-    <script src="/js/comment-reply.min.js"></script>
     <script src="/js/controllers_angular/app.js"></script>
     <script src="/js/dataTables.bootstrap.min.js"></script>
     <script src="/js/jquery-migrate.min.js"></script>
@@ -371,159 +201,6 @@
     <script src="/js/require.js"></script>
     <script src="/js/theme.min.js"></script>
     <!--SCRIPTS END-->
-
-    <script type="text/javascript">
-      jQuery(function($) {
-
-        if ($(window).width() > 979) {
-          // Show Customizer
-          $('#bl_toggle_customizer').click(function() {
-            $('.bl_customizer').toggleClass('active');
-          });
-
-          // Header Dropdown
-          $('#bl_customizer_header select').change(function() {
-            $('.header-background-image img').remove();
-            $('#masthead').removeClass('header_big_logo');
-            $('#masthead').removeClass('header_normal');
-            $('#masthead').removeClass('header_bgimage');
-            $('.top-banner').css('background', '');
-            $('.bluth-navigation').css('background', '');
-            $('#masthead .bluth-navigation .navbar .nav > li > a').css('color', '');
-
-            switch ($('#bl_customizer_header select').find(':selected').attr('data-type')) {
-              case 'normal':
-                $('#masthead').removeClass('header_background_full_width');
-                $('#masthead .masthead-group').removeClass('container');
-                $('#masthead').addClass('container');
-                $('#masthead').addClass('header_normal');
-                break;
-              case 'full_width':
-                $('#masthead').removeClass('container');
-                $('#masthead .masthead-group').removeClass('container');
-                // $('#masthead').addClass('container');
-                break;
-              case 'full_width_background':
-                $('#masthead').removeClass('header_normal');
-                $('#masthead').removeClass('container');
-                $('#masthead').addClass('header_background_full_width');
-                $('#masthead .masthead-group').addClass('container');
-                break;
-              case 'no_image':
-                $('#masthead .masthead-background').css('background-image', '');
-                $('#masthead .nav > li > a, #masthead h1, #masthead h1 small').css('color', '');
-                $('#masthead .nav > li > a span').css('border-color', '');
-
-                break;
-              case 'background_image':
-                $('#masthead .masthead-background').css('background-image', 'url("http://www.bluthemes.com/themes/breeze/wp-content/uploads/2013/12/landscape.jpg")');
-                $('#masthead .nav > li > a, #masthead h1, #masthead h1 small').css('color', '#FFFFFF');
-                $('#masthead .nav > li > a span').css('border-color', '#FFFFFF rgba(0, 0, 0, 0)');
-                break;
-            }
-            fixPadding();
-          });
-          $('#bl_customizer_header select').trigger('change');
-
-          // Background Pattern Selector
-          $('#bl_customizer_themes a').click(function(e) {
-            switch ($(this).attr('data-name')) {
-              case 'green':
-                $('#masthead .top-banner').css('background', '#A0D468');
-                $('#masthead .brand small').css('color', '#FFFFFF');
-                $('.nav-line').css('background', '#8CC152');
-                $('#side-bar .widget-head').css('background', '#A0D468').css('color', '#FFFFFF');
-                break;
-              case 'orange':
-                $('#masthead .top-banner').css('background', 'orange');
-                break;
-            }
-          });
-          $('#bl_customizer_patterns .child > a').click(function(e) {
-            e.preventDefault();
-
-            $('.bl_background').remove();
-
-            if ($('#background_pattern').length > 0) {
-              $('#background_pattern').css('backgroundImage', 'url("http://www.bluthemes.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/large/' + $(this).attr('data-name') + '")');
-            } else {
-              $('body').prepend('<div style="background-image: url(http://www.bluthemes.com/themes/breeze/wp-content/themes/breeze/assets/img/pattern/large/' + $(this).attr('data-name') + ')" id="background_pattern"></div>');
-            }
-
-          });
-
-          // Background Image Selector
-          $('#bl_customizer_images .child > a').click(function(e) {
-            e.preventDefault();
-
-            $('#background_pattern').remove();
-
-            if ($('.bl_background').length > 0) {
-              $('.bl_background img').attr('src', 'http://www.bluthemes.com/themes/breeze/wp-content/themes/breeze/demo/img/' + $(this).attr('data-name'));
-            } else {
-              $('body').prepend('<div class="bl_background"><div id="stripe"></div><img src="http://www.bluthemes.com/themes/breeze/wp-content/themes/breeze/demo/img/' + $(this).attr('data-name') + '"></div>');
-            }
-          });
-
-          // Sticky Footer
-          $('#bl_customizer_sticky input').change(function() {
-            if ($(this).is(":checked")) {
-              $('.bluth-navigation').css('position', '');
-            } else {
-              $('.bluth-navigation').css('position', 'relative');
-            }
-          });
-        }
-
-      });
-
-      setTimeout(function() {
-        jQuery('.bl_customizer').removeClass('active');
-      }, 800);
-
-      // change the color of the header if it's transparent
-      function changeHeader() {
-        jQuery('#masthead .bluth-navigation').stop();
-        if (jQuery('#masthead').hasClass('header_bgimage')) {
-          if (y > 30) {
-            jQuery('#masthead .bluth-navigation .navbar .nav > li > a').animate({
-              color: '#333333'
-            }, 10);
-            jQuery('#masthead .bluth-navigation').animate({
-              backgroundColor: '#FFFFFF'
-            }, 100);
-          } else if (y < 500) {
-            jQuery('#masthead .bluth-navigation .navbar .nav > li > a').animate({
-              color: '#FFFFFF'
-            }, 10);
-            jQuery('#masthead .bluth-navigation').animate({
-              backgroundColor: 'rgba(0,0,0,0.3)'
-            }, 100);
-          }
-        }
-      }
-    </script>
-
-    <script type='text/javascript'>
-      /* <![CDATA[ */
-      var blu = {
-        "menuhover": "1",
-        "disable_fixed_header": "",
-        "locale": {
-          "no_search_results": "No results match your search.",
-          "searching": "Searching...",
-          "search_results": "Search Results",
-          "see_all": "see all",
-          "loading": "Loading...",
-          "no_more_posts": "No more posts",
-          "subscribe": "Subscribe!",
-          "see_more_articles": "See more articles",
-          "no_email_provided": "No email provided",
-          "thank_you_for_subscribing": "Thank you for subscribing!"
-        }
-      };
-      /* ]]> */
-    </script>
   </body>
 </footer>
 </html>

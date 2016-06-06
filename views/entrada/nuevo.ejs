@@ -2,6 +2,9 @@
   <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 
   <form class="form-horizontal" role="form" method="<%= (direccion=='update')?'put':'post' %>" action="/entrada/<%= direccion %>">
+    <% if (direccion == 'update') { %>
+      <input name="id" value="<%= entrada.id %>" hidden="true" required>
+    <% }%>
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Titulo</label>
       <div class="col-sm-10">

@@ -34,7 +34,9 @@ module.exports.policies = {
   'entrada': {
     'nuevo': 'authenticated',
     'create': 'authenticated',
-    index: true
+    'update': 'authenticated',
+    'delete': 'authenticated',
+    'index': 'flash'
   }
 
   /***************************************************************************

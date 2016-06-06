@@ -1,311 +1,745 @@
+<script type="text/javascript">
+  app.controller('ControllerPerfil', [
+    '$scope',
+    function($scope) {
+      $scope.entradas_menu = [
+        {
+          nombre: "Nuevo usuario",
+          enlace: '#/usuario/nuevo'
+        }
+      ];
+
+      $scope.click_dashboard = function() {
+        $scope.dashboard = true;
+        $scope.publicaciones = false;
+        console.log("Hola");
+      }
+
+      $scope.click_publicaciones = function() {
+        $scope.dashboard = false;
+        $scope.publicaciones = true;
+      }
+
+      $scope.inicializar = function() {
+        $scope.click_dashboard();
+      }
+    }
+  ]);
+</script>
+
+<div>
+  <div ng-controller="ControllerPerfil" ng-init="inicializar()">
+    <div class="brand clearfix">
+      <a href="index.html" class="logo"><img src="img/logo.jpg" class="img-responsive" alt=""></a>
+      <span class="menu-btn">
+        <i class="fa fa-bars"></i>
+      </span>
+      <ul class="ts-profile-nav">
+        <li>
+          <a href="#">Ayuda</a>
+        </li>
+        <li>
+          <a href="#">Configuraciones</a>
+        </li>
+        <li class="ts-account">
+          <a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt="">
+            <%= usuario.nick %>
+            <i class="fa fa-angle-down hidden-side"></i>
+          </a>
+          <ul>
+            <li title="Editar mis datos">
+              <a href="#">Editar cuenta</a>
+            </li>
+            <li title="Salir">
+              <a href="/usuario/signout">Salir</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="ts-main-content">
+      <nav class="ts-sidebar">
+        <ul class="ts-sidebar-menu">
+          <li class="ts-label">
+            <%= __('Busqueda') %></li>
+          <li>
+            <input type="text" class="ts-sidebar-search" placeholder="  <%= __('Buscar') %>">
+          </li>
+          <li class="ts-label">Dash</li>
+          <li class="open">
+            <a ng-click="click_dashboard()" href>
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a ng-click="click_publicaciones()" href>
+              <i class="fa fa-desktop"></i>
+              Publicaciones</a>
+            <ul>
+              <li>
+                <a href="/entrada/nuevo">Nuevo</a>
+              </li>
+              <li>
+                <a href="/entrada/listar">Listar</a>
+              </li>
+              <li>
+                <a href="/entrada/ocultos">Ocultos</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="tables.html">
+              <i class="fa fa-table"></i>
+              Tables
+            </a>
+          </li>
+          <li>
+            <a href="forms.html">
+              <i class="fa fa-edit"></i>
+              Forms</a>
+          </li>
+          <li>
+            <a href="charts.html">
+              <i class="fa fa-pie-chart"></i>
+              Charts</a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-sitemap"></i>
+              Multi-Level Dropdown</a>
+            <ul>
+              <li>
+                <a href="#">2nd level</a>
+              </li>
+              <li>
+                <a href="#">2nd level</a>
+              </li>
+              <li>
+                <a href="#">3rd level</a>
+                <ul>
+                  <li>
+                    <a href="#">3rd level</a>
+                  </li>
+                  <li>
+                    <a href="#">3rd level</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-files-o"></i>
+              Sample Pages</a>
+            <ul>
+              <li>
+                <a href="blank.html">Blank page</a>
+              </li>
+              <li>
+                <a href="login.html">Login page</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Account from above -->
+          <ul class="ts-profile-nav">
+            <li>
+              <a href="#">Help</a>
+            </li>
+            <li>
+              <a href="#">Settings</a>
+            </li>
+            <li class="ts-account">
+              <a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt="">
+                Account
+                <i class="fa fa-angle-down hidden-side"></i>
+              </a>
+              <ul>
+                <li>
+                  <a href="#">My Account</a>
+                </li>
+                <li>
+                  <a href="#">Edit Account</a>
+                </li>
+                <li>
+                  <a href="#">Logout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+      </ul>
+    </nav>
+
+    <div class="content-wrapper">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-md-12">
+
+            <h2 class="page-title">
+              <%= usuario.nombres %>
+            </h2>
+
+            <div class="row" ng-show="dashboard == true">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="panel panel-default">
+                      <div class="panel-body bk-primary text-light">
+                        <div class="stat-panel text-center">
+                          <div class="stat-panel-number h1 ">24</div>
+                          <div class="stat-panel-title text-uppercase">New Users</div>
+                        </div>
+                      </div>
+                      <a href="#" class="block-anchor panel-footer">Full Detail
+                        <i class="fa fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="panel panel-default">
+                      <div class="panel-body bk-success text-light">
+                        <div class="stat-panel text-center">
+                          <div class="stat-panel-number h1 ">8</div>
+                          <div class="stat-panel-title text-uppercase">Support Tickets</div>
+                        </div>
+                      </div>
+                      <a href="#" class="block-anchor panel-footer text-center">See All &nbsp;
+                        <i class="fa fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="panel panel-default">
+                      <div class="panel-body bk-info text-light">
+                        <div class="stat-panel text-center">
+                          <div class="stat-panel-number h1 ">58</div>
+                          <div class="stat-panel-title text-uppercase">New Orders</div>
+                        </div>
+                      </div>
+                      <a href="#" class="block-anchor panel-footer text-center">See All &nbsp;
+                        <i class="fa fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="panel panel-default">
+                      <div class="panel-body bk-warning text-light">
+                        <div class="stat-panel text-center">
+                          <div class="stat-panel-number h1 ">18</div>
+                          <div class="stat-panel-title text-uppercase">New Comments</div>
+                        </div>
+                      </div>
+                      <a href="#" class="block-anchor panel-footer text-center">See All &nbsp;
+                        <i class="fa fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" ng-show="publicaciones == true">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Mis publicaciones</div>
+                  <div class="panel-body">
+                    <div class="alert alert-dismissible alert-success">
+                      <button type="button" class="close" data-dismiss="alert">
+                        <i class="fa fa-close"></i>
+                      </button>
+                      <strong>Well done!</strong>
+                      You successfully read
+                      <a href="#" class="alert-link">this important alert message</a>.
+                    </div>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Titulo</th>
+                          <th>Contenido</th>
+                          <th>Categoria</th>
+                          <th>Ver</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i = 0; i < entradas.length; i++) { %>
+                          <tr>
+                            <th scope="row">
+                              <%= (i+1) %>
+                            </th>
+                            <td>
+                              <%= entradas[i].titulo.substring(0, 20) %>
+                            </td>
+                            <td>
+                              <%= entradas[i].resumen.substring(0, 10) %>...
+                            </td>
+                            <td>
+                              <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
+                            </td>
+                            <td>
+                              <a href="/entrada/showOne/<%= entradas[i].id %>">
+                                Ver
+                              </a>
+                            </td>
+                          </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" ng-show="dashboard == true">
+              <div class="col-md-6" >
+                <div class="panel panel-default">
+                  <div class="panel-heading">Sales Report</div>
+                  <div class="panel-body">
+                    <div class="chart">
+                      <canvas id="dashReport" height="310" width="600"></canvas>
+                    </div>
+                    <div id="legendDiv"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Recent Oreders</div>
+                  <div class="panel-body">
+                    <div class="alert alert-dismissible alert-success">
+                      <button type="button" class="close" data-dismiss="alert">
+                        <i class="fa fa-close"></i>
+                      </button>
+                      <strong>Well done!</strong>
+                      You successfully read
+                      <a href="#" class="alert-link">this important alert message</a>.
+                    </div>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Username</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                          <td>@fat</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Larry</td>
+                          <td>the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row" ng-show="dashboard == true">
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Pie Chart</div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <ul class="chart-dot-list">
+                          <li class="a1">date 1</li>
+                          <li class="a2">data 2</li>
+                          <li class="a3">data 3</li>
+                        </ul>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="chart chart-doughnut">
+                          <canvas id="chart-area3" width="1200" height="900"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Doughnut</div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <ul class="chart-dot-list">
+                          <li class="a1">date 1</li>
+                          <li class="a2">data 2</li>
+                        </ul>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="chart chart-doughnut">
+                          <canvas id="chart-area4" width="1200" height="900"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<!-- Loading Scripts -->
+<script src="/js/ajquery/jquery.min.js"></script>
+<script src="/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/Chart.min.js"></script>
+<script src="/js/chartData.js"></script>
+<script src="/js/main.js"></script>
+
+<script>
+window.onload = function() {
+
+  // Line chart from swirlData for dashReport
+  var ctx = document.getElementById("dashReport").getContext("2d");
+  window.myLine = new Chart(ctx).Line(swirlData, {
+    responsive: true,
+    scaleShowVerticalLines: false,
+    scaleBeginAtZero: true
+  });
+
+  // Pie Chart from doughutData
+  var doctx = document.getElementById("chart-area3").getContext("2d");
+  window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive: true});
+
+  // Dougnut Chart from doughnutData
+  var doctx = document.getElementById("chart-area4").getContext("2d");
+  window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive: true});
+}
+</script>
+
 <style media="screen">
-/****************************
-*   FOR RESPONSIVENESS      *
-****************************/
 ::selection {
-background: #4f5362;
-/* WebKit/Blink Browsers */
-color: #fff;
+  background: #4f5362;
+  /* WebKit/Blink Browsers */
+  color: #fff;
 }
 ::-moz-selection {
-background: #4f5362;
-/* Gecko Browsers */
-color: #fff;
+  background: #4f5362;
+  /* Gecko Browsers */
+  color: #fff;
 }
 html {
-font-size: 14px;
+  font-size: 14px;
 }
 @media only screen and (min-width: 480px) {
-html {
-font-size: 17px;
-}
+  html {
+    font-size: 17px;
+  }
 }
 @media only screen and (min-width: 768px) {
-html {
-font-size: 14px;
-}
+  html {
+    font-size: 14px;
+  }
 }
 @media only screen and (min-width: 1024px) {
-p {
-font-size: 1em;
-margin-bottom: 1.8em;
-}
+  p {
+    font-size: 1em;
+    margin-bottom: 1.8em;
+  }
 }
 /****************************
-*      BODY DEFAULTS        *
-****************************/
+  *      BODY DEFAULTS        *
+  ****************************/
 body {
-font-size: 1em;
+  font-size: 1em;
 }
 a {
-color: #37a6c4;
+  color: #37a6c4;
 }
 a:hover {
-text-decoration: none;
-color: #5db9d1;
+  text-decoration: none;
+  color: #5db9d1;
 }
 /****************************
-*      Buttons        *
-****************************/
+  *      Buttons        *
+  ****************************/
 .btn {
-font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 .btn i {
-position: relative;
-top: -2px;
+  position: relative;
+  top: -2px;
 }
 .btn.text-left {
-text-align: left;
+  text-align: left;
 }
 .btn-brand {
-background: #37a6c4;
-color: #fff;
+  background: #37a6c4;
+  color: #fff;
 }
 .btn-brand:hover {
-color: #fff;
-background: #2c849c;
+  color: #fff;
+  background: #2c849c;
 }
 .btn-dark {
-background: #272727;
-color: #fff;
+  background: #272727;
+  color: #fff;
 }
 .btn-dark:hover {
-color: #fff;
-background: #2c849c;
+  color: #fff;
+  background: #2c849c;
 }
 .btn-red {
-background: #4f5362;
-color: #fff;
+  background: #4f5362;
+  color: #fff;
 }
 .btn-red:hover {
-color: #fff;
-background: #383b46;
+  color: #fff;
+  background: #383b46;
 }
 .btn-alt {
-background: #f0f0f0;
-color: #222;
+  background: #f0f0f0;
+  color: #222;
 }
 .btn-alt:hover {
-color: #fff;
-background: #2c849c;
+  color: #fff;
+  background: #2c849c;
 }
 /****************************
-*      Background Colors        *
-****************************/
+  *      Background Colors        *
+  ****************************/
 .bk-primary {
-background: #325d88;
+  background: #325d88;
 }
 .bk-success {
-background: #93c54b;
+  background: #93c54b;
 }
 .bk-warning {
-background: #f47c3c;
+  background: #f47c3c;
 }
 .bk-danger {
-background: #d9534f;
+  background: #d9534f;
 }
 .bk-info {
-background: #29abe0;
+  background: #29abe0;
 }
-.bk-white,
-.bk-light {
-background: #fff;
+.bk-light,
+.bk-white {
+  background: #fff;
 }
 .bk-brand {
-background: #37a6c4;
+  background: #37a6c4;
 }
 .bk-dark {
-background: #222;
+  background: #222;
 }
 .bk-blue {
-background: #0010ce;
+  background: #0010ce;
 }
 .bk-alt {
-background: #f7f7f7;
+  background: #f7f7f7;
 }
 .bk-ghost {
-background: transparent;
+  background: transparent;
 }
 .bk-img {
-position: relative;
-width: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-background-image: url(../../img/login-bg.jpg);
+  position: relative;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../img/login-bg.jpg");
 }
 .bk-fixed {
-background-attachment: fixed;
+  background-attachment: fixed;
 }
 .hr-green {
-height: 2px;
-background: #37a6c4;
+  height: 2px;
+  background: #37a6c4;
 }
 .hr-grey {
-height: 2px;
-background: #f0f0f0;
+  height: 2px;
+  background: #f0f0f0;
 }
 .hr-dashed {
-background-color: transparent;
-border-top: 1px dotted #edf0f5;
-color: transparent;
-height: 1px;
-margin: 20px 0;
+  background-color: transparent;
+  border-top: 1px dotted #edf0f5;
+  color: transparent;
+  height: 1px;
+  margin: 20px 0;
 }
 .panel {
-overflow: hidden;
+  overflow: hidden;
 }
 /****************************
-*      Border        *
-****************************/
+  *      Border        *
+  ****************************/
 .brdr {
-border: 1px solid #f0f0f0;
+  border: 1px solid #f0f0f0;
 }
 /****************************
-*      Text size color        *
-****************************/
+  *      Text size color        *
+  ****************************/
 .font-one {
-font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 .text-bold {
-font-weight: bold;
+  font-weight: bold;
 }
 .text-normal {
-font-weight: normal;
+  font-weight: normal;
 }
 .text-thin {
-font-weight: 100;
+  font-weight: 100;
 }
 .text-lowercase {
-text-transform: none;
+  text-transform: none;
 }
 .text-sm {
-font-size: 13px;
+  font-size: 13px;
 }
 .text-lg {
-font-size: 18px;
+  font-size: 18px;
 }
 .text-xl {
-font-size: 1.6em;
+  font-size: 1.6em;
 }
 .text-2x {
-font-size: 2em;
+  font-size: 2em;
 }
 .text-3x {
-font-size: 2.4em;
+  font-size: 2.4em;
 }
 .text-4x {
-font-size: 3em;
+  font-size: 3em;
 }
-.text-white,
-.text-light {
-color: #fff !important;
+.text-light,
+.text-white {
+  color: #fff !important;
 }
 .link-white a {
-color: #fff;
+  color: #fff;
 }
 .text-grey {
-color: #ccc;
+  color: #ccc;
 }
 .text-dgrey {
-color: #818181;
+  color: #818181;
 }
 .text-brand {
-color: #37a6c4;
+  color: #37a6c4;
 }
 .text-yellow {
-color: #ffff00;
+  color: #ffff00;
 }
 .title .line {
-display: inline-block;
-padding-bottom: 10px;
-border-bottom: 3px solid #222;
+  display: inline-block;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #222;
 }
 /****************************
-*       Margins         *
-****************************/
+  *       Margins         *
+  ****************************/
 .mt {
-margin-top: 18px;
+  margin-top: 18px;
 }
 .mt-0x {
-margin-top: 0 !important;
+  margin-top: 0 !important;
 }
 .mt-2x {
-margin-top: 36px;
+  margin-top: 36px;
 }
 .mt-3x {
-margin-top: 54px;
+  margin-top: 54px;
 }
 .mt-4x {
-margin-top: 90px;
+  margin-top: 90px;
 }
 .mt-5x {
-margin-top: 144px;
+  margin-top: 144px;
 }
 .mb {
-margin-bottom: 18px;
+  margin-bottom: 18px;
 }
 .mb-0x {
-margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 .mb-2x {
-margin-bottom: 36px;
+  margin-bottom: 36px;
 }
 .mb-3x {
-margin-bottom: 54px;
+  margin-bottom: 54px;
 }
 .mb-4x {
-margin-bottom: 90px;
+  margin-bottom: 90px;
 }
 .mb-5x {
-margin-bottom: 144px;
+  margin-bottom: 144px;
 }
 .pt {
-padding-top: 18px;
+  padding-top: 18px;
 }
 .pt-2x {
-padding-top: 36px;
+  padding-top: 36px;
 }
 .pt-3x {
-padding-top: 54px;
+  padding-top: 54px;
 }
 .pt-4x {
-padding-top: 90px;
+  padding-top: 90px;
 }
 .pt-5x {
-padding-top: 144px;
+  padding-top: 144px;
 }
 .pb {
-padding-bottom: 18px;
+  padding-bottom: 18px;
 }
 .pb-2x {
-padding-bottom: 36px;
+  padding-bottom: 36px;
 }
 .pb-3x {
-padding-bottom: 54px;
+  padding-bottom: 54px;
 }
 .pb-4x {
-padding-bottom: 90px;
+  padding-bottom: 90px;
 }
 .pb-5x {
-padding-bottom: 144px;
+  padding-bottom: 144px;
 }
 /* Content boxes */
 .content-box {
-padding: 15px;
+  padding: 15px;
 }
 .block-anchor {
-display: block;
+  display: block;
 }
 /****************************
-*       Content Typography         *
-****************************/
+  *       Content Typography         *
+  ****************************/
 .content-format {
-line-height: 1.6em;
-font-weight: 400;
-letter-spacing: .01em;
-font-style: normal;
-word-wrap: break-word;
+  line-height: 1.6em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-style: normal;
+  word-wrap: break-word;
 }
 .content-format .h1,
 .content-format .h2,
@@ -319,12 +753,12 @@ word-wrap: break-word;
 .content-format h4,
 .content-format h5,
 .content-format h6 {
-font-family: 'Oswald', sans-serif;
-font-weight: 700;
-font-weight: bold;
-font-style: normal;
-color: rgba(0, 0, 0, 0.8);
-margin-top: 40px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-weight: bold;
+  font-style: normal;
+  color: rgba(0, 0, 0, 0.8);
+  margin-top: 40px;
 }
 .content-format .h1 a,
 .content-format .h2 a,
@@ -338,783 +772,406 @@ margin-top: 40px;
 .content-format h4 a,
 .content-format h5 a,
 .content-format h6 a {
-font-size: inherit;
+  font-size: inherit;
 }
 .content-format .h2,
 .content-format h2 {
-font-size: 3em;
-line-height: 1;
-margin-bottom: 10px;
-padding-bottom: 10px;
-border-bottom: 4px solid #f0f0f0;
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 4px solid #f0f0f0;
 }
 .content-format .h3,
 .content-format h3 {
-font-size: 2em;
-line-height: 1.2;
-margin-bottom: 4px;
-margin: 1em 0 0.5em;
+  font-size: 2em;
+  line-height: 1.2;
+  margin: 1em 0 0.5em;
 }
 .content-format .h4,
 .content-format h4 {
-font-size: 1.7em;
-line-height: 1.4;
-margin-bottom: 6px;
+  font-size: 1.7em;
+  line-height: 1.4;
+  margin-bottom: 6px;
 }
 .content-format .h5,
 .content-format h5 {
-font-size: 1.5em;
-line-height: 1.4;
-margin-bottom: 8px;
+  font-size: 1.5em;
+  line-height: 1.4;
+  margin-bottom: 8px;
 }
 .content-format .h6,
 .content-format h6 {
-font-size: 1.3em;
-line-height: 1.4;
-margin-bottom: 10px;
+  font-size: 1.3em;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 .content-format strong {
-font-weight: bold;
+  font-weight: bold;
 }
 .content-format ul:not(.social-awesome) {
-list-style: disc outside;
-margin: 1.714285714rem 0 1.714285714rem;
-line-height: 1.714285714;
+  list-style: disc outside;
+  margin: 1.714285714rem 0;
+  line-height: 1.714285714;
 }
 .content-format ul:not(.social-awesome) li {
-margin: 0 0 0 36px;
-margin: 0 1rem 0 2.571428571rem;
+  margin: 0 1rem 0 2.571428571rem;
 }
 .content-format ul:not(.social-awesome).list-unstyled {
-list-style: none;
+  list-style: none;
 }
 .content-format ul:not(.social-awesome).list-unstyled li {
-margin: 0 0 0 24px;
+  margin: 0 0 0 24px;
 }
 .content-format em {
-font-style: italic;
+  font-style: italic;
 }
 .content-format p {
-margin-bottom: 1.8em;
+  margin-bottom: 1.8em;
 }
 .content-format figure {
-margin-bottom: 42px;
+  margin-bottom: 42px;
 }
 .content-format figure .caption {
-color: #999;
-font-size: 14px;
+  color: #999;
+  font-size: 14px;
 }
 .content-format img {
-border: 0;
-height: auto;
-max-width: 100%;
-vertical-align: middle;
+  border: 0;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
 }
 .content-format .fa {
-color: #37a6c4;
-margin-right: 10px;
+  color: #37a6c4;
+  margin-right: 10px;
 }
 .content-format blockquote {
-border-left: 4px solid #c3c3c3;
-border-left: 4px solid rgba(51, 51, 51, 0.17);
-color: #707070;
-color: rgba(51, 51, 51, 0.7);
-font-size: 1.2em;
-font-style: italic;
-line-height: 1.6667;
-margin-bottom: 1em;
-padding-left: 0.7778em;
+  border-left: 4px solid #c3c3c3;
+  border-left: 4px solid rgba(51, 51, 51, 0.17);
+  color: #707070;
+  color: rgba(51, 51, 51, 0.7);
+  font-size: 1.2em;
+  font-style: italic;
+  line-height: 1.6667;
+  margin-bottom: 1em;
+  padding-left: 0.7778em;
 }
 .content-format blockquote.double-quote {
-border-left: none;
-padding-left: 1em;
+  border-left: none;
+  padding-left: 1em;
 }
 .content-format pre {
-background: #fff;
-border: 1px solid #ededed;
-color: #666;
-font-family: Consolas, Monaco, Lucida Console, monospace;
-font-size: .9em;
-line-height: 1.714285714;
-margin: 24px 0;
-margin: 1.714285714rem 0;
-overflow: auto;
+  background: #fff;
+  border: 1px solid #ededed;
+  color: #666;
+  font-family: Consolas, Monaco, Lucida Console, monospace;
+  font-size: 0.9em;
+  line-height: 1.714285714;
+  margin: 1.714285714rem 0;
+  overflow: auto;
 }
 .content-format ol {
-margin: 24px 0 24px;
-margin: 1.714285714rem 0 1.714285714rem;
-line-height: 1.714285714;
-list-style: decimal outside;
+  margin: 1.714285714rem 0;
+  line-height: 1.714285714;
+  list-style: decimal outside;
 }
-.content-format img.wp-smiley,
-.content-format img.emoji {
-display: inline !important;
-border: none !important;
-box-shadow: none !important;
-height: 1em !important;
-width: 1em !important;
-margin: 0 .07em !important;
-vertical-align: -0.1em !important;
-background: none !important;
-padding: 0 !important;
+.content-format img.emoji,
+.content-format img.wp-smiley {
+  display: inline !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 1em !important;
+  width: 1em !important;
+  margin: 0 0.07em !important;
+  vertical-align: -0.1em !important;
+  background: none !important;
+  padding: 0 !important;
 }
 /*
-* Theme Struck - Harmony - Free responsive Bootstrap admin template by Themestruck.com (http://themestruck.com)
-* Code licensed under the MIT
-* For details, see #
-*/
-ul,
-li {
-margin: 0;
-padding: 0;
-list-style: none;
+  * Theme Struck - Harmony - Free responsive Bootstrap admin template by Themestruck.com (http://themestruck.com)
+  * Code licensed under the MIT
+  * For details, see #
+  */
+li,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 /* Social Button Modifications */
 .btn {
-text-transform: none;
+  text-transform: none;
 }
 .btn-social > :first-child {
-width: 42px;
-line-height: 46px;
+  width: 42px;
+  line-height: 46px;
 }
 .btn-social {
-padding-left: 58px;
+  padding-left: 58px;
 }
 /* Circle buttons */
 .btn-circle {
-width: 30px;
-height: 30px;
-padding: 6px 0;
-border-radius: 15px;
-text-align: center;
-font-size: 12px;
-line-height: 1.428571429;
+  width: 30px;
+  height: 30px;
+  padding: 6px 0;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.428571429;
 }
 .btn-circle.btn-lg {
-width: 50px;
-height: 50px;
-padding: 10px 16px;
-border-radius: 25px;
-font-size: 18px;
-line-height: 1.33;
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 18px;
+  line-height: 1.33;
 }
 .btn-circle.btn-xl {
-width: 70px;
-height: 70px;
-padding: 10px 16px;
-border-radius: 35px;
-font-size: 24px;
-line-height: 1.33;
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
 }
 /* Chart design */
 /* Charts */
 .chart-dot-list {
-display: block;
-margin-top: 60px;
-margin-left: 20px;
+  display: block;
+  margin-top: 60px;
+  margin-left: 20px;
 }
 .chart-dot-list li {
-margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 .chart-dot-list li:before {
-content: '';
-height: 12px;
-width: 12px;
-margin-right: 6px;
-display: inline-block;
-background: #222;
-border-radius: 50%;
+  content: '';
+  height: 12px;
+  width: 12px;
+  margin-right: 6px;
+  display: inline-block;
+  background: #222;
+  border-radius: 50%;
 }
 .chart-dot-list li.a1:before {
-background: #F7464A;
+  background: #F7464A;
 }
 .chart-dot-list li.a2:before {
-background: #46BFBD;
+  background: #46BFBD;
 }
 .chart-dot-list li.a3:before {
-background: #FDB45C;
+  background: #FDB45C;
 }
 .chart-doughnut {
-padding: 41px 0;
+  padding: 41px 0;
 }
 /* component */
 .page-title {
-padding-bottom: 15px;
-margin-bottom: 20px;
-border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
 }
 .brand {
-background: #3e454c;
-position: relative;
-z-index: 3;
-position: fixed;
-width: 100%;
-top: 0;
+  background: #3e454c;
+  position: relative;
+  z-index: 3;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 .brand .logo {
-box-sizing: border-box;
-padding: 20px;
-float: left;
-display: block;
-width: 200px;
+  box-sizing: border-box;
+  padding: 20px;
+  float: left;
+  display: block;
+  width: 200px;
 }
 @media only screen and (min-width: 992px) {
-.brand .logo {
-width: 250px;
-}
+  .brand .logo {
+    width: 250px;
+  }
 }
 .brand .logo img {
-height: 20px;
+  height: 20px;
 }
 .brand .menu-btn {
-float: right;
-background: #232d3b;
-text-align: center;
-cursor: pointer;
-color: #fff;
-padding: 20px 20px;
+  float: right;
+  background: #232d3b;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  padding: 20px;
 }
 @media only screen and (min-width: 992px) {
-.brand .menu-btn {
-display: none;
-}
+  .brand .menu-btn {
+    display: none;
+  }
 }
 .brand .ts-profile-nav {
-float: right;
-display: none;
+  float: right;
+  display: none;
 }
 .brand .ts-profile-nav li {
-float: left;
-position: relative;
+  float: left;
+  position: relative;
 }
 .brand .ts-profile-nav li a {
-display: block;
-padding: 20px;
-color: #fff;
+  display: block;
+  padding: 20px;
+  color: #fff;
 }
 .brand .ts-profile-nav li ul {
-visibility: hidden;
-opacity: 0;
-right: 0;
-position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  right: 0;
+  position: absolute;
 }
 .brand .ts-profile-nav li ul li {
-float: none;
-width: 180px;
+  float: none;
+  width: 180px;
 }
 .brand .ts-profile-nav li ul li a {
-padding: 10px 20px;
-background: #222;
+  padding: 10px 20px;
+  background: #222;
 }
 .brand .ts-profile-nav .ts-account .fa-angle-down {
-float: right;
+  float: right;
 }
 .brand .ts-profile-nav .ts-account > a {
-width: 180px;
-background: #2c3136;
+  width: 180px;
+  background: #2c3136;
 }
 .brand .ts-profile-nav .ts-account .ts-avatar {
-border-radius: 50%;
-height: 28px;
-margin: -10px 0;
-margin-right: 10px;
+  border-radius: 50%;
+  height: 28px;
+  margin: -10px 10px -10px 0;
 }
 .brand .ts-profile-nav .ts-account:hover ul {
-visibility: visible;
-opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 @media only screen and (min-width: 992px) {
-.brand .ts-profile-nav {
-display: block;
-}
+  .brand .ts-profile-nav {
+    display: block;
+  }
 }
 .ts-sidebar::-webkit-scrollbar-track {
-background-color: transparent;
+  background-color: transparent;
 }
 .ts-sidebar::-webkit-scrollbar {
-width: 5px;
-background-color: transparent;
+  width: 5px;
+  background-color: transparent;
 }
 .ts-sidebar::-webkit-scrollbar-thumb {
-background-color: #b4b4b4;
+  background-color: #b4b4b4;
 }
 .ts-sidebar {
-background: #2c3136;
-max-height: 0;
-transition: max-height 0.3s;
-overflow: hidden;
-position: fixed;
-z-index: 2;
-width: 100%;
-bottom: 0;
-top: 60px;
-overflow-y: auto;
+  background: #2c3136;
+  max-height: 0;
+  transition: max-height 0.3s;
+  overflow: hidden;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  bottom: 0;
+  top: 60px;
+  overflow-y: auto;
 }
 .ts-sidebar .hidden-side {
-display: none;
+  display: none;
 }
 .ts-sidebar .ts-sidebar-search {
-width: 100%;
-background: #25292a;
-border: none;
-padding: 10px 15px;
-color: #fff;
+  width: 100%;
+  background: #25292a;
+  border: none;
+  padding: 10px 15px;
+  color: #fff;
 }
 @media only screen and (min-width: 992px) {
-.ts-sidebar .ts-profile-nav {
-display: none;
-}
+  .ts-sidebar .ts-profile-nav {
+    display: none;
+  }
 }
 @media only screen and (min-width: 992px) {
-.ts-sidebar {
-max-height: 100%;
-bottom: 0;
-}
+  .ts-sidebar {
+    max-height: 100%;
+    bottom: 0;
+  }
 }
 .ts-sidebar-menu .ts-label {
-color: #585c64;
-font-weight: bold;
-padding: 8px 15px;
-text-transform: uppercase;
-font-size: 10px;
-letter-spacing: 3px;
-margin-top: 10px;
+  color: #585c64;
+  font-weight: bold;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 10px;
 }
 .ts-sidebar-menu a {
-display: block;
-text-decoration: none;
-padding: 12px 15px;
-color: #fff;
+  display: block;
+  text-decoration: none;
+  padding: 12px 15px;
+  color: #fff;
 }
 .ts-sidebar-menu li {
-position: relative;
+  position: relative;
 }
 .ts-sidebar-menu li i {
-color: #585c64;
-margin-right: 10px;
+  color: #585c64;
+  margin-right: 10px;
 }
 .ts-sidebar-menu li ul {
-display: block;
-background: rgba(255, 0, 0, 0.12);
-background: rgba(0, 0, 0, 0.32);
-max-height: 0;
-overflow: hidden;
-transition: all 0.3s ease;
+  display: block;
+  background: rgba(255, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.32);
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 .menu-open,
 .ts-sidebar-menu .open > ul {
-max-height: 2000px;
+  max-height: 2000px;
 }
 .ts-sidebar-menu .open > a {
-background: rgba(51, 56, 62, 0.35);
+  background: rgba(51, 56, 62, 0.35);
 }
 .ts-sidebar-menu > .open > a {
-background: #33383e;
-border-left: 3px solid #37a6c4;
+  background: #33383e;
+  border-left: 3px solid #37a6c4;
 }
 .ts-sidebar-menu .open > .more i {
-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .more i {
-color: #fff;
-padding: 15px;
-transition: transform 0.3s;
+  color: #fff;
+  padding: 15px;
+  transition: transform 0.3s;
 }
 .more {
-float: right;
-min-width: 10%;
-cursor: pointer;
+  float: right;
+  min-width: 10%;
+  cursor: pointer;
 }
 .ts-main-content .content-wrapper {
-padding-top: 15px;
-margin-top: 60px;
+  padding-top: 15px;
+  margin-top: 60px;
 }
 @media only screen and (min-width: 992px) {
-.ts-main-content .ts-sidebar {
-width: 250px;
-float: left;
-}
-.ts-main-content .content-wrapper {
-margin-left: 250px;
-}
+  .ts-main-content .ts-sidebar {
+    width: 250px;
+    float: left;
+  }
+  .ts-main-content .content-wrapper {
+    margin-left: 250px;
+  }
 }
 /* Login page */
 .login-page {
-position: absolute;
-height: 100%;
-width: 100%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
+
 </style>
-
-
-<!-- NAVBAR
-==================================================
-<div ng-controller="CtrlPerfil" class="container">
-  <ul class="list-group">
-    <li class="list-group-item">
-      <h2 class="sub-header">
-        <h2>
-          Bienvenido,
-          <%= usuario.nombres %>
-          <%= usuario.apellidos %>
-          <br>
-          <small>
-            <%= usuario.nick %>
-          </small>
-        </h2>
-      </h2>
-    </li>
-  </ul>
-
-  <ul class="list-group">
-    <li class="list-group-item">
-      <h2>Información</h2>
-    </li>
-    <li class="list-group-item">
-      Tienes
-      <strong>
-        <%= entradas.length %>
-      </strong>
-      publicaciones activas
-      <span class="badge"><%= entradas.length %></span>
-    </li>
-    <li class="list-group-item">
-      <strong>
-        <%= entradas.length %>
-      </strong>
-      publicaciones ocultas
-      <span class="badge"><%= entradas.length %></span>
-    </li>
-    <li class="list-group-item">
-      <div class="btn-group" role="group" aria-label="opciones">
-        <a href="/entrada/nuevo" type="button" class="btn btn-success">Publicar</a>
-        <a href="/entrada" type="button" class="btn btn-success">Menú principal</a>
-        <a href="/usuario/signout" type="button" class="btn btn-danger">Cerrar sesion</a>
-      </div>
-    </li>
-  </ul>
-
-  <ul class="list-group">
-    <li class="list-group-item">
-      <h2 class="sub-header">Mis publicaciones</h2>
-    </li>
-    <li class="list-group-item">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Titulo</th>
-              <th>Categoria</th>
-              <th>Creado</th>
-              <th>Actualizado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% for (var i = 0; i < entradas.length; i++) { %>
-              <tr>
-                <td>
-                  <%= (i+1)  %>
-                </td>
-                <td>
-                  <%= entradas[i].titulo %>
-                </td>
-                <td>
-                  <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
-                </td>
-                <td>
-                  <%= entradas[i].createdAt %>
-                </td>
-                <td>
-                  <%= entradas[i].updatedAt %>
-                </td>
-                <td>
-                  <div class="btn-group" role="group" aria-label="opciones">
-                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-success">Ver</a>
-                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-success">Editar</a>
-                    <% if(entradas[i].oculto) { %>
-                      <a href="/entrada/ocultar/<%= entradas[i].id %>" type="button" class="btn btn-warning">Desocultar</a>
-                    <% } else { %>
-                      <a href="/entrada/ocultar/<%= entradas[i].id %>" type="button" class="btn btn-warning">Ocultar</a>
-                    <% } %>
-                    <a href="/entrada/showOne/<%= entradas[i].id %>" type="button" class="btn btn-danger">Eliminar</a>
-                  </div>
-                </td>
-              </tr>
-            <% } %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </li>
-</ul>
--->
-	<!-- Admin Stye -->
-	<div class="brand clearfix">
-		<a href="index.html" class="logo"><img src="img/logo.jpg" class="img-responsive" alt=""></a>
-		<span class="menu-btn"><i class="fa fa-bars"></i></span>
-		<ul class="ts-profile-nav">
-			<li><a href="#">Help</a></li>
-			<li><a href="#">Settings</a></li>
-			<li class="ts-account">
-				<a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt="">   <%= usuario.nick %> <i class="fa fa-angle-down hidden-side"></i></a>
-				<ul>
-					<li><a href="#">My Account</a></li>
-					<li><a href="#">Edit Account</a></li>
-					<li><a href="/usuario/signout">Logout</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-
-	<div class="ts-main-content">
-		<nav class="ts-sidebar">
-			<ul class="ts-sidebar-menu">
-				<li class="ts-label">  <%= __('Busqueda') %></li>
-				<li>
-					<input type="text" class="ts-sidebar-search" placeholder="  <%= __('Buscar') %>">
-				</li>
-				<li class="ts-label">Dash</li>
-				<li class="open"><a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-				<li><a href="#"><i class="fa fa-desktop"></i> UI Elements</a>
-					<ul>
-						<li><a href="panels.html">Panels and Wells</a></li>
-						<li><a href="buttons.html">Buttons</a></li>
-						<li><a href="notifications.html">Notifications</a></li>
-						<li><a href="typography.html">Typography</a></li>
-						<li><a href="icon.html">Icon</a></li>
-						<li><a href="grid.html">Grid</a></li>
-					</ul>
-				</li>
-				<li><a href="tables.html"><i class="fa fa-table"></i> Tables</a></li>
-				<li><a href="forms.html"><i class="fa fa-edit"></i> Forms</a></li>
-				<li><a href="charts.html"><i class="fa fa-pie-chart"></i> Charts</a></li>
-				<li><a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown</a>
-					<ul>
-						<li><a href="#">2nd level</a></li>
-						<li><a href="#">2nd level</a></li>
-						<li><a href="#">3rd level</a>
-							<ul>
-								<li><a href="#">3rd level</a></li>
-								<li><a href="#">3rd level</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li><a href="#"><i class="fa fa-files-o"></i> Sample Pages</a>
-					<ul>
-						<li><a href="blank.html">Blank page</a></li>
-						<li><a href="login.html">Login page</a></li>
-					</ul>
-				</li>
-
-				<!-- Account from above -->
-				<ul class="ts-profile-nav">
-					<li><a href="#">Help</a></li>
-					<li><a href="#">Settings</a></li>
-					<li class="ts-account">
-						<a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
-						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Edit Account</a></li>
-							<li><a href="#">Logout</a></li>
-						</ul>
-					</li>
-				</ul>
-
-			</ul>
-		</nav>
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
-				<div class="row">
-					<div class="col-md-12">
-
-						<h2 class="page-title">Dashboard</h2>
-
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-primary text-light">
-												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 ">24</div>
-													<div class="stat-panel-title text-uppercase">New Users</div>
-												</div>
-											</div>
-											<a href="#" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-success text-light">
-												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 ">8</div>
-													<div class="stat-panel-title text-uppercase">Support Tickets</div>
-												</div>
-											</div>
-											<a href="#" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-info text-light">
-												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 ">58</div>
-													<div class="stat-panel-title text-uppercase">New Orders</div>
-												</div>
-											</div>
-											<a href="#" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-warning text-light">
-												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 ">18</div>
-													<div class="stat-panel-title text-uppercase">New Comments</div>
-												</div>
-											</div>
-											<a href="#" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">Sales Report</div>
-									<div class="panel-body">
-										<div class="chart">
-											<canvas id="dashReport" height="310" width="600"></canvas>
-										</div>
-										<div id="legendDiv"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">Recent Oreders</div>
-									<div class="panel-body">
-										<div class="alert alert-dismissible alert-success">
-											<button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
-											<strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
-										</div>
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Username</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">1</th>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<th scope="row">2</th>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<th scope="row">3</th>
-													<td>Larry</td>
-													<td>the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">Pie Chart</div>
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-md-4">
-												<ul class="chart-dot-list">
-													<li class="a1">date 1</li>
-													<li class="a2">data 2</li>
-													<li class="a3">data 3</li>
-												</ul>
-											</div>
-											<div class="col-md-8">
-												<div class="chart chart-doughnut">
-													<canvas id="chart-area3" width="1200" height="900" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">Doughnut</div>
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-md-4">
-												<ul class="chart-dot-list">
-													<li class="a1">date 1</li>
-													<li class="a2">data 2</li>
-													<li class="a3">data 3</li>
-												</ul>
-											</div>
-											<div class="col-md-8">
-												<div class="chart chart-doughnut">
-													<canvas id="chart-area4" width="1200" height="900" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- Loading Scripts -->
-  <script src="/js/ajquery/jquery.min.js"></script>
-	<script src="/js/dataTables.bootstrap.min.js"></script>
-	<script src="/js/Chart.min.js"></script>
-	<script src="/js/chartData.js"></script>
-	<script src="/js/main.js"></script>
-
-	<script>
-		window.onload = function(){
-
-			// Line chart from swirlData for dashReport
-			var ctx = document.getElementById("dashReport").getContext("2d");
-			window.myLine = new Chart(ctx).Line(swirlData, {
-				responsive: true,
-				scaleShowVerticalLines: false,
-				scaleBeginAtZero : true
-			});
-
-			// Pie Chart from doughutData
-			var doctx = document.getElementById("chart-area3").getContext("2d");
-			window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive : true});
-
-			// Dougnut Chart from doughnutData
-			var doctx = document.getElementById("chart-area4").getContext("2d");
-			window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive : true});
-
-		}
-	</script>
