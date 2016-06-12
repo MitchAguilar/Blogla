@@ -1,58 +1,50 @@
-<div class="container">
-  <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<form method="<%= (direccion=='update')?'put':'post' %>" action="/entrada/<%= direccion %>">
+  <% if (direccion == 'update') { %>
+    <input name="id" value="<%= entrada.id %>" hidden="true" required>
+  <% } %>
 
-  <form class="form-horizontal" role="form" method="<%= (direccion=='update')?'put':'post' %>" action="/entrada/<%= direccion %>">
-    <% if (direccion == 'update') { %>
-      <input name="id" value="<%= entrada.id %>" hidden="true" required>
-    <% }%>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Titulo</label>
-      <div class="col-sm-10">
-        <input name="titulo" type="text" class="form-control" placeholder="Titulo" value="<%= (direccion=='update')?entrada.titulo:'' %>" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">URL fondo</label>
-      <div class="col-sm-10">
-        <input name="fondo" type="text" class="form-control" placeholder="URL de una imagen de fondo" value="<%= (direccion=='update')?entrada.fondo:'' %>" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2">Resumen</label>
-      <div class="col-sm-10">
-        <textarea name="resumen" rows="8" cols="100" wrap="hard" required>
-          <%= (direccion=='update')?entrada.resumen:'' %>
-        </textarea>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2">Publicacion</label>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input name="titulo" type="text" class="mdl-textfield__input" value="<%= (direccion=='update')?entrada.titulo:'\r' %>" required>
+    <label class="mdl-textfield__label" for="sample3">Titulo...</label>
+  </div>
+  <br>
+  <div class="mdl-textfield mdl-js-textfield">
+    <textarea name="resumen" class="mdl-textfield__input" type="text" rows="3" id="sample5">
+      <%= (direccion=='update')?entrada.resumen: "\r" %>
+    </textarea>
+    <label class="mdl-textfield__label" for="sample5">Resumen...</label>
+  </div>
+  <br>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input name="fondo" type="text" class="mdl-textfield__input" value="<%= (direccion=='update')?entrada.fondo:'' %>" required>
+    <label class="mdl-textfield__label" for="sample3">Imagen de fondo...</label>
+  </div>
+  <br>
+  <div>
+    <div>
+      <label class="control-label col-sm-2">Publicación</label>
       <div class="col-sm-10">
         <textarea name="cuerpo" rows="7" cols="100" required>
-          <%= (direccion=='update')?entrada.cuerpo:'' %>
+          <%= (direccion=='update')? entrada.cuerpo : "\r" %>
         </textarea>
         <script type="text/javascript">
           //CKEDITOR.
         </script>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2">Categoria</label>
-      <div class="col-sm-10">
-        <select class="select" name="categoria_entrada_ref" selected="<%= (direccion=='update')?entrada.categoria_entrada_ref.id:'' %>" required>
-          <% for (var i = 0; i < categorias.length; i++) { %>
-            <option value="<%= categorias[i].id %>" class="item">
-              <%= categorias[i].nombre_categoria %>
-            </option>
-          <% }%>
-        </select>
-      </div>
-    </div>
-    <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Publicar</button>
-      </div>
-    </div>
-  </form>
-</div>
+  </div>
+  <% for (var i = 0; i < categorias.length; i++) { %>
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-<%= i %>">
+      <input type="radio" id="option-<%= i %>" class="mdl-radio__button" name="categoria_entrada_ref" value="<%= categorias[i].id %>">
+      <span class="mdl-radio__label">
+        <%= categorias[i].nombre_categoria %>
+      </span>
+    </label>
+  <% } %>
+
+  <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+  <br>
+  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Publicar</button>
+</form>
+
+<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>

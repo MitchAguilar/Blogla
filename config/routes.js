@@ -37,16 +37,22 @@ module.exports.routes = {
   'GET /entrada/search': 'EntradaController.search',
   'GET /entrada/ocultar': 'EntradaController.ocultar',
   'PUT /entrada/update': 'EntradaController.update',
+
+  /* Routes Index */
   '/index': {
     view: 'homepage/homepage',
     controller: 'HomePageController',
     action: 'index'
   },
+
+  /* Routes Usuario */
   '/usuario/nuevo': {
     view: 'usuario/register',
     controller: 'UsuarioController',
     action: 'register'
   },
+
+  /* Routes Others */
   'GET /acercade': {
     view: 'acercade'
   }

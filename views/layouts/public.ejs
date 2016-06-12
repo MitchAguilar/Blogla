@@ -30,112 +30,93 @@
     -->
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/bootstrap-theme.css">
-    <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/style.css">
     <!--STYLES END-->
-    <link rel="stylesheet" href="/styles/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+
+    <style media="screen">
+      .mdl-layout__header-row .mdl-navigation__link {
+        color: #333;
+      }
+
+      .mdl-layout__title {
+        color: #333;
+      }
+
+      .mdl-layout__header .mdl-layout__drawer-button {
+        background-color: white;
+        color: crimson;
+      }
+
+      .material-icons {
+        padding-top: 10px;
+      }
+    </style>
   </head>
 
   <body ng-app="Blog">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Brand</a>
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+        <div class="mdl-layout__header-row portfolio-logo-row">
+          <span class="mdl-layout__title">
+            <div class="portfolio-logo"></div>
+            <span class="mdl-layout__title">
+              <%= __('Nombre') %>
+            </span>
+          </span>
+        </div>
+        <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+          <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+            <a class="mdl-navigation__link is-active" href="/">Blog</a>
+            <a class="mdl-navigation__link" href="/acercade">
+              <%= __('Acercade') %>
+            </a>
+            <a class="mdl-navigation__link" href="/usuario/signin">Iniciar sesión</a>
+            <a class="mdl-navigation__link" href="/contacto">Contacto</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+          <a class="mdl-navigation__link" href="/">Blog</a>
+          <a class="mdl-navigation__link" href="/acercade">
+            <%= __('Acercade') %>
+          </a>
+          <a class="mdl-navigation__link" href="/usuario/signin">Iniciar sesión</a>
+          <a class="mdl-navigation__link" href="/contacto">Contacto</a>
+        </nav>
+      </div>
+
+      <main class="mdl-layout__content">
+        <div class="mdl-grid portfolio-max-width">
+          <%- body %>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="#">Link
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#">Action</a>
-                </li>
-                <li>
-                  <a href="#">Another action</a>
-                </li>
-                <li>
-                  <a href="#">Something else here</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li>
-                  <a href="#">Separated link</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li>
-                  <a href="#">One more separated link</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-left" role="search" action="/entrada/search" method="get">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="<%= __('Busqueda') %>" name="search">
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">
+              <%= __('Nombre') %>
             </div>
-            <button type="submit" class="btn btn-default">
-              <%= __('Buscar') %>
-            </button>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#">Action</a>
-                </li>
-                <li>
-                  <a href="#">Another action</a>
-                </li>
-                <li>
-                  <a href="#">Something else here</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li>
-                  <a href="#">Separated link</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-    <br>
-    <!-- ***********************************************************************
-                                          Body
-    -->
-    <br>
-    <br>
-    <%- body %>
+          </div>
+          <div class="mdl-mini-footer__right-section">
+            <ul class="mdl-mini-footer__link-list">
+              <li>
+                <a href="#">
+                  <%= __('Ayuda') %>
+                </a>
+              </li>
+              <li>
+                <a href="#">Privacidad & Terminos</a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div>
     <!--
         Client-side Templates
         ========================
@@ -189,18 +170,11 @@
     <script src="/js/Chart.min.js"></script>
     <script src="/js/ajquery/jquery.min.js"></script>
     <script src="/js/angular/angular.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/chartData.js"></script>
     <script src="/js/controllers_angular/app.js"></script>
-    <script src="/js/dataTables.bootstrap.min.js"></script>
-    <script src="/js/jquery-migrate.min.js"></script>
-    <script src="/js/jquery.form.min.js"></script>
-    <script src="/js/main.js"></script>
     <script src="/js/moment-with-locales.min.js"></script>
-    <script src="/js/plugins.js"></script>
     <script src="/js/require.js"></script>
-    <script src="/js/theme.min.js"></script>
     <!--SCRIPTS END-->
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
   </body>
 </footer>
 </html>

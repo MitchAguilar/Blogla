@@ -2,7 +2,7 @@
   "name": "BLOG",
   "private": true,
   "version": "1.0.0",
-  "description": "a Sails application",
+  "description": "a Sails application for S. Programacion",
   "keywords": [],
   "dependencies": {
     "bcrypt": "^0.8.5",
@@ -23,6 +23,7 @@
     "is.js": "0.0.2",
     "moment": "^2.11.2",
     "moment-timezone": "^0.5.1",
+    "nodemailer": "^2.4.2",
     "rc": "~0.5.0",
     "sails": "~0.11.4",
     "sails-disk": "~0.10.0",

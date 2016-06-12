@@ -57,6 +57,39 @@ module.exports = {
 			});
 		}
 	},
+	desocultar: function(req, res) {
+		console.log("desOcultando: " + req.param('id'));
+		if (!req.param('id')) {
+			res.status(400);
+			res.view('400', {
+				message: 'Error al ocultar entrada, error 222, no se ha especificado el idenficador de la entrada. Contacte al administrador del blog!'
+			});
+		} else {
+			var _id = req.param('id');
+			console.log("El id a desocultar: " + _id);
+
+			var update_ent = {
+				oculto: false,
+			}
+
+			updateEntrada(_id, update_ent, function(err, updated) {
+				if (err) {
+					res.status(400);
+					return res.view('400', {
+						message: 'Error al actualizar entrada, error 4454, error de parametros, contacte al administrador del blog!'
+					});
+				}
+				console.log('Ocultada entrada con id ' + updated[0].id);
+
+				findEntrada(updated[0].id, function(err, value) {
+					return res.json({
+						entrada: value,
+						estado: true
+					});
+				})
+			});
+		}
+	},
 	eliminar: function(req, res) {
 		console.log("Eliminando: " + req.param('id'));
 		console.log("Eliminando entrada");
@@ -306,6 +339,7 @@ var listEntradas = function(req, eliminado, oculto, callback) {
 			return next(e);
 		}
 		for (var i = 0; i < r.length; i++) {
+			r[i].datetimeCreateAt = r[i].createdAt;
 			r[i].createdAt = moment(r[i].createdAt).fromNow();
 			r[i].updatedAt = moment(r[i].updatedAt).fromNow();
 		}

@@ -1,0 +1,54 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">#</th>
+      <th>Titulo</th>
+      <th>Resumen</th>
+      <th>Categoria</th>
+      <th>Estado</th>
+      <th colspan="3">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (var i = 0; i < entradas.length; i++) { %>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">
+          <%= (i+1) %>
+        </th>
+        <td>
+          <%= entradas[i].titulo.substring(0, 20) %>
+        </td>
+        <td>
+          <%= entradas[i].resumen.substring(0, 50) %>...
+        </td>
+        <td>
+          <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
+        </td>
+        <td>
+          <%= entradas[i].oculto? 'Oculto' : 'Activo' %>
+        </td>
+        <td>
+          <a href="/entrada/showOne/<%= entradas[i].id %>" target="_blank">
+            Ver
+          </a>
+        </td>
+        <td>
+          <% if(entradas[i].oculto) { %>
+            <a href="/entrada/desocultar/<%= entradas[i].id %>" class="mdl-button--primary">
+              <%= __('Desocultar') %>
+            </a>
+          <% } else { %>
+            <a href="/entrada/ocultar/<%= entradas[i].id %>" class="mdl-button--primary">
+              <%= __('Ocultar') %>
+            </a>
+          <% } %>
+        </td>
+        <td>
+          <a href="/entrada/eliminar/<%= entradas[i].id %>" class="mdl-button--accent">
+            <%= __('Eliminar') %>
+          </a>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

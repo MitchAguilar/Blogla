@@ -14,13 +14,13 @@
 
       $scope.click_dashboard = function() {
         $scope.dashboard = true;
-        $scope.publicaciones = false;
+        $scope.publicar = false;
         console.log("Hola");
       }
 
-      $scope.click_publicaciones = function() {
+      $scope.click_publicar = function() {
         $scope.dashboard = false;
-        $scope.publicaciones = true;
+        $scope.publicar = true;
       }
 
       $scope.inicializar = function() {
@@ -32,1154 +32,418 @@
 
 <div>
   <div ng-controller="ControllerPerfil" ng-init="inicializar()">
-    <div class="brand clearfix">
-      <a href="index.html" class="logo"><img src="img/logo.jpg" class="img-responsive" alt=""></a>
-      <span class="menu-btn">
-        <i class="fa fa-bars"></i>
-      </span>
-      <ul class="ts-profile-nav">
-        <li>
-          <a href="#">Ayuda</a>
-        </li>
-        <li>
-          <a href="#">Configuraciones</a>
-        </li>
-        <li class="ts-account">
-          <a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt="">
-            <%= usuario.nick %>
-            <i class="fa fa-angle-down hidden-side"></i>
-          </a>
-          <ul>
-            <li title="Editar mis datos">
-              <a href="#">Editar cuenta</a>
-            </li>
-            <li title="Salir">
-              <a href="/usuario/signout">Salir</a>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">
+            <%= __('Dashboard') %>
+          </span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">
+                <%= __('Buscar') %>
+              </i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+          </div>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">
+              <%= __('Contacto') %>
             </li>
           </ul>
-        </li>
-      </ul>
-    </div>
-
-    <div class="ts-main-content">
-      <nav class="ts-sidebar">
-        <ul class="ts-sidebar-menu">
-          <li class="ts-label">
-            <%= __('Busqueda') %></li>
-          <li>
-            <input type="text" class="ts-sidebar-search" placeholder="  <%= __('Buscar') %>">
-          </li>
-          <li class="ts-label">Dash</li>
-          <li class="open">
-            <a ng-click="click_dashboard()" href>
-              <i class="fa fa-dashboard"></i>
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href>
-              <i class="fa fa-desktop"></i>
-              Publicaciones</a>
-            <ul>
-              <li>
-                <a href>Nuevo</a>
-              </li>
-              <li>
-                <a ng-click="click_publicaciones()" href>Listar</a>
-              </li>
-              <li>
-                <a href>Ocultos</a>
+        </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+          <img src="images/user.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span>
+              <%= usuario.email %>
+            </span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <!--<li class="mdl-menu__item">hello@example.com</li>-->
+              <li class="mdl-menu__item">
+                <i class="material-icons">add</i>
+                <a href>Crear otra cuenta...</a>
               </li>
             </ul>
-          </li>
-          <li>
-            <a href="tables.html">
-              <i class="fa fa-table"></i>
-              Tables
-            </a>
-          </li>
-          <li>
-            <a href="forms.html">
-              <i class="fa fa-edit"></i>
-              Forms</a>
-          </li>
-          <li>
-            <a href="charts.html">
-              <i class="fa fa-pie-chart"></i>
-              Charts</a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-sitemap"></i>
-              Multi-Level Dropdown</a>
-            <ul>
-              <li>
-                <a href="#">2nd level</a>
-              </li>
-              <li>
-                <a href="#">2nd level</a>
-              </li>
-              <li>
-                <a href="#">3rd level</a>
+          </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a class="mdl-navigation__link" ng-click="click_dashboard()" href>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+            <%= __('Dashboard') %>
+          </a>
+          <a class="mdl-navigation__link" ng-click="click_publicar()" href>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+            <%= __('NuevaPublicacion') %>
+          </a>
+          <a class="mdl-navigation__link" href="">
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash
+          </a>
+          <a class="mdl-navigation__link" href="">
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam
+          </a>
+          <a class="mdl-navigation__link" href="">
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums
+          </a>
+          <a class="mdl-navigation__link" href="">
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates
+          </a>
+          <a class="mdl-navigation__link" href="">
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos
+          </a>
+          <a class="mdl-navigation__link" href="">
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases
+          </a>
+          <a class="mdl-navigation__link" href="">
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social
+          </a>
+          <div class="mdl-layout-spacer"></div>
+        </nav>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">
+
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" ng-show="dashboard == true">
+            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+              <use xlink:href="#piechart" mask="url(#piemask)" />
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
+                <%= entradas.length %>
+                <tspan font-size="0.09" dy="-0.07">Publicaciones</tspan>
+              </text>
+            </svg>
+            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+              <use xlink:href="#piechart" mask="url(#piemask)" />
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
+
+                <%
+                var entradas_ocultas = 0;
+                entradas.map((item) => {
+                  if(item.oculto == true) {
+                    entradas_ocultas++;
+                  }
+                });
+                %>
+
+                <%= entradas_ocultas %>
+                <tspan dy="-0.07" font-size="0.09">
+                  Ocultos
+                </tspan>
+              </text>
+            </svg>
+            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+              <use xlink:href="#piechart" mask="url(#piemask)" />
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
+                <%= entradas.length - entradas_ocultas %>
+                <tspan dy="-0.07" font-size="0.09">
+                  Activos
+                </tspan>
+              </text>
+            </svg>
+          </div>
+
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" ng-show="dashboard == true">
+            <% include ../components/entrada/listAll %>
+          </div>
+
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" ng-show="publicar == true">
+            <%- include ../entrada/nuevo %>
+          </div>
+
+          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" ng-show="dashboard == true">
+            <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
+              <use xlink:href="#chart"/>
+            </svg>
+            <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
+              <use xlink:href="#chart"/>
+            </svg>
+          </div>
+          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" ng-show="dashboard == true">
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                <h2 class="mdl-card__title-text">Updates</h2>
+              </div>
+              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                Non dolore elit adipisicing ea reprehenderit consectetur culpa.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
+              </div>
+            </div>
+            <div class="demo-separator mdl-cell--1-col"></div>
+            <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+                <h3>View options</h3>
                 <ul>
                   <li>
-                    <a href="#">3rd level</a>
+                    <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Click per object</span>
+                    </label>
                   </li>
                   <li>
-                    <a href="#">3rd level</a>
+                    <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Views per object</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Objects selected</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Objects viewed</span>
+                    </label>
                   </li>
                 </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-files-o"></i>
-              Sample Pages</a>
-            <ul>
-              <li>
-                <a href="blank.html">Blank page</a>
-              </li>
-              <li>
-                <a href="login.html">Login page</a>
-              </li>
-            </ul>
-          </li>
-
-          <!-- Account from above -->
-          <ul class="ts-profile-nav">
-            <li>
-              <a href="#">Help</a>
-            </li>
-            <li>
-              <a href="#">Settings</a>
-            </li>
-            <li class="ts-account">
-              <a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt="">
-                Account
-                <i class="fa fa-angle-down hidden-side"></i>
-              </a>
-              <ul>
-                <li>
-                  <a href="#">My Account</a>
-                </li>
-                <li>
-                  <a href="#">Edit Account</a>
-                </li>
-                <li>
-                  <a href="#">Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-
-      </ul>
-    </nav>
-
-    <div class="content-wrapper">
-      <div class="container-fluid">
-
-        <div class="row">
-          <div class="col-md-12">
-
-            <h2 class="page-title">
-              <%= usuario.nombres %>
-            </h2>
-
-            <div class="row" ng-show="dashboard == true">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="panel panel-default">
-                      <div class="panel-body bk-primary text-light">
-                        <div class="stat-panel text-center">
-                          <div class="stat-panel-number h1 ">24</div>
-                          <div class="stat-panel-title text-uppercase">New Users</div>
-                        </div>
-                      </div>
-                      <a href="#" class="block-anchor panel-footer">Full Detail
-                        <i class="fa fa-arrow-right"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="panel panel-default">
-                      <div class="panel-body bk-success text-light">
-                        <div class="stat-panel text-center">
-                          <div class="stat-panel-number h1 ">8</div>
-                          <div class="stat-panel-title text-uppercase">Support Tickets</div>
-                        </div>
-                      </div>
-                      <a href="#" class="block-anchor panel-footer text-center">See All &nbsp;
-                        <i class="fa fa-arrow-right"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="panel panel-default">
-                      <div class="panel-body bk-info text-light">
-                        <div class="stat-panel text-center">
-                          <div class="stat-panel-number h1 ">58</div>
-                          <div class="stat-panel-title text-uppercase">New Orders</div>
-                        </div>
-                      </div>
-                      <a href="#" class="block-anchor panel-footer text-center">See All &nbsp;
-                        <i class="fa fa-arrow-right"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="panel panel-default">
-                      <div class="panel-body bk-warning text-light">
-                        <div class="stat-panel text-center">
-                          <div class="stat-panel-number h1 ">18</div>
-                          <div class="stat-panel-title text-uppercase">New Comments</div>
-                        </div>
-                      </div>
-                      <a href="#" class="block-anchor panel-footer text-center">See All &nbsp;
-                        <i class="fa fa-arrow-right"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
+                <div class="mdl-layout-spacer"></div>
+                <i class="material-icons">location_on</i>
               </div>
             </div>
-
-            <div class="row" ng-show="publicaciones == true">
-              <div class="col-md-12">
-                <div class="panel panel-default">
-                  <div class="panel-heading">Mis publicaciones</div>
-                  <div class="panel-body">
-                    <div class="alert alert-dismissible alert-success">
-                      <button type="button" class="close" data-dismiss="alert">
-                        <i class="fa fa-close"></i>
-                      </button>
-                      <strong>Well done!</strong>
-                      You successfully read
-                      <a href="#" class="alert-link">this important alert message</a>.
-                    </div>
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Titulo</th>
-                          <th>Contenido</th>
-                          <th>Categoria</th>
-                          <th>Ver</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for (var i = 0; i < entradas.length; i++) { %>
-                          <tr>
-                            <th scope="row">
-                              <%= (i+1) %>
-                            </th>
-                            <td>
-                              <%= entradas[i].titulo.substring(0, 20) %>
-                            </td>
-                            <td>
-                              <%= entradas[i].resumen.substring(0, 10) %>...
-                            </td>
-                            <td>
-                              <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
-                            </td>
-                            <td>
-                              <a href="/entrada/showOne/<%= entradas[i].id %>">
-                                Ver
-                              </a>
-                            </td>
-                            <td>
-                              <a href="/entrada/ocultar/<%= entradas[i].id %>">
-                                Ocultar
-                              </a>
-                            </td>
-                          </tr>
-                        <% } %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" ng-show="dashboard == true">
-              <div class="col-md-6" >
-                <div class="panel panel-default">
-                  <div class="panel-heading">Sales Report</div>
-                  <div class="panel-body">
-                    <div class="chart">
-                      <canvas id="dashReport" height="310" width="600"></canvas>
-                    </div>
-                    <div id="legendDiv"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">Recent Oreders</div>
-                  <div class="panel-body">
-                    <div class="alert alert-dismissible alert-success">
-                      <button type="button" class="close" data-dismiss="alert">
-                        <i class="fa fa-close"></i>
-                      </button>
-                      <strong>Well done!</strong>
-                      You successfully read
-                      <a href="#" class="alert-link">this important alert message</a>.
-                    </div>
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="row" ng-show="dashboard == true">
-              <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">Pie Chart</div>
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <ul class="chart-dot-list">
-                          <li class="a1">date 1</li>
-                          <li class="a2">data 2</li>
-                          <li class="a3">data 3</li>
-                        </ul>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="chart chart-doughnut">
-                          <canvas id="chart-area3" width="1200" height="900"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">Doughnut</div>
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <ul class="chart-dot-list">
-                          <li class="a1">date 1</li>
-                          <li class="a2">data 2</li>
-                        </ul>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="chart chart-doughnut">
-                          <canvas id="chart-area4" width="1200" height="900"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
-
-      </div>
+      </main>
     </div>
-  </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
+      <defs>
+        <mask id="piemask" maskContentUnits="objectBoundingBox">
+          <circle cx=0.5 cy=0.5 r=0.49 fill="white"/>
+          <circle cx=0.5 cy=0.5 r=0.40 fill="black"/>
+        </mask>
+        <g id="piechart">
+          <circle cx=0.5 cy=0.5 r=0.5/>
+          <path d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 0 1 0.95 0.28 z" stroke="none" fill="rgba(255, 255, 255, 0.75)"/>
+        </g>
+      </defs>
+    </svg>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250" style="position: fixed; left: -1000px; height: -1000px;">
+      <defs>
+        <g id="chart">
+          <g id="Gridlines">
+            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="27.3" x2="468.3" y2="27.3"/>
+            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="66.7" x2="468.3" y2="66.7"/>
+            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="105.3" x2="468.3" y2="105.3"/>
+            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="144.7" x2="468.3" y2="144.7"/>
+            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="184.3" x2="468.3" y2="184.3"/>
+          </g>
+          <g id="Numbers">
+            <text transform="matrix(1 0 0 1 485 29.3333)" fill="#888888" font-family="'Roboto'" font-size="9">500</text>
+            <text transform="matrix(1 0 0 1 485 69)" fill="#888888" font-family="'Roboto'" font-size="9">400</text>
+            <text transform="matrix(1 0 0 1 485 109.3333)" fill="#888888" font-family="'Roboto'" font-size="9">300</text>
+            <text transform="matrix(1 0 0 1 485 149)" fill="#888888" font-family="'Roboto'" font-size="9">200</text>
+            <text transform="matrix(1 0 0 1 485 188.3333)" fill="#888888" font-family="'Roboto'" font-size="9">100</text>
+            <text transform="matrix(1 0 0 1 0 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">1</text>
+            <text transform="matrix(1 0 0 1 78 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">2</text>
+            <text transform="matrix(1 0 0 1 154.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">3</text>
+            <text transform="matrix(1 0 0 1 232.1667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">4</text>
+            <text transform="matrix(1 0 0 1 309 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">5</text>
+            <text transform="matrix(1 0 0 1 386.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">6</text>
+            <text transform="matrix(1 0 0 1 464.3333 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">7</text>
+          </g>
+          <g id="Layer_5">
+            <polygon opacity="0.36" stroke-miterlimit="10" points="0,223.3 48,138.5 154.7,169 211,88.5
+              294.5,80.5 380,165.2 437,75.5 469.5,223.3 	"/>
+          </g>
+          <g id="Layer_4">
+            <polygon stroke-miterlimit="10" points="469.3,222.7 1,222.7 48.7,166.7 155.7,188.3 212,132.7
+              296.7,128 380.7,184.3 436.7,125 	"/>
+          </g>
+        </g>
+      </defs>
+    </svg>
   </div>
 </div>
-<!-- Loading Scripts -->
-<script src="/js/ajquery/jquery.min.js"></script>
-<script src="/js/dataTables.bootstrap.min.js"></script>
-<script src="/js/Chart.min.js"></script>
-<script src="/js/chartData.js"></script>
-<script src="/js/main.js"></script>
-
-<script>
-window.onload = function() {
-
-  // Line chart from swirlData for dashReport
-  var ctx = document.getElementById("dashReport").getContext("2d");
-  window.myLine = new Chart(ctx).Line(swirlData, {
-    responsive: true,
-    scaleShowVerticalLines: false,
-    scaleBeginAtZero: true
-  });
-
-  // Pie Chart from doughutData
-  var doctx = document.getElementById("chart-area3").getContext("2d");
-  window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive: true});
-
-  // Dougnut Chart from doughnutData
-  var doctx = document.getElementById("chart-area4").getContext("2d");
-  window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive: true});
-}
-</script>
 
 <style media="screen">
-::selection {
-  background: #4f5362;
-  /* WebKit/Blink Browsers */
-  color: #fff;
-}
-::-moz-selection {
-  background: #4f5362;
-  /* Gecko Browsers */
-  color: #fff;
-}
-html {
-  font-size: 14px;
-}
-@media only screen and (min-width: 480px) {
+  body,
   html {
-    font-size: 17px;
+    font-family: 'Roboto', 'Helvetica', sans-serif;
   }
-}
-@media only screen and (min-width: 768px) {
-  html {
-    font-size: 14px;
+  .demo-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
   }
-}
-@media only screen and (min-width: 1024px) {
-  p {
-    font-size: 1em;
-    margin-bottom: 1.8em;
+  .demo-layout .demo-header .mdl-textfield {
+    padding: 0;
+    margin-top: 41px;
   }
-}
-/****************************
-  *      BODY DEFAULTS        *
-  ****************************/
-body {
-  font-size: 1em;
-}
-a {
-  color: #37a6c4;
-}
-a:hover {
-  text-decoration: none;
-  color: #5db9d1;
-}
-/****************************
-  *      Buttons        *
-  ****************************/
-.btn {
-  font-family: 'Oswald', sans-serif;
-}
-.btn i {
-  position: relative;
-  top: -2px;
-}
-.btn.text-left {
-  text-align: left;
-}
-.btn-brand {
-  background: #37a6c4;
-  color: #fff;
-}
-.btn-brand:hover {
-  color: #fff;
-  background: #2c849c;
-}
-.btn-dark {
-  background: #272727;
-  color: #fff;
-}
-.btn-dark:hover {
-  color: #fff;
-  background: #2c849c;
-}
-.btn-red {
-  background: #4f5362;
-  color: #fff;
-}
-.btn-red:hover {
-  color: #fff;
-  background: #383b46;
-}
-.btn-alt {
-  background: #f0f0f0;
-  color: #222;
-}
-.btn-alt:hover {
-  color: #fff;
-  background: #2c849c;
-}
-/****************************
-  *      Background Colors        *
-  ****************************/
-.bk-primary {
-  background: #325d88;
-}
-.bk-success {
-  background: #93c54b;
-}
-.bk-warning {
-  background: #f47c3c;
-}
-.bk-danger {
-  background: #d9534f;
-}
-.bk-info {
-  background: #29abe0;
-}
-.bk-light,
-.bk-white {
-  background: #fff;
-}
-.bk-brand {
-  background: #37a6c4;
-}
-.bk-dark {
-  background: #222;
-}
-.bk-blue {
-  background: #0010ce;
-}
-.bk-alt {
-  background: #f7f7f7;
-}
-.bk-ghost {
-  background: transparent;
-}
-.bk-img {
-  position: relative;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("../../img/login-bg.jpg");
-}
-.bk-fixed {
-  background-attachment: fixed;
-}
-.hr-green {
-  height: 2px;
-  background: #37a6c4;
-}
-.hr-grey {
-  height: 2px;
-  background: #f0f0f0;
-}
-.hr-dashed {
-  background-color: transparent;
-  border-top: 1px dotted #edf0f5;
-  color: transparent;
-  height: 1px;
-  margin: 20px 0;
-}
-.panel {
-  overflow: hidden;
-}
-/****************************
-  *      Border        *
-  ****************************/
-.brdr {
-  border: 1px solid #f0f0f0;
-}
-/****************************
-  *      Text size color        *
-  ****************************/
-.font-one {
-  font-family: 'Oswald', sans-serif;
-}
-.text-bold {
-  font-weight: bold;
-}
-.text-normal {
-  font-weight: normal;
-}
-.text-thin {
-  font-weight: 100;
-}
-.text-lowercase {
-  text-transform: none;
-}
-.text-sm {
-  font-size: 13px;
-}
-.text-lg {
-  font-size: 18px;
-}
-.text-xl {
-  font-size: 1.6em;
-}
-.text-2x {
-  font-size: 2em;
-}
-.text-3x {
-  font-size: 2.4em;
-}
-.text-4x {
-  font-size: 3em;
-}
-.text-light,
-.text-white {
-  color: #fff !important;
-}
-.link-white a {
-  color: #fff;
-}
-.text-grey {
-  color: #ccc;
-}
-.text-dgrey {
-  color: #818181;
-}
-.text-brand {
-  color: #37a6c4;
-}
-.text-yellow {
-  color: #ffff00;
-}
-.title .line {
-  display: inline-block;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #222;
-}
-/****************************
-  *       Margins         *
-  ****************************/
-.mt {
-  margin-top: 18px;
-}
-.mt-0x {
-  margin-top: 0 !important;
-}
-.mt-2x {
-  margin-top: 36px;
-}
-.mt-3x {
-  margin-top: 54px;
-}
-.mt-4x {
-  margin-top: 90px;
-}
-.mt-5x {
-  margin-top: 144px;
-}
-.mb {
-  margin-bottom: 18px;
-}
-.mb-0x {
-  margin-bottom: 0 !important;
-}
-.mb-2x {
-  margin-bottom: 36px;
-}
-.mb-3x {
-  margin-bottom: 54px;
-}
-.mb-4x {
-  margin-bottom: 90px;
-}
-.mb-5x {
-  margin-bottom: 144px;
-}
-.pt {
-  padding-top: 18px;
-}
-.pt-2x {
-  padding-top: 36px;
-}
-.pt-3x {
-  padding-top: 54px;
-}
-.pt-4x {
-  padding-top: 90px;
-}
-.pt-5x {
-  padding-top: 144px;
-}
-.pb {
-  padding-bottom: 18px;
-}
-.pb-2x {
-  padding-bottom: 36px;
-}
-.pb-3x {
-  padding-bottom: 54px;
-}
-.pb-4x {
-  padding-bottom: 90px;
-}
-.pb-5x {
-  padding-bottom: 144px;
-}
-/* Content boxes */
-.content-box {
-  padding: 15px;
-}
-.block-anchor {
-  display: block;
-}
-/****************************
-  *       Content Typography         *
-  ****************************/
-.content-format {
-  line-height: 1.6em;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  font-style: normal;
-  word-wrap: break-word;
-}
-.content-format .h1,
-.content-format .h2,
-.content-format .h3,
-.content-format .h4,
-.content-format .h5,
-.content-format .h6,
-.content-format h1,
-.content-format h2,
-.content-format h3,
-.content-format h4,
-.content-format h5,
-.content-format h6 {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
-  font-weight: bold;
-  font-style: normal;
-  color: rgba(0, 0, 0, 0.8);
-  margin-top: 40px;
-}
-.content-format .h1 a,
-.content-format .h2 a,
-.content-format .h3 a,
-.content-format .h4 a,
-.content-format .h5 a,
-.content-format .h6 a,
-.content-format h1 a,
-.content-format h2 a,
-.content-format h3 a,
-.content-format h4 a,
-.content-format h5 a,
-.content-format h6 a {
-  font-size: inherit;
-}
-.content-format .h2,
-.content-format h2 {
-  font-size: 3em;
-  line-height: 1;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 4px solid #f0f0f0;
-}
-.content-format .h3,
-.content-format h3 {
-  font-size: 2em;
-  line-height: 1.2;
-  margin: 1em 0 0.5em;
-}
-.content-format .h4,
-.content-format h4 {
-  font-size: 1.7em;
-  line-height: 1.4;
-  margin-bottom: 6px;
-}
-.content-format .h5,
-.content-format h5 {
-  font-size: 1.5em;
-  line-height: 1.4;
-  margin-bottom: 8px;
-}
-.content-format .h6,
-.content-format h6 {
-  font-size: 1.3em;
-  line-height: 1.4;
-  margin-bottom: 10px;
-}
-.content-format strong {
-  font-weight: bold;
-}
-.content-format ul:not(.social-awesome) {
-  list-style: disc outside;
-  margin: 1.714285714rem 0;
-  line-height: 1.714285714;
-}
-.content-format ul:not(.social-awesome) li {
-  margin: 0 1rem 0 2.571428571rem;
-}
-.content-format ul:not(.social-awesome).list-unstyled {
-  list-style: none;
-}
-.content-format ul:not(.social-awesome).list-unstyled li {
-  margin: 0 0 0 24px;
-}
-.content-format em {
-  font-style: italic;
-}
-.content-format p {
-  margin-bottom: 1.8em;
-}
-.content-format figure {
-  margin-bottom: 42px;
-}
-.content-format figure .caption {
-  color: #999;
-  font-size: 14px;
-}
-.content-format img {
-  border: 0;
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
-}
-.content-format .fa {
-  color: #37a6c4;
-  margin-right: 10px;
-}
-.content-format blockquote {
-  border-left: 4px solid #c3c3c3;
-  border-left: 4px solid rgba(51, 51, 51, 0.17);
-  color: #707070;
-  color: rgba(51, 51, 51, 0.7);
-  font-size: 1.2em;
-  font-style: italic;
-  line-height: 1.6667;
-  margin-bottom: 1em;
-  padding-left: 0.7778em;
-}
-.content-format blockquote.double-quote {
-  border-left: none;
-  padding-left: 1em;
-}
-.content-format pre {
-  background: #fff;
-  border: 1px solid #ededed;
-  color: #666;
-  font-family: Consolas, Monaco, Lucida Console, monospace;
-  font-size: 0.9em;
-  line-height: 1.714285714;
-  margin: 1.714285714rem 0;
-  overflow: auto;
-}
-.content-format ol {
-  margin: 1.714285714rem 0;
-  line-height: 1.714285714;
-  list-style: decimal outside;
-}
-.content-format img.emoji,
-.content-format img.wp-smiley {
-  display: inline !important;
-  border: none !important;
-  box-shadow: none !important;
-  height: 1em !important;
-  width: 1em !important;
-  margin: 0 0.07em !important;
-  vertical-align: -0.1em !important;
-  background: none !important;
-  padding: 0 !important;
-}
-/*
-  * Theme Struck - Harmony - Free responsive Bootstrap admin template by Themestruck.com (http://themestruck.com)
-  * Code licensed under the MIT
-  * For details, see #
-  */
-li,
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-/* Social Button Modifications */
-.btn {
-  text-transform: none;
-}
-.btn-social > :first-child {
-  width: 42px;
-  line-height: 46px;
-}
-.btn-social {
-  padding-left: 58px;
-}
-/* Circle buttons */
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  padding: 6px 0;
-  border-radius: 15px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.428571429;
-}
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  border-radius: 25px;
-  font-size: 18px;
-  line-height: 1.33;
-}
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  border-radius: 35px;
-  font-size: 24px;
-  line-height: 1.33;
-}
-/* Chart design */
-/* Charts */
-.chart-dot-list {
-  display: block;
-  margin-top: 60px;
-  margin-left: 20px;
-}
-.chart-dot-list li {
-  margin-bottom: 4px;
-}
-.chart-dot-list li:before {
-  content: '';
-  height: 12px;
-  width: 12px;
-  margin-right: 6px;
-  display: inline-block;
-  background: #222;
-  border-radius: 50%;
-}
-.chart-dot-list li.a1:before {
-  background: #F7464A;
-}
-.chart-dot-list li.a2:before {
-  background: #46BFBD;
-}
-.chart-dot-list li.a3:before {
-  background: #FDB45C;
-}
-.chart-doughnut {
-  padding: 41px 0;
-}
-/* component */
-.page-title {
-  padding-bottom: 15px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.brand {
-  background: #3e454c;
-  position: relative;
-  z-index: 3;
-  position: fixed;
-  width: 100%;
-  top: 0;
-}
-.brand .logo {
-  box-sizing: border-box;
-  padding: 20px;
-  float: left;
-  display: block;
-  width: 200px;
-}
-@media only screen and (min-width: 992px) {
-  .brand .logo {
-    width: 250px;
+  .demo-layout .demo-header .mdl-textfield .mdl-textfield__expandable-holder {
+    bottom: 19px;
   }
-}
-.brand .logo img {
-  height: 20px;
-}
-.brand .menu-btn {
-  float: right;
-  background: #232d3b;
-  text-align: center;
-  cursor: pointer;
-  color: #fff;
-  padding: 20px;
-}
-@media only screen and (min-width: 992px) {
-  .brand .menu-btn {
-    display: none;
+  .demo-layout .mdl-layout__header .mdl-layout__drawer-button {
+    color: rgba(0, 0, 0, 0.54);
   }
-}
-.brand .ts-profile-nav {
-  float: right;
-  display: none;
-}
-.brand .ts-profile-nav li {
-  float: left;
-  position: relative;
-}
-.brand .ts-profile-nav li a {
-  display: block;
-  padding: 20px;
-  color: #fff;
-}
-.brand .ts-profile-nav li ul {
-  visibility: hidden;
-  opacity: 0;
-  right: 0;
-  position: absolute;
-}
-.brand .ts-profile-nav li ul li {
-  float: none;
-  width: 180px;
-}
-.brand .ts-profile-nav li ul li a {
-  padding: 10px 20px;
-  background: #222;
-}
-.brand .ts-profile-nav .ts-account .fa-angle-down {
-  float: right;
-}
-.brand .ts-profile-nav .ts-account > a {
-  width: 180px;
-  background: #2c3136;
-}
-.brand .ts-profile-nav .ts-account .ts-avatar {
-  border-radius: 50%;
-  height: 28px;
-  margin: -10px 10px -10px 0;
-}
-.brand .ts-profile-nav .ts-account:hover ul {
-  visibility: visible;
-  opacity: 1;
-}
-@media only screen and (min-width: 992px) {
-  .brand .ts-profile-nav {
-    display: block;
+  .mdl-layout__drawer .avatar {
+    margin-bottom: 16px;
   }
-}
-.ts-sidebar::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-.ts-sidebar::-webkit-scrollbar {
-  width: 5px;
-  background-color: transparent;
-}
-.ts-sidebar::-webkit-scrollbar-thumb {
-  background-color: #b4b4b4;
-}
-.ts-sidebar {
-  background: #2c3136;
-  max-height: 0;
-  transition: max-height 0.3s;
-  overflow: hidden;
-  position: fixed;
-  z-index: 2;
-  width: 100%;
-  bottom: 0;
-  top: 60px;
-  overflow-y: auto;
-}
-.ts-sidebar .hidden-side {
-  display: none;
-}
-.ts-sidebar .ts-sidebar-search {
-  width: 100%;
-  background: #25292a;
-  border: none;
-  padding: 10px 15px;
-  color: #fff;
-}
-@media only screen and (min-width: 992px) {
-  .ts-sidebar .ts-profile-nav {
-    display: none;
+  .demo-drawer {
+    border: none;
   }
-}
-@media only screen and (min-width: 992px) {
-  .ts-sidebar {
-    max-height: 100%;
-    bottom: 0;
+  /* iOS Safari specific workaround */
+  .demo-drawer .mdl-menu__container {
+    z-index: -1;
   }
-}
-.ts-sidebar-menu .ts-label {
-  color: #585c64;
-  font-weight: bold;
-  padding: 8px 15px;
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 3px;
-  margin-top: 10px;
-}
-.ts-sidebar-menu a {
-  display: block;
-  text-decoration: none;
-  padding: 12px 15px;
-  color: #fff;
-}
-.ts-sidebar-menu li {
-  position: relative;
-}
-.ts-sidebar-menu li i {
-  color: #585c64;
-  margin-right: 10px;
-}
-.ts-sidebar-menu li ul {
-  display: block;
-  background: rgba(255, 0, 0, 0.12);
-  background: rgba(0, 0, 0, 0.32);
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-.menu-open,
-.ts-sidebar-menu .open > ul {
-  max-height: 2000px;
-}
-.ts-sidebar-menu .open > a {
-  background: rgba(51, 56, 62, 0.35);
-}
-.ts-sidebar-menu > .open > a {
-  background: #33383e;
-  border-left: 3px solid #37a6c4;
-}
-.ts-sidebar-menu .open > .more i {
-  transform: rotate(180deg);
-}
-.more i {
-  color: #fff;
-  padding: 15px;
-  transition: transform 0.3s;
-}
-.more {
-  float: right;
-  min-width: 10%;
-  cursor: pointer;
-}
-.ts-main-content .content-wrapper {
-  padding-top: 15px;
-  margin-top: 60px;
-}
-@media only screen and (min-width: 992px) {
-  .ts-main-content .ts-sidebar {
-    width: 250px;
-    float: left;
+  .demo-drawer .demo-navigation {
+    z-index: -2;
   }
-  .ts-main-content .content-wrapper {
-    margin-left: 250px;
+  /* END iOS Safari specific workaround */
+  .demo-drawer .mdl-menu .mdl-menu__item {
+    display: flex;
+    align-items: center;
   }
-}
-/* Login page */
-.login-page {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
+  .demo-drawer-header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    height: 151px;
+  }
+  .demo-avatar-dropdown {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
 
+  .demo-navigation {
+    flex-grow: 1;
+  }
+  .demo-layout .demo-navigation .mdl-navigation__link {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.56);
+    font-weight: 500;
+  }
+  .demo-layout .demo-navigation .mdl-navigation__link:hover {
+    background-color: #00BCD4;
+    color: #37474F;
+  }
+  .demo-navigation .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.56);
+    margin-right: 32px;
+  }
+
+  .demo-content {
+    max-width: 1080px;
+  }
+
+  .demo-charts {
+    align-items: center;
+  }
+  .demo-chart:nth-child(1) {
+    color: #ACEC00;
+  }
+  .demo-chart:nth-child(2) {
+    color: #00BBD6;
+  }
+  .demo-chart:nth-child(3) {
+    color: #BA65C9;
+  }
+  .demo-chart:nth-child(4) {
+    color: #EF3C79;
+  }
+  .demo-graphs {
+    padding: 16px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  /* TODO: Find a proper solution to have the graphs
+* not float around outside their container in IE10/11.
+* Using a browserhacks.com solution for now.
+*/
+  :root .demo-graphs,
+  _:-ms-input-placeholder {
+    min-height: 664px;
+  }
+  :root .demo-graph,
+  _:-ms-input-placeholder {
+    max-height: 300px;
+  }
+  /* TODO end */
+  .demo-graph:nth-child(1) {
+    color: #00b9d8;
+  }
+  .demo-graph:nth-child(2) {
+    color: #d9006e;
+  }
+
+  .demo-cards {
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+  .demo-cards .demo-separator {
+    height: 32px;
+  }
+  .demo-cards .mdl-card__title.mdl-card__title {
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+  }
+  .demo-cards ul {
+    padding: 0;
+  }
+  .demo-cards h3 {
+    font-size: 1em;
+  }
+  .demo-updates .mdl-card__title {
+    min-height: 200px;
+    background-image: url('images/dog.png');
+    background-position: 90% 100%;
+    background-repeat: no-repeat;
+  }
+  .demo-cards .mdl-card__actions a {
+    color: #00BCD4;
+    text-decoration: none;
+  }
+
+  .demo-options h3 {
+    margin: 0;
+  }
+  .demo-options .mdl-checkbox__box-outline {
+    border-color: rgba(255, 255, 255, 0.89);
+  }
+  .demo-options ul {
+    margin: 0;
+    list-style-type: none;
+  }
+  .demo-options li {
+    margin: 4px 0;
+  }
+  .demo-options .material-icons {
+    color: rgba(255, 255, 255, 0.89);
+  }
+  .demo-options .mdl-card__actions {
+    height: 64px;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+  }
 </style>

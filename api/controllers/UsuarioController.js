@@ -6,6 +6,7 @@
  */
 
 var moment = require('moment');
+var nodemailer = require('nodemailer');
 moment.locale('es');
 
 module.exports = {
@@ -173,14 +174,17 @@ module.exports = {
 						r[i].updatedAt = moment(r[i].updatedAt).fromNow();
 					}
 					//console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
-					/*res.json({
-					  entradas: r,
-					  usuario: value_user
-					});*/
 					res.locals.layout = 'layouts/internal';
-					res.view({
-						entradas: r,
-						usuario: value_user
+
+					CategoriaEntrada.find({ //Consulta categorias de entradas para la seccion de publicar
+						sort: 'createdAt DESC'
+					}).populateAll().exec(function(error, categoriasent) {
+						res.view({
+							entradas: r,
+							usuario: value_user,
+							categorias: categoriasent,
+							direccion: 'create'
+						});
 					});
 				});
 			} else {
@@ -201,5 +205,68 @@ module.exports = {
 			//console.log(r[0].toJSON())
 			res.json(r);
 		});
+	},
+	rclave: function(req, res) {
+		if (req.session.User == undefined) { //Si NO se ha iniciado sesion entonces se dirige a rclave
+			res.view();
+		} else {
+			//El Usuario se encuentra Logeado, se dirige al menu del Perfil
+			console.log("Intento de entrar a rclave pero el Usuario " + req.session.User.id + " está Logeado, redigiendo al menu Perfil ");
+			res.redirect('/usuario/perfil/' + req.session.User.id);
+		}
+	},
+	recuperarclave: function(req, res) {
+		var email = req.param('email');
+		if (/(.+)@(.+){2,}\.(.+){2,}/.test(email)) {
+			Usuario.findOneByEmail(email, function UsuarioFounded(err, value) {
+				if (err) {
+					req.session.flash = {
+						err: err
+					};
+					return res.redirect('/usuario/rclave');
+				}
+				if (!value) { //Validar si el correo se encontró
+					var noUserFounded = [{
+						message: 'El correo "' + email + '" no existe.'
+					}];
+					req.session.flash = {
+						err: noUserFounded
+					};
+					return res.redirect('/usuario/rclave');
+				} else {
+					//Success Validation
+					var smtpTransport = nodemailer.createTransport("SMTP", {
+						service: "Hotmail",
+						auth: {
+							user: "anlijudavid@hotmail.com",
+							pass: "nullnull@@"
+						}
+					});
+
+					var mailOptions = {
+						from: "my site<foo@.com>", // sender address
+						to: email, // list of receivers
+						subject: "This is the subject", // Subject line
+						html: "Este es un email enviado en node js" // html body
+					}
+
+					smtpTransport.sendMail(mailOptions, function(error, response) {
+						if (error) {
+							res.send("Ocurrio un error, intentalo mas tarde");
+						} else {
+							res.send("email enviado con exito")
+						}
+					});
+				}
+			});
+		} else {
+			var noUserFounded = [{
+				message: 'El correo "' + email + '" es invalido.'
+			}];
+			req.session.flash = {
+				err: noUserFounded
+			};
+			return res.redirect('/usuario/rclave');
+		}
 	}
-};
+}
