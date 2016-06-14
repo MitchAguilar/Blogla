@@ -25,7 +25,6 @@ module.exports = {
 	},
 	ocultar: function(req, res) {
 		console.log("Ocultando: " + req.param('id'));
-		console.log("Ocultando entrada");
 		if (!req.param('id')) {
 			res.status(400);
 			res.view('400', {
@@ -36,7 +35,7 @@ module.exports = {
 			console.log("El id a actualizar: " + _id);
 
 			var update_ent = {
-				oculto: true,
+				oculto: true
 			}
 
 			updateEntrada(_id, update_ent, function(err, updated) {
@@ -50,8 +49,7 @@ module.exports = {
 
 				findEntrada(updated[0].id, function(err, value) {
 					return res.json({
-						entrada: value,
-						estado: true
+						entrada: value
 					});
 				})
 			});
@@ -157,33 +155,60 @@ module.exports = {
 			});
 		}
 	},
-	create: function(req, res, next) { /* Crear Entrada */
+	create: function(req, res, next) { /* Crear Entrada en la base de datos */
 		//console.log("Peticion: " + JSON.stringify(req.params));
-		console.log("ID del usuario que publica: " + req.session.User.id);
-		var entrada = {
-			titulo: req.param('titulo'),
-			cuerpo: req.param('cuerpo'),
-			fondo: req.param('fondo'),
-			resumen: req.param('resumen'),
-			oculto: false,
-			eliminado: false,
-			categoria_entrada_ref: req.param('categoria_entrada_ref'),
-			entrada_usuario: req.session.User.id
-		}
-		if (entrada.titulo != undefined && entrada.cuerpo != undefined && entrada.fondo != undefined) {
-			//console.log("Peticion & entrada> " + JSON.stringify(entrada));
-			Entrada.create(entrada, function(err, value) {
-				if (err) {
-					console.log("Error al crear una entrada, error: " + err);
-					//return res.redirect('comentario/nuevo');
-					return next(err);
+		req.file('fondo').upload({
+			// You can apply a file upload limit (in bytes)
+			maxBytes: 2000000,
+			dirname: '../../assets/images/imageFolder'
+				//adapter: require('skipper-disk')
+		}, function whenDone(err, uploadedFiles) {
+			if (err) {
+				var error = {
+					"status": 500,
+					"error": err
+				};
+				res.status(500);
+				return res.json(error);
+			} else {
+				for (u in uploadedFiles) {
+					//"fd" contains the actual file path (and name) of your file on disk
+					fileOnDisk = uploadedFiles[u].fd;
+
+					// I suggest you stringify the object to see what it contains and might be useful to you
+					console.log(JSON.stringify(uploadedFiles[u]));
+					var pos = fileOnDisk.indexOf("/images/imageFolder/");
+					var ruta_foto = fileOnDisk.substring(pos, fileOnDisk.length);
+					console.log("Ruta_ " + ruta_foto);
+
+					console.log("ID del usuario que publica: " + req.session.User.id);
+					var entrada = {
+						titulo: req.param('titulo'),
+						cuerpo: req.param('cuerpo'),
+						fondo: ruta_foto,
+						resumen: req.param('resumen'),
+						oculto: false,
+						eliminado: false,
+						categoria_entrada_ref: req.param('categoria_entrada_ref'),
+						entrada_usuario: req.session.User.id
+					}
+
+					if (entrada.titulo != undefined && entrada.cuerpo != undefined && entrada.fondo != undefined) {
+						Entrada.create(entrada, function(err, value) {
+							if (err) {
+								console.log("Error al crear una entrada, error: " + err);
+								//return res.redirect('comentario/nuevo');
+								return next(err);
+							}
+							return res.redirect('entrada/showOne/' + value.id);
+						});
+					} else {
+						console.log("Error al crear una entrada, Faltan campos. ");
+						return next(err);
+					}
 				}
-				return res.json(value);
-			});
-		} else {
-			console.log("Error al crear una entrada, Faltan campos. ");
-			return next(err);
-		}
+			}
+		});
 	},
 	showOne: function(req, res) {
 		Entrada.findOneById(req.param('id')).populateAll().exec(function(err, value) {
@@ -280,8 +305,8 @@ module.exports = {
 			});
 		}
 	},
-	all: function(req, res) { //Traer todas las publicaciones hasta las Ocultas
-		listEntradas(req, false, true, function(value) {
+	json: function(req, res) { //Traer todas las publicaciones hasta las Ocultas
+		listEntradas2(req, false, function(value) {
 			return res.json(value)
 		});
 	}
@@ -342,6 +367,33 @@ var listEntradas = function(req, eliminado, oculto, callback) {
 			r[i].datetimeCreateAt = r[i].createdAt;
 			r[i].createdAt = moment(r[i].createdAt).fromNow();
 			r[i].updatedAt = moment(r[i].updatedAt).fromNow();
+		}
+		//console.log("R: " + JSON.stringify(r));
+		var value = {
+			autenticado: ((req.session.authenticated && req.session.authenticated != undefined) ? true : false),
+			id_usuario: req.session.User != undefined ? req.session.User.id : undefined,
+			entradas: r
+		};
+		callback(value);
+	});
+}
+
+/**
+ * Listar entradas en formato json
+ * Si eliminado == true, trae los eliminados
+ * Si oculto == true, trae los ocultos
+ */
+var listEntradas2 = function(req, eliminado, callback) {
+	Entrada.find({
+		limit: 30,
+		sort: 'updatedAt DESC',
+		eliminado: [eliminado, undefined] // Consultar solamente los no eliminados
+	}).populateAll().exec(function(e, r) {
+		//console.log(r[0].toJSON())
+		//res.json(r);
+		if (e) {
+			console.log(JSON.stringify(e));
+			return next(e);
 		}
 		//console.log("R: " + JSON.stringify(r));
 		var value = {

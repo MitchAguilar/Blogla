@@ -23,5 +23,4 @@ app.controller('ControllerIndexEntradas', ['$scope', function($scope, $http) {
 			$scope.name = 'Error!';
 		});
 	}
-
 }]);

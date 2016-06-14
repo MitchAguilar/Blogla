@@ -1,4 +1,6 @@
-<form method="<%= (direccion=='update')?'put':'post' %>" action="/entrada/<%= direccion %>">
+<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+
+<form method="<%= (direccion=='update')?'put':'post' %>" action="/entrada/<%= direccion %>" enctype="multipart/form-data">
   <% if (direccion == 'update') { %>
     <input name="id" value="<%= entrada.id %>" hidden="true" required>
   <% } %>
@@ -8,6 +10,7 @@
     <label class="mdl-textfield__label" for="sample3">Titulo...</label>
   </div>
   <br>
+
   <div class="mdl-textfield mdl-js-textfield">
     <textarea name="resumen" class="mdl-textfield__input" type="text" rows="3" id="sample5">
       <%= (direccion=='update')?entrada.resumen: "\r" %>
@@ -15,24 +18,41 @@
     <label class="mdl-textfield__label" for="sample5">Resumen...</label>
   </div>
   <br>
+
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input name="fondo" type="text" class="mdl-textfield__input" value="<%= (direccion=='update')?entrada.fondo:'' %>" required>
+    <input name="fondo" type="file" class="mdl-textfield__input" value="<%= (direccion=='update')?entrada.fondo:'' %>" required>
     <label class="mdl-textfield__label" for="sample3">Imagen de fondo...</label>
   </div>
   <br>
+
   <div>
-    <div>
-      <label class="control-label col-sm-2">Publicación</label>
-      <div class="col-sm-10">
-        <textarea name="cuerpo" rows="7" cols="100" required>
-          <%= (direccion=='update')? entrada.cuerpo : "\r" %>
-        </textarea>
-        <script type="text/javascript">
-          //CKEDITOR.
-        </script>
-      </div>
-    </div>
+    <label class="control-label col-sm-2">Publicación</label>
+    <textarea name="cuerpo" rows="10" cols="100" required id="editor1">
+      <%= (direccion=='update')? entrada.cuerpo : "\r" %>
+    </textarea>
+    <script type="text/javascript">
+      //CKEDITOR. Set the number of languages.
+      var count = document.getElementById('count');
+      if (count) {
+        count.innerHTML = window.CKEDITOR_LANGS.length;
+      }
+
+      var editor;
+      function createEditor(languageCode) {
+        if (editor)
+          editor.destroy();
+
+        // Replace the <textarea id="editor1"> with an CKEditor instance, using default configurations.
+        editor = CKEDITOR.replace('editor1', {
+          language: languageCode
+        });
+      }
+
+      // At page startup, load the default language:
+      createEditor('');
+    </script>
   </div>
+
   <% for (var i = 0; i < categorias.length; i++) { %>
     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-<%= i %>">
       <input type="radio" id="option-<%= i %>" class="mdl-radio__button" name="categoria_entrada_ref" value="<%= categorias[i].id %>">
@@ -44,7 +64,6 @@
 
   <input type='hidden' name='_csrf' value='<%= _csrf %>'>
   <br>
+
   <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Publicar</button>
 </form>
-
-<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>

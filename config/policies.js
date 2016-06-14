@@ -45,16 +45,18 @@ module.exports.policies = {
     '*': 'authenticated'
   },
   'categoriaentrada': {
-    'index': false,
-    'create': false
+    'index': 'authenticated',
+    'create': 'authenticated'
   },
   'usuario': {
     'login': 'flash',
     'signin': 'flash',
-    'register': 'flash',
+    'register': 'authenticated',
     'perfil': 'authenticated',
     'signout': 'authenticated',
-    'index': false
+    'create': 'authenticated',
+    'index': false,
+    '*': false
   }
 
   /***************************************************************************

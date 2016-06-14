@@ -53,7 +53,7 @@ module.exports = {
       type: 'string'
     },
     foto: {
-      type: 'string'
+      type: 'json'
     },
     /************************
           Redes sociales

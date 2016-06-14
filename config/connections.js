@@ -50,7 +50,24 @@ module.exports.connections = {
 
   /***************************************************************************
   *                                                                          *
-  * MongoDB is the leading NoSQL database.                                   *
+  * MongoDB Production is the leading NoSQL database.                                   *
+  * http://en.wikipedia.org/wiki/MongoDB                                     *
+  *                                                                          *
+  * Run: npm install sails-mongo                                             *
+  *                                                                          *
+  ***************************************************************************/
+  someMongodbServerProduction: {
+    adapter: 'sails-mongo',
+    host: 'localhost',
+    port: 27017,
+    user: 'admin',
+    password: 'CR-B6zYP4KfJ',
+    database: 'sprogramacion'
+  },
+
+  /***************************************************************************
+  *                                                                          *
+  * MongoDB DEVELOPMENT is the leading NoSQL database.                                   *
   * http://en.wikipedia.org/wiki/MongoDB                                     *
   *                                                                          *
   * Run: npm install sails-mongo                                             *

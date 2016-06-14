@@ -9,6 +9,8 @@ var moment = require('moment');
 var nodemailer = require('nodemailer');
 moment.locale('es');
 
+var path = require('path');
+
 module.exports = {
 
 	login: function(req, res) { /* Iniciar sesion, se verifican que las credenciales coincidan con el usuario registrado */
@@ -84,6 +86,8 @@ module.exports = {
 	create: function(req, res) { /* Crear */
 		var email = req.param('email');
 		var contrasenia = req.param('contrasenia');
+
+		console.log(email + "\t" + contrasenia);
 		if (!email || !contrasenia) {
 			var credencialError = {
 				message: 'Debe ingresar un usuario y una contraseña'
@@ -156,35 +160,16 @@ module.exports = {
 				return res.redirect('/usuario/register');
 			}
 			if (value_user != undefined) {
-				//Buscar entradas publicadas por un usuario, muestra todas excepto las eliminadas
-				Entrada.find({
-					entrada_usuario: value_user.id,
-					sort: 'createdAt DESC',
-					eliminado: [false, undefined]
-				}).populateAll().exec(function(e, r) {
-					//console.log(r[0].toJSON())
-					//res.json(r);
-					//console.log("Resultados de busqueda: \n" + JSON.stringify(r));
-					if (e) {
-						console.log(JSON.stringify(e));
-						return next(e);
-					}
-					for (var i = 0; i < r.length; i++) {
-						r[i].createdAt = moment(r[i].createdAt).fromNow();
-						r[i].updatedAt = moment(r[i].updatedAt).fromNow();
-					}
-					//console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
-					res.locals.layout = 'layouts/internal';
+				//console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
+				res.locals.layout = 'layouts/internal';
 
-					CategoriaEntrada.find({ //Consulta categorias de entradas para la seccion de publicar
-						sort: 'createdAt DESC'
-					}).populateAll().exec(function(error, categoriasent) {
-						res.view({
-							entradas: r,
-							usuario: value_user,
-							categorias: categoriasent,
-							direccion: 'create'
-						});
+				CategoriaEntrada.find({ //Consulta categorias de entradas para la seccion de publicar
+					sort: 'createdAt DESC'
+				}).populateAll().exec(function(error, categoriasent) {
+					res.view({
+						usuario: value_user,
+						categorias: categoriasent,
+						direccion: 'create'
 					});
 				});
 			} else {
