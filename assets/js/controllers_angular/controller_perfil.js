@@ -45,6 +45,7 @@ app.controller('ControllerPerfil', [
         $scope.getEntradas();
       }).error(function(data, status, headers, config) {
         console.log("Error> " + data);
+        alert('No se pudo desocultar la entrada.\n' + status);
       });
     };
 
