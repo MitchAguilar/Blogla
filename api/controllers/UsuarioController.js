@@ -98,16 +98,20 @@ module.exports = {
 			return res.redirect('/usuario/register');
 		} else {
 			/* Buscar rol de editor para asignarlo al nuevo usuario a registrar */
-			Rol.findOne({
-				nombre: ['Editor', 'editor', 'edit']
-			}, function RolFounded(err, value) {
+			Rol.findOrCreate({
+				nombre: 'Editor'
+			}).exec(function createFindCB(err, createdOrFoundRecords) {
+				console.log('What\'s cookin\' ' + createdOrFoundRecords.nombre + '?');
+
 				if (err) {
 					console.log(JSON.stringify(err));
 					req.session.flash = {
 						err: err
 					};
 					return res.redirect('/usuario/register');
-				} else if (value.id == undefined) {
+				}
+
+				if (createdOrFoundRecords.id == undefined) {
 					req.session.flash = {
 						err: {
 							message: 'No se puede registrar debido a que NO existen roles.'
@@ -115,7 +119,7 @@ module.exports = {
 					};
 					return res.redirect('/usuario/register');
 				} else {
-					console.log("Roles encontrados: " + (value.length));
+					console.log("Roles encontrados: " + (JSON.stringify(createdOrFoundRecords)));
 
 					var UserObj = {
 						email: req.param('email'),
@@ -128,7 +132,7 @@ module.exports = {
 						biografia: req.param('biografia'),
 						contrasenia: req.param('contrasenia'),
 						contrasenia_confirmacion: req.param('contrasenia_confirmacion'),
-						rol: value.id //Se asigna el id del rol perteneciente a editor
+						rol: createdOrFoundRecords.id //Se asigna el id del rol perteneciente a editor
 					};
 
 					Usuario.create(UserObj, function(err, value) {

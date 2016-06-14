@@ -51,10 +51,10 @@ module.exports.policies = {
   'usuario': {
     'login': 'flash',
     'signin': 'flash',
-    'register': 'authenticated',
+    'register': 'flash',
     'perfil': 'authenticated',
     'signout': 'authenticated',
-    'create': 'authenticated',
+    'create': 'flash',
     'index': false,
     '*': false
   }

@@ -1,56 +1,58 @@
-<div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
-  <div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
-    <img class="article-image" src="<%= entradas[0].fondo %>" border="0" alt="">
-  </div>
-  <div class="mdl-cell mdl-cell--8-col">
-    <h2 class="mdl-card__title-text">
-      <%= entradas[0].titulo %>
-    </h2>
-    <div class="mdl-card__supporting-text padding-top">
-      <span>
-        <%= entradas[0].createdAt %>
-      </span>
+<% if(entradas.length > 0)  { %>
+  <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
+    <div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
+      <img class="article-image" src="<%= entradas[0].fondo %>" border="0" alt="">
     </div>
-    <div class="mdl-card__supporting-text no-left-padding">
-      <p>
-        <%= entradas[0].resumen %>
-      </p>
-      <span>Categoria:
-        <a href="#">
-          <%= entradas[0].categoria_entrada_ref.nombre_categoria %>
-        </a>
-      </span>
-      <br>
-      <span>
-        <a href="/entrada/showOne/<%= entradas[0].id %>">
+    <div class="mdl-cell mdl-cell--8-col">
+      <h2 class="mdl-card__title-text">
+        <%= entradas[0].titulo %>
+      </h2>
+      <div class="mdl-card__supporting-text padding-top">
+        <span>
+          <%= entradas[0].createdAt %>
+        </span>
+      </div>
+      <div class="mdl-card__supporting-text no-left-padding">
+        <p>
+          <%= entradas[0].resumen %>
+        </p>
+        <span>Categoria:
+          <a href="#">
+            <%= entradas[0].categoria_entrada_ref.nombre_categoria %>
+          </a>
+        </span>
+        <br>
+        <span>
+          <a href="/entrada/showOne/<%= entradas[0].id %>">
+            <%= __('ContinuaLeyendo') %>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <% for (var i = 1; i < entradas.length; i++) { %>
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+      <div class="mdl-card__media">
+        <% if (entradas[i].fondo == undefined) { %>
+          <img class="article-image" src="/images/example-work08.jpg" border="0" alt="">
+        <% } else { %>
+          <img class="article-image" src="<%= entradas[i].fondo %>" border="0" alt="">
+        <% } %>
+      </div>
+      <div class="mdl-card__title ">
+        <h2 class="mdl-card__title-text">
+          <%= entradas[i].titulo %>
+        </h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <%= entradas[i].resumen.substring(0,100) %>...
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="/entrada/showOne/<%= entradas[i].id %>">
           <%= __('ContinuaLeyendo') %>
         </a>
-      </span>
+      </div>
     </div>
-  </div>
-</div>
-
-<% for (var i = 1; i < entradas.length; i++) { %>
-  <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
-    <div class="mdl-card__media">
-      <% if (entradas[i].fondo == undefined) { %>
-        <img class="article-image" src="/images/example-work08.jpg" border="0" alt="">
-      <% } else { %>
-        <img class="article-image" src="<%= entradas[i].fondo %>" border="0" alt="">
-      <% } %>
-    </div>
-    <div class="mdl-card__title ">
-      <h2 class="mdl-card__title-text">
-        <%= entradas[i].titulo %>
-      </h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-      <%= entradas[i].resumen.substring(0,100) %>...
-    </div>
-    <div class="mdl-card__actions mdl-card--border">
-      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="/entrada/showOne/<%= entradas[i].id %>">
-        <%= __('ContinuaLeyendo') %>
-      </a>
-    </div>
-  </div>
+  <% } %>
 <% } %>
