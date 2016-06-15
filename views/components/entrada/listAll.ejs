@@ -1,3 +1,61 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <input type="text" class="form-control border-input" placeholder="Buscar" ng-model="search">
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-center">#</th>
+      <th>Titulo</th>
+      <th>Categoria</th>
+      <th>Actualizado</th>
+      <th>Estado</th>
+      <th class="text-right">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="entradas in entradas.entradas | filter:search">
+      <td class="text-center">
+        {{$index + 1}}
+      </td>
+      <td>
+        {{entradas.titulo}}
+      </td>
+      <td>
+        {{entradas.categoria_entrada_ref.nombre_categoria}}
+      </td>
+      <td>
+        {{moment(entradas.updatedAt).fromNow()}}
+      </td>
+      <td>
+        {{(entradas.oculto? 'Ocuto': 'Activo')}}
+      </td>
+      <td class="td-actions text-right">
+        <a ng-show="(entradas.oculto == true)" ng-click="desocultarEntrada(entradas.id)" href="" rel="tooltip" title="<%= __('Desocultar') %>">
+          <i class="ti-angle-left"></i>
+        </a>
+
+        <a ng-show="(entradas.oculto !== true)" ng-click="ocultarEntrada(entradas.id)" href="" rel="tooltip" title="<%= __('Ocultar') %>">
+          <i class="ti-angle-right"></i>
+        </a>
+
+        <a href="/entrada/showOne/{{entradas.id}}" target="_blank" title="Ver">
+          <i class="ti-eye"></i>
+        </a>
+
+        <a ng-dblclick="eliminarEntrada(entradas.id)" href="" rel="tooltip" title="Doble click para <%= __('Eliminar') %>">
+          <i class="ti-close"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
@@ -10,41 +68,30 @@
     </tr>
   </thead>
   <tbody>
-      <tr ng-repeat="entradas in entradas.entradas">
-        <th class="mdl-data-table__cell--non-numeric">
-          {{$index + 1}}
-        </th>
-        <td>
-          {{entradas.titulo}}
-        </td>
-        <td>
-          {{entradas.resumen.substring(0, 40)}}
-        </td>
-        <td>
-          {{entradas.categoria_entrada_ref.nombre_categoria}}
-        </td>
-        <td>
-          {{moment(entradas.createdAt).fromNow()}}
-        </td>
-        <td title="Ver una publicacion">
-          <a href="/entrada/showOne/{{entradas.id}}" target="_blank">
-            Ver
-          </a>
-        </td>
-        <td title="Ocultar o desocultar una publicación">
-            <a class="mdl-button-primary" ng-show="(entradas.oculto == true)" ng-click="desocultarEntrada(entradas.id)" href="">
-              <%= __('Desocultar') %>
-            </a>
+    <tr ng-repeat="entradas in entradas.entradas">
+      <td>
+        {{moment(entradas.createdAt).fromNow()}}
+      </td>
+      <td title="Ver una publicacion">
+        <a href="/entrada/showOne/{{entradas.id}}" target="_blank">
+          Ver
+        </a>
+      </td>
+      <td title="Ocultar o desocultar una publicación">
+        <a class="mdl-button-primary" ng-show="(entradas.oculto == true)" ng-click="desocultarEntrada(entradas.id)" href="">
+          <%= __('Desocultar') %>
+        </a>
 
-            <a class="mdl-button-primary" ng-show="(entradas.oculto == false || entradas.oculto == undefined)" ng-click="ocultarEntrada(entradas.id)" href="">
-              <%= __('Ocultar') %>
-            </a>
-        </td>
-        <td title="Doble click para eliminar">
-          <a href="" class="mdl-button--accent" ng-dblclick="eliminarEntrada(entradas.id)">
-            <%= __('Eliminar') %>
-          </a>
-        </td>
-      </tr>
+        <a class="mdl-button-primary" ng-show="(entradas.oculto == false || entradas.oculto == undefined)" ng-click="ocultarEntrada(entradas.id)" href="">
+          <%= __('Ocultar') %>
+        </a>
+      </td>
+      <td title="Doble click para eliminar">
+        <a href="" class="mdl-button--accent" ng-dblclick="eliminarEntrada(entradas.id)">
+          <%= __('Eliminar') %>
+        </a>
+      </td>
+    </tr>
   </tbody>
 </table>
+-->

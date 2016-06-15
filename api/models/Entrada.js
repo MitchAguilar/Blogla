@@ -15,8 +15,7 @@ module.exports = {
       required: true
     },
     fondo: {
-      type: 'text',
-      required: true
+      type: 'text'
     },
     resumen: {
       type: 'text',

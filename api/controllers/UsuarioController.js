@@ -166,15 +166,9 @@ module.exports = {
 			if (value_user != undefined) {
 				//console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
 				res.locals.layout = 'layouts/internal';
-
-				CategoriaEntrada.find({ //Consulta categorias de entradas para la seccion de publicar
-					sort: 'createdAt DESC'
-				}).populateAll().exec(function(error, categoriasent) {
-					res.view({
-						usuario: value_user,
-						categorias: categoriasent,
-						direccion: 'create'
-					});
+				res.view({
+					usuario: value_user,
+					direccion: 'create'
 				});
 			} else {
 				return res.redirect('/'); // Si se inserta un id de usuario incorrecto, se redirige al index

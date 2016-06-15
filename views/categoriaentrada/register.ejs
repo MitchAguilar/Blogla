@@ -1,0 +1,28 @@
+<% if (flash && flash.err) { %>
+  <p>
+    <ul class="collection">
+      <% Object.keys(flash.err).forEach(function (error) { %>
+        <li class="collection-item">
+          <%= JSON.stringify(flash.err[error]) %>
+        </li>
+      <% }) %>
+    </ul>
+  </p>
+<% } %>
+
+<form action="/categoriaentrada/create" method="post">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input name="nombre_categoria" type="text" class="mdl-textfield__input">
+    <label class="mdl-textfield__label" for="sample3">Nombre de categoria..</label>
+  </div>
+  <br>
+
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input name="descripcion" type="text" class="mdl-textfield__input">
+    <label class="mdl-textfield__label">Descripcion...</label>
+  </div>
+  <br>
+
+  <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+  <button name="action" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Añadir</button>
+</form>

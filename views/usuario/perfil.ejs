@@ -1,44 +1,442 @@
-<script src="/js/controllers_angular/controller_perfil.js"></script>
+<div ng-controller="ControllerPerfil" ng-init="inicializar()">
+  <div class="wrapper" ng-cloak>
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
 
+      <!-- Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"	Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"-->
+
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="http://www.creative-tim.com" class="simple-text">
+            <%= usuario.nick %>
+          </a>
+        </div>
+
+        <ul class="nav">
+          <li class="{{click_dashboard? 'active': ''}}">
+            <a href="" ng-click="fnclick_dashboard()">
+              <i class="ti-panel"></i>
+              <p>
+                <%= __('Dashboard') %>
+              </p>
+            </a>
+          </li>
+          <li class="{{publicar? 'active': ''}}">
+            <a href="" ng-click="fnclick_publicar()">
+              <i class="ti-layers"></i>
+              <p>Publicaciones</p>
+            </a>
+          </li>
+          <li class="{{perfil? 'active': ''}}">
+            <a href="" ng-click="fnclick_perfil()">
+              <i class="ti-user"></i>
+              <p>Perfil</p>
+            </a>
+          </li>
+          <li title="Visitar blog">
+            <a href="/">
+              <i class="ti-text"></i>
+              <p>Blog</p>
+            </a>
+          </li>
+          <li>
+            <a href="icons.html">
+              <i class="ti-pencil-alt2"></i>
+              <p>Icons</p>
+            </a>
+          </li>
+          <li>
+            <a href="maps.html">
+              <i class="ti-map"></i>
+              <p>Maps</p>
+            </a>
+          </li>
+          <li>
+            <a href="notifications.html">
+              <i class="ti-bell"></i>
+              <p>Notifications</p>
+            </a>
+          </li>
+          <li>
+            <a href="/usuario/signout">
+              <i class="ti-back-right"></i>
+              <p>Salir</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-panel">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar bar1"></span>
+              <span class="icon-bar bar2"></span>
+              <span class="icon-bar bar3"></span>
+            </button>
+            <a class="navbar-brand" href="#">Dashboard</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="ti-panel"></i>
+                  <p>Stats</p>
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="ti-bell"></i>
+                  <p class="notification">5</p>
+                  <p>Notifications</p>
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">Notification 1</a>
+                  </li>
+                  <li>
+                    <a href="#">Notification 2</a>
+                  </li>
+                  <li>
+                    <a href="#">Notification 3</a>
+                  </li>
+                  <li>
+                    <a href="#">Notification 4</a>
+                  </li>
+                  <li>
+                    <a href="#">Another notification</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="ti-settings"></i>
+                  <p>Settings</p>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+
+      <div class="content">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-lg-3 col-sm-6">
+              <div class="card">
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-5">
+                      <div class="icon-big icon-warning text-center">
+                        <i class="ti-server"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <div class="numbers">
+                        <p>Publicaciones</p>
+                        {{ entradas.entradas.length }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <hr/>
+                    <div class="stats">
+                      <i class="ti-reload"></i>
+                      Updated now
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="card">
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-5">
+                      <div class="icon-big icon-success text-center">
+                        <i class="ti-wallet"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <div class="numbers">
+                        <p>Ocultos</p>
+                        {{ entradas_ocultas }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <hr/>
+                    <div class="stats">
+                      <i class="ti-calendar"></i>
+                      Last day
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="card">
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-5">
+                      <div class="icon-big icon-danger text-center">
+                        <i class="ti-pulse"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <div class="numbers">
+                        <p>Activos</p>
+                        {{ (entradas.entradas.length - entradas_ocultas) }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <hr/>
+                    <div class="stats">
+                      <i class="ti-timer"></i>
+                      In the last hour
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="card">
+                <div class="content">
+                  <div class="row">
+                    <div class="col-xs-5">
+                      <div class="icon-big icon-info text-center">
+                        <i class="ti-twitter-alt"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <div class="numbers">
+                        <p>Followers</p>
+                        +45
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <hr/>
+                    <div class="stats">
+                      <i class="ti-reload"></i>
+                      Updated now
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" ng-show="publicar==true">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="content">
+                  <h4 class="title">Publicar</h4>
+                  <%- include ../entrada/nuevo %>
+                  <div class="footer">
+                    <hr>
+                    <div class="stats">
+                      <i class="ti-reload"></i>
+                      {{moment().format()}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" ng-show="click_dashboard==true">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="content">
+                  <h4 class="title">Publicaciones</h4>
+                  <% include ../components/entrada/listAll %>
+                  <div class="footer">
+                    <hr>
+                    <div class="stats">
+                      <i class="ti-reload" title="Click para actualizar"></i>
+                      {{moment().format('llll')}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" ng-show="perfil==true">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="content">
+                  <h4 class="title">Perfil</h4>
+                  <% include ../components/usuario/info %>
+                  <div class="footer">
+                    <hr>
+                    <div class="stats">
+                      <i class="ti-reload" title="Click para actualizar"></i>
+                      {{moment().format('llll')}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" ng-show="click_dashboard==true">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="header">
+                  <h4 class="title">Users Behavior</h4>
+                  <p class="category">24 Hours performance</p>
+                </div>
+                <div class="content">
+                  <div id="chartHours" class="ct-chart"></div>
+                  <div class="footer">
+                    <div class="chart-legend">
+                      <i class="fa fa-circle text-info"></i>
+                      Open
+                      <i class="fa fa-circle text-danger"></i>
+                      Click
+                      <i class="fa fa-circle text-warning"></i>
+                      Click Second Time
+                    </div>
+                    <hr>
+                    <div class="stats">
+                      <i class="ti-reload"></i>
+                      Updated 3 minutes ago
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" ng-show="click_dashboard==true">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="header">
+                  <h4 class="title">Email Statistics</h4>
+                  <p class="category">Last Campaign Performance</p>
+                </div>
+                <div class="content">
+                  <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+
+                  <div class="footer">
+                    <div class="chart-legend">
+                      <i class="fa fa-circle text-info"></i>
+                      Open
+                      <i class="fa fa-circle text-danger"></i>
+                      Bounce
+                      <i class="fa fa-circle text-warning"></i>
+                      Unsubscribe
+                    </div>
+                    <hr>
+                    <div class="stats">
+                      <i class="ti-timer"></i>
+                      Campaign sent 2 days ago
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card ">
+                <div class="header">
+                  <h4 class="title">2015 Sales</h4>
+                  <p class="category">All products including Taxes</p>
+                </div>
+                <div class="content">
+                  <div id="chartActivity" class="ct-chart"></div>
+
+                  <div class="footer">
+                    <div class="chart-legend">
+                      <i class="fa fa-circle text-info"></i>
+                      Tesla Model S
+                      <i class="fa fa-circle text-warning"></i>
+                      BMW 5 Series
+                    </div>
+                    <hr>
+                    <div class="stats">
+                      <i class="ti-check"></i>
+                      Data information certified
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="pull-left">
+            <ul>
+              <li>
+                <a href="http://www.creative-tim.com">
+                  Creative Tim
+                </a>
+              </li>
+              <li>
+                <a href="http://blog.creative-tim.com">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="http://www.creative-tim.com/license">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright pull-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with
+            <i class="fa fa-heart heart"></i>
+            by
+            <a href="http://www.creative-tim.com">Creative Tim</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    demo.initChartist();
+
+    $.notify({
+      icon: 'ti-gift',
+      message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
+    }, {
+      type: 'success',
+      timer: 4000
+    });
+  });
+</script>
+
+<!--
 <div ng-controller="ControllerPerfil">
   <div ng-init="inicializar()" ng-cloak>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">
-            <%= __('Dashboard') %>
-          </span>
-          <div class="mdl-layout-spacer"></div>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="material-icons">more_vert</i>
-          </button>
-          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
-            <li class="mdl-menu__item">
-              <%= __('Contacto') %>
-            </li>
-            <li class="mdl-menu__item">
-              <a href="/usuario/signout">
-                Salir
-              </a>
-            </li>
-          </ul>
-        </div>
-      </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <header class="demo-drawer-header">
-          <img src="/images/hor-news5.jpg" class="demo-avatar">
           <div class="demo-avatar-dropdown">
-            <span>
-              <%= usuario.email %>
-            </span>
-            <div class="mdl-layout-spacer"></div>
-            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">arrow_drop_down</i>
-              <span class="visuallyhidden">Accounts</span>
-            </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <!--<li class="mdl-menu__item">hello@example.com</li>-->
+
               <li class="mdl-menu__item">
                 <i class="material-icons">add</i>
                 <a ng-click="click_new_usuario()" href>Crear otra cuenta...</a>
@@ -57,7 +455,7 @@
           </a>
           <a class="mdl-navigation__link" ng-click="click_categoria_entrada()" href>
             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
-            Categorias de publicación
+            Categorias
           </a>
           <a class="mdl-navigation__link" href="">
             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
@@ -81,33 +479,12 @@
             <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
               <use xlink:href="#piechart" mask="url(#piemask)"/>
               <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
-                {{ entradas.entradas.length }}
-                <tspan font-size="0.09" dy="-0.07">Publicaciones</tspan>
-              </text>
-            </svg>
-            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)"/>
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
-
-                {{ entradas_ocultas }}
-                <tspan dy="-0.07" font-size="0.09">
-                  Ocultos
-                </tspan>
-              </text>
-            </svg>
-            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)"/>
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
                 {{ (entradas.entradas.length - entradas_ocultas) }}
                 <tspan dy="-0.07" font-size="0.09">
                   Activos
                 </tspan>
               </text>
             </svg>
-          </div>
-
-          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" ng-show="click_dashboard == true && entradas.entradas.length > 0">
-            <% include ../components/entrada/listAll %>
           </div>
 
           <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" ng-show="publicar == true">
@@ -117,103 +494,9 @@
           <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" ng-show="registrar_usuario == true">
             <%- include ../usuario/register %>
           </div>
-
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" ng-show="click_dashboard == true">
-            <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-              <use xlink:href="#chart"/>
-            </svg>
-            <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-              <use xlink:href="#chart"/>
-            </svg>
-          </div>
-          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing" ng-show="click_dashboard == true">
-            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                <h2 class="mdl-card__title-text">Updates</h2>
-              </div>
-              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                Non dolore elit adipisicing ea reprehenderit consectetur culpa.
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
-              </div>
-            </div>
-            <div class="demo-separator mdl-cell--1-col"></div>
-            <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
-              <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
-                <h3>View options</h3>
-                <ul>
-                  <li>
-                    <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Click per object</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Views per object</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Objects selected</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Objects viewed</span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
-                <div class="mdl-layout-spacer"></div>
-                <i class="material-icons">location_on</i>
-              </div>
-            </div>
-          </div>
         </div>
       </main>
     </div>
-
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250" style="position: fixed; left: -1000px; height: -1000px;">
-      <defs>
-        <g id="chart">
-          <g id="Gridlines">
-            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="27.3" x2="468.3" y2="27.3"/>
-            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="66.7" x2="468.3" y2="66.7"/>
-            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="105.3" x2="468.3" y2="105.3"/>
-            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="144.7" x2="468.3" y2="144.7"/>
-            <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="184.3" x2="468.3" y2="184.3"/>
-          </g>
-          <g id="Numbers">
-            <text transform="matrix(1 0 0 1 485 29.3333)" fill="#888888" font-family="'Roboto'" font-size="9">500</text>
-            <text transform="matrix(1 0 0 1 485 69)" fill="#888888" font-family="'Roboto'" font-size="9">400</text>
-            <text transform="matrix(1 0 0 1 485 109.3333)" fill="#888888" font-family="'Roboto'" font-size="9">300</text>
-            <text transform="matrix(1 0 0 1 485 149)" fill="#888888" font-family="'Roboto'" font-size="9">200</text>
-            <text transform="matrix(1 0 0 1 485 188.3333)" fill="#888888" font-family="'Roboto'" font-size="9">100</text>
-            <text transform="matrix(1 0 0 1 0 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">1</text>
-            <text transform="matrix(1 0 0 1 78 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">2</text>
-            <text transform="matrix(1 0 0 1 154.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">3</text>
-            <text transform="matrix(1 0 0 1 232.1667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">4</text>
-            <text transform="matrix(1 0 0 1 309 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">5</text>
-            <text transform="matrix(1 0 0 1 386.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">6</text>
-            <text transform="matrix(1 0 0 1 464.3333 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">7</text>
-          </g>
-          <g id="Layer_5">
-            <polygon opacity="0.36" stroke-miterlimit="10" points="0,223.3 48,138.5 154.7,169 211,88.5
-              294.5,80.5 380,165.2 437,75.5 469.5,223.3 	"/>
-          </g>
-          <g id="Layer_4">
-            <polygon stroke-miterlimit="10" points="469.3,222.7 1,222.7 48.7,166.7 155.7,188.3 212,132.7
-              296.7,128 380.7,184.3 436.7,125 	"/>
-          </g>
-        </g>
-      </defs>
-    </svg>
   </div>
 </div>
+-->

@@ -7,10 +7,14 @@ app.controller('ControllerPerfil', [
     $scope.moment = moment;
     $scope.moment.locale('es');
 
-    $http.get('/categoriaentrada').then(function(response) {
-      self.categoriasentradas = response.data;
-      console.log(self.categoriasentradas);
-    });
+    $scope.getCategoriaentradas = function() {
+      $http.get('/categoriaentrada').success(function(data, status, headers, config) {
+        $scope.categoriasentradas = data.categoriasentradas;
+        console.log(JSON.stringify($scope.categoriasentradas));
+      }).error(function(data, status, headers, config) {
+        console.log("Error> " + data);
+      });
+    };
 
     /**
      * Get JSON entradas
@@ -58,34 +62,55 @@ app.controller('ControllerPerfil', [
       });
     };
 
+
+    /***************************************************************************
+                                Funciones del menu
+     */
     $scope.fnclick_dashboard = function() {
       $scope.click_dashboard = true;
       $scope.publicar = false;
       $scope.registrar_usuario = false;
+      $scope.categoria_entrada = false;
+      $scope.perfil = false;
     };
 
     $scope.click_categoria_entrada = function() {
+      $scope.categoria_entrada = true;
       $scope.click_dashboard = false;
       $scope.publicar = true;
       $scope.registrar_usuario = false;
+      $scope.perfil = false;
     };
 
-    $scope.click_publicar = function() {
-      $scope.click_dashboard = false;
+    $scope.fnclick_publicar = function() {
       $scope.publicar = true;
+      $scope.click_dashboard = false;
       $scope.registrar_usuario = false;
+      $scope.categoria_entrada = false;
+      $scope.perfil = false;
     };
 
-    $scope.click_new_usuario = function() {
+    $scope.fnclick_new_usuario = function() {
+      $scope.registrar_usuario = true;
       $scope.click_dashboard = false;
       $scope.publicar = false;
-      $scope.registrar_usuario = true;
+      $scope.categoria_entrada = false;
+      $scope.perfil = false;
+    };
+
+    $scope.fnclick_perfil = function() {
+      $scope.perfil = true;
+      $scope.registrar_usuario = false;
+      $scope.click_dashboard = false;
+      $scope.publicar = false;
+      $scope.categoria_entrada = false;
     };
 
     $scope.inicializar = function() {
       $scope.entradas = [];
       $scope.entradas_ocultas = 0;
 
+      $scope.getCategoriaentradas();
       $scope.getEntradas();
 
       $scope.fnclick_dashboard();

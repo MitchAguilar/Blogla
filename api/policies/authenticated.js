@@ -18,5 +18,5 @@ module.exports = function(req, res, ok) {
   };
 
   console.log("authenticated::> Redirigiendo a signin porque no se tienen permisos para acceder.");
-  return res.redirect('/usuario/signin');
+  return res.redirect('/');
 }

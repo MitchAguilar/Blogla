@@ -157,58 +157,33 @@ module.exports = {
 	},
 	create: function(req, res, next) { /* Crear Entrada en la base de datos */
 		//console.log("Peticion: " + JSON.stringify(req.params));
-		req.file('fondo').upload({
-			// You can apply a file upload limit (in bytes)
-			maxBytes: 2000000,
-			dirname: '../../assets/images/imageFolder'
-				//adapter: require('skipper-disk')
-		}, function whenDone(err, uploadedFiles) {
-			if (err) {
-				var error = {
-					"status": 500,
-					"error": err
-				};
-				res.status(500);
-				return res.json(error);
-			} else {
-				for (u in uploadedFiles) {
-					//"fd" contains the actual file path (and name) of your file on disk
-					fileOnDisk = uploadedFiles[u].fd;
+		console.log("Usuario que publica: " + req.session.User.email);
+		var entrada = {
+			titulo: req.param('titulo'),
+			cuerpo: req.param('cuerpo'),
+			resumen: req.param('resumen'),
+			oculto: false,
+			eliminado: false,
+			categoria_entrada_ref: req.param('categoria_entrada_ref'),
+			entrada_usuario: req.session.User.id
+		}
 
-					// I suggest you stringify the object to see what it contains and might be useful to you
-					console.log(JSON.stringify(uploadedFiles[u]));
-					var pos = fileOnDisk.indexOf("/images/imageFolder/");
-					var ruta_foto = fileOnDisk.substring(pos, fileOnDisk.length);
-					console.log("Ruta_ " + ruta_foto);
-
-					console.log("ID del usuario que publica: " + req.session.User.id);
-					var entrada = {
-						titulo: req.param('titulo'),
-						cuerpo: req.param('cuerpo'),
-						fondo: ruta_foto,
-						resumen: req.param('resumen'),
-						oculto: false,
-						eliminado: false,
-						categoria_entrada_ref: req.param('categoria_entrada_ref'),
-						entrada_usuario: req.session.User.id
-					}
-
-					if (entrada.titulo != undefined && entrada.cuerpo != undefined && entrada.fondo != undefined) {
-						Entrada.create(entrada, function(err, value) {
-							if (err) {
-								console.log("Error al crear una entrada, error: " + err);
-								//return res.redirect('comentario/nuevo');
-								return next(err);
-							}
-							return res.redirect('entrada/showOne/' + value.id);
-						});
-					} else {
-						console.log("Error al crear una entrada, Faltan campos. ");
-						return next(err);
-					}
+		if (entrada.titulo != undefined && entrada.cuerpo != undefined) {
+			Entrada.create(entrada, function(err, value) {
+				if (err) {
+					console.log("Error al crear una entrada, error: " + err);
+					//return res.redirect('comentario/nuevo');
+					return next(err);
 				}
+				return res.redirect('entrada/showOne/' + value.id);
+			});
+		} else {
+			console.log("Error al crear una entrada, Faltan campos. ");
+			var err = {
+				message: "Faltan campos para registrar la entrada"
 			}
-		});
+			return next(err);
+		}
 	},
 	showOne: function(req, res) {
 		Entrada.findOneById(req.param('id')).populateAll().exec(function(err, value) {

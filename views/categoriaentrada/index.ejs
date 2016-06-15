@@ -8,23 +8,21 @@
     </tr>
   </thead>
   <tbody>
-    <% for (var i = 0; i < categoriasentradas.length; i++) { %>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric">
-          <%= (i+1) %>
-        </th>
-        <td>
-          <%= categoriasentradas[i].nombre_categoria %>
-        </td>
-        <td>
-          <%= moment(categoriasentradas[i].createdAt).format('LLS') %>
-        </td>
-        <td>
-          <a href="/categoriaentrada/<%= categoriasentradas[i].id %>" target="_blank">
-            Ver
-          </a>
-        </td>
-      </tr>
-    <% } %>
+    <tr ng-repeat="ce in categoriasentradas">
+      <th class="mdl-data-table__cell--non-numeric">
+        {{($index+1)}}
+      </th>
+      <td>
+        {{ce.nombre_categoria}}
+      </td>
+      <td>
+        {{moment(ce.createdAt).format('LLS')}}
+      </td>
+      <td>
+        <a href="/categoriaentrada/{{ce.id}}" target="_blank">
+          Ver
+        </a>
+      </td>
+    </tr>
   </tbody>
 </table>
