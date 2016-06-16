@@ -32,16 +32,16 @@
               <p>Perfil</p>
             </a>
           </li>
+          <li class="{{click_categoria_entrada? 'active': ''}}">
+            <a href="" ng-click="fnclick_click_categoria_entrada()">
+              <i class="ti-pencil-alt2"></i>
+              <p>Categorias</p>
+            </a>
+          </li>
           <li title="Visitar blog">
             <a href="/">
               <i class="ti-text"></i>
               <p>Blog</p>
-            </a>
-          </li>
-          <li>
-            <a href="icons.html">
-              <i class="ti-pencil-alt2"></i>
-              <p>Icons</p>
             </a>
           </li>
           <li>
@@ -271,6 +271,24 @@
             </div>
           </div>
 
+          <div class="row" ng-show="click_categoria_entrada==true">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="content">
+                  <h4 class="title">Categorias</h4>
+                  <% include ../categoriaentrada/index %>
+                  <div class="footer">
+                    <hr>
+                    <div class="stats">
+                      <i class="ti-reload" title="Click para actualizar"></i>
+                      {{moment().format('llll')}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="row" ng-show="perfil==true">
             <div class="col-md-12">
               <div class="card">
@@ -281,7 +299,7 @@
                     <hr>
                     <div class="stats">
                       <i class="ti-reload" title="Click para actualizar"></i>
-                      {{moment().format('llll')}}
+                      Ultima actualizacion <%= usuario.updatedAt %>
                     </div>
                   </div>
                 </div>

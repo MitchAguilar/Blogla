@@ -27,10 +27,6 @@ module.exports.policies = {
    ***************************************************************************/
 
   '*': 'flash',
-  'usuario': {
-    '*': 'flash',
-    'perfil': 'authenticated'
-  },
   'entrada': {
     'nuevo': 'authenticated',
     'create': 'authenticated',
@@ -55,6 +51,7 @@ module.exports.policies = {
     'perfil': 'authenticated',
     'signout': 'authenticated',
     'create': 'flash',
+    'auth': 'flash',
     'index': false,
     '*': false
   }

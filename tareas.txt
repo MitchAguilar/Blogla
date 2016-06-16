@@ -1,0 +1,7 @@
+________________________________________________________________________________
+                                    TAREAS
+________________________________________________________________________________
+
+
+1. showOne no debe consultar entradas ocultas o eliminadas
+2. Colocar validaciones del lado del servidor (emails)

@@ -70,14 +70,14 @@ app.controller('ControllerPerfil', [
       $scope.click_dashboard = true;
       $scope.publicar = false;
       $scope.registrar_usuario = false;
-      $scope.categoria_entrada = false;
+      $scope.click_categoria_entrada = false;
       $scope.perfil = false;
     };
 
-    $scope.click_categoria_entrada = function() {
-      $scope.categoria_entrada = true;
+    $scope.fnclick_click_categoria_entrada = function() {
+      $scope.click_categoria_entrada = true;
       $scope.click_dashboard = false;
-      $scope.publicar = true;
+      $scope.publicar = false;
       $scope.registrar_usuario = false;
       $scope.perfil = false;
     };
@@ -86,7 +86,7 @@ app.controller('ControllerPerfil', [
       $scope.publicar = true;
       $scope.click_dashboard = false;
       $scope.registrar_usuario = false;
-      $scope.categoria_entrada = false;
+      $scope.click_categoria_entrada = false;
       $scope.perfil = false;
     };
 
@@ -94,7 +94,7 @@ app.controller('ControllerPerfil', [
       $scope.registrar_usuario = true;
       $scope.click_dashboard = false;
       $scope.publicar = false;
-      $scope.categoria_entrada = false;
+      $scope.click_categoria_entrada = false;
       $scope.perfil = false;
     };
 
@@ -103,7 +103,7 @@ app.controller('ControllerPerfil', [
       $scope.registrar_usuario = false;
       $scope.click_dashboard = false;
       $scope.publicar = false;
-      $scope.categoria_entrada = false;
+      $scope.click_categoria_entrada = false;
     };
 
     $scope.inicializar = function() {

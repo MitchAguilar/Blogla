@@ -39,17 +39,192 @@
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/demo.css">
     <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/login-register.css">
     <link rel="stylesheet" href="/styles/material-kit.css">
     <link rel="stylesheet" href="/styles/paper-dashboard.css">
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/themify-icons.css">
     <!--STYLES END-->
-    <!--<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">-->
   </head>
 
   <body ng-app="Blog">
 
-    <%- body %>
+    <%- include ../usuario/signin %>
+
+    <div class="tutorial-page">
+      <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll" role="navigation">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button id="menu-toggle" type="button" class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar bar1"></span>
+              <span class="icon-bar bar2"></span>
+              <span class="icon-bar bar3"></span>
+            </button>
+            <a href="http://www.creative-tim.com">
+              <div class="logo-container">
+                <div class="logo">
+                  <img src="/images/logo.png">
+                </div>
+                <div class="brand">
+                  <%= __('Nombre') %>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a data-toggle="modal" href="javascript:void(0)" onclick="loginAjaxAfter();">
+                  <%= __('Login') %>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/timcreative/material-kit/issues">Have an issue?</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
+
+      <div class="wrapper">
+        <div class="header header-filter" style="background-image: url('/images/photo-1423655156442-ccc11daa4e99.jpg');">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <h1 class="title text-center">
+                  <%= __('Nombre') %>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main main-raised">
+          <div class="section">
+            <div class="container">
+              <%- body %>
+            </div>
+
+            <div class="modal fade login" id="loginModal">
+              <div class="modal-dialog login animated">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Iniciar con</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="box">
+                      <div class="content">
+                        <div class="social">
+                          <a class="circle github" href="#">
+                            <i class="fa fa-github fa-fw"></i>
+                          </a>
+                          <a id="google_login" class="circle google" href="#">
+                            <i class="fa fa-google-plus fa-fw"></i>
+                          </a>
+                          <a id="facebook_login" class="circle facebook" href="#">
+                            <i class="fa fa-facebook fa-fw"></i>
+                          </a>
+                        </div>
+                        <div class="division">
+                          <div class="line l"></div>
+                          <span>
+                            <%= __('o') %>
+                          </span>
+                          <div class="line r"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="form loginBox">
+                          <form method="" action="" accept-charset="UTF-8">
+                            <input id="email" class="form-control" type="text" placeholder="<%= __('Email') %>" name="email">
+                            <input id="password" class="form-control" type="password" placeholder="Password" name="contrasenia">
+                            <input class="btn btn-default btn-login" type="button" value="<%= __('IniciarSesion') %>" onclick="loginAjax()">
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="content registerBox" style="display:none;">
+                        <div class="form">
+                          <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                            <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                            <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                            <input class="btn btn-default btn-register" type="button" value="Create account" name="commit">
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <div class="forgot login-footer">
+                      <span>Looking to
+                        <a href="javascript: showRegisterForm();">
+                        </a>
+                        ?</span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                      <span>
+                        <%= __('SiRegistrado') %>
+                      </span>
+                      <a href="javascript: showLoginForm();">
+                        <%= __('IniciarSesion') %>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer footer-transparent">
+        <div class="container">
+          <nav class="pull-left">
+            <ul>
+              <li>
+                <a href="/acercade">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/">
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="social-area pull-right">
+            <a class="btn btn-social btn-twitter btn-just-icon" href="https://twitter.com/CreativeTim">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a class="btn btn-social btn-facebook btn-just-icon" href="https://www.facebook.com/CreativeTim">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+            <a class="btn btn-social btn-google btn-just-icon" href="https://plus.google.com/+CreativetimPage">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </div>
+          <div class="copyright">
+            &copy; 2016 <%= __('Nombre') %>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      $().ready(function() {
+        $(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
+      });
+    </script>
 
     <!--
         Client-side Templates
@@ -111,6 +286,7 @@
     <script src="/js/chartist.min.js"></script>
     <script src="/js/controllers_angular/controller_perfil.js"></script>
     <script src="/js/demo.js"></script>
+    <script src="/js/login-register.js"></script>
     <script src="/js/material-kit.js"></script>
     <script src="/js/material.min.js"></script>
     <script src="/js/moment-with-locales.min.js"></script>

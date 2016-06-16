@@ -5,69 +5,77 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var path = require('path');
 var moment = require('moment');
 var nodemailer = require('nodemailer');
 moment.locale('es');
 
-var path = require('path');
 
 module.exports = {
 
+	auth: function(req, res) {
+		res.json({
+			auth: req.session.authenticated
+		});
+	},
 	login: function(req, res) { /* Iniciar sesion, se verifican que las credenciales coincidan con el usuario registrado */
-		var email = req.param('email');
-		var contrasenia = req.param('contrasenia');
-		if (!email || !contrasenia) {
-			var credencialError = {
-				message: 'Debe ingresar un usuario y una contraseña'
-			};
-			req.session.flash = {
-				err: credencialError
-			};
-			return res.redirect('/usuario/signin');
+		console.log("Entrando al login");
+		console.log("Estado :  " + req.session.authenticated);
+		if (req.session.authenticated == true && req.session.User.id != undefined) { //Si ya ha iniciado sesion entonces se redirige al perfil
+			return res.redirect('/usuario/perfil/' + req.session.User.id);
 		} else {
-			//if (is.email(email)) { //Validar email
-			Usuario.findOneByEmail(email, function UsuarioFounded(err, value) {
-				if (err) {
-					req.session.flash = {
-						err: err
-					};
-					return res.redirect('/usuario/signin');
-				}
-				if (!value) {
-					var noUserFounded = [{
-						message: 'El usuario "' + email + '" no existe.'
-					}];
-					req.session.flash = {
-						err: noUserFounded
-					};
-					return res.redirect('/usuario/signin');
-				}
-				require('bcrypt').compare(contrasenia, value.contrasenia_encriptada, function passwordMatch(err, valid) {
+			var email = req.param('email');
+			var contrasenia = req.param('contrasenia');
+
+			if (!email || !contrasenia) {
+				var credencialError = {
+					message: 'Debe ingresar un usuario y una contraseña'
+				};
+				req.session.flash = {
+					err: credencialError
+				};
+				return res.redirect('/');
+			} else {
+				Usuario.findOneByEmail(email, function UsuarioFounded(err, value) {
 					if (err) {
 						req.session.flash = {
 							err: err
 						};
-						return res.redirect('/usuario/signin');
+						return res.redirect('/');
 					}
-					if (!valid) {
-						var contraseniaNoDontMatchError = [{
-							message: 'Contraseña incorrecta!'
+					if (!value) {
+						var noUserFounded = [{
+							message: 'El usuario "' + email + '" no existe.'
 						}];
 						req.session.flash = {
-							err: contraseniaNoDontMatchError
+							err: noUserFounded
 						};
 						return res.redirect('/usuario/signin');
 					}
-					req.session.authenticated = true;
-					req.session.User = value;
+					require('bcrypt').compare(contrasenia, value.contrasenia_encriptada, function passwordMatch(err, valid) {
+						if (err) {
+							req.session.flash = {
+								err: err
+							};
+							return res.redirect('/usuario/signin');
+						}
+						if (!valid) {
+							var contraseniaNoDontMatchError = [{
+								message: 'Contraseña incorrecta!'
+							}];
+							req.session.flash = {
+								err: contraseniaNoDontMatchError
+							};
+							return res.redirect('/usuario/signin');
+						}
+						req.session.authenticated = true;
+						req.session.User = value;
 
-					console.log("Usuario inicio sesion, id: " + JSON.stringify(req.session.User.id));
-					return res.redirect('/usuario/perfil/' + value.id);
+						console.log("Usuario inicio sesion, id: " + JSON.stringify(req.session.User.id));
+						return res.redirect('/usuario/perfil/' + value.id);
+					});
 				});
-			});
-			/*  } else {
-			    console.log("Intento de acceso con email incorrecto: " + email);
-			  }*/
+			}
 		}
 	},
 	signin: function(req, res) { /* Abre el formulario de iniciar sesion o login */
@@ -155,32 +163,39 @@ module.exports = {
 		}
 	},
 	perfil: function(req, res) { /* Abre el perfil del usuario */
-		Usuario.findOne(req.param('id'), function usuarioFounded(err, value_user) {
-			if (err) {
-				console.log(JSON.stringify(err));
-				req.session.flash = {
-					err: err
-				};
-				return res.redirect('/usuario/register');
-			}
-			if (value_user != undefined) {
-				//console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
-				res.locals.layout = 'layouts/internal';
-				res.view({
-					usuario: value_user,
-					direccion: 'create'
-				});
-			} else {
-				return res.redirect('/'); // Si se inserta un id de usuario incorrecto, se redirige al index
-			}
-		});
+		res.locals.layout = 'layouts/internal';
+
+		if (req.session.authenticated == true && req.session.User.id != undefined) { //Si ya ha iniciado sesion entonces se redirige al perfil
+			return res.view({
+				usuario: req.session.User,
+				direccion: 'create'
+			});
+		} else {
+			Usuario.findOne(req.param('id'), function usuarioFounded(err, value_user) {
+				if (err) {
+					console.log(JSON.stringify(err));
+					req.session.flash = {
+						err: err
+					};
+					return res.redirect('/usuario/register');
+				}
+				if (value_user != undefined) {
+					//console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
+					res.view({
+						usuario: value_user,
+						direccion: 'create'
+					});
+				} else {
+					return res.redirect('/'); // Si se inserta un id de usuario incorrecto, se redirige al index
+				}
+			});
+		}
 	},
 	signout: function(req, res) { /* Cerrar la sesion */
 		console.log("Usuario cerrando session: " + req.session.User.id);
-		req.session.authenticated = false;
+		req.session.authenticated = undefined;
 		req.session.User = undefined;
-		//    res.redirect('/usuario/signin'); //Refidigir a iniciar sesion
-		res.redirect('/entrada'); //Refidigir a la pagina principal
+		res.redirect('/'); //Refidigir a la pagina principal
 	},
 	index: function(req, res) {
 		console.log("Mostrando todos los usuarios.");

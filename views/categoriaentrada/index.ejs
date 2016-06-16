@@ -1,22 +1,26 @@
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+<table class="table table-striped">
   <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric">#</th>
+      <th>#</th>
       <th>Categoria</th>
+      <th>Descripción</th>
       <th>Creado</th>
-      <th colspan="3">Opciones</th>
+      <th colspan="2">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="ce in categoriasentradas">
-      <th class="mdl-data-table__cell--non-numeric">
+      <th>
         {{($index+1)}}
       </th>
       <td>
         {{ce.nombre_categoria}}
       </td>
       <td>
-        {{moment(ce.createdAt).format('LLS')}}
+        {{ce.descripcion}}
+      </td>
+      <td>
+        {{moment(ce.createdAt).format('LLL')}}
       </td>
       <td>
         <a href="/categoriaentrada/{{ce.id}}" target="_blank">
