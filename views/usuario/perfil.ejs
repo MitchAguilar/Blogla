@@ -101,12 +101,6 @@
                     <a href="#">Notification 2</a>
                   </li>
                   <li>
-                    <a href="#">Notification 3</a>
-                  </li>
-                  <li>
-                    <a href="#">Notification 4</a>
-                  </li>
-                  <li>
                     <a href="#">Another notification</a>
                   </li>
                 </ul>
@@ -126,7 +120,7 @@
       <div class="content">
         <div class="container-fluid">
 
-          <div class="row">
+          <div class="row" ng-show="click_dashboard==true">
             <div class="col-lg-3 col-sm-6">
               <div class="card">
                 <div class="content">
@@ -275,6 +269,15 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="content">
+                  <h4 class="title">Registrar una categoria</h4>
+                  <% include ../categoriaentrada/register %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="content">
                   <h4 class="title">Categorias</h4>
                   <% include ../categoriaentrada/index %>
                   <div class="footer">
@@ -299,7 +302,8 @@
                     <hr>
                     <div class="stats">
                       <i class="ti-reload" title="Click para actualizar"></i>
-                      Ultima actualizacion <%= usuario.updatedAt %>
+                      Ultima actualizacion
+                      <%= usuario.updatedAt %>
                     </div>
                   </div>
                 </div>

@@ -1,116 +1,99 @@
-<main class="mdl-layout__content">
-  <div class="mdl-grid portfolio-max-width">
+<div class="row">
 
-    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-      <div class="mdl-card__title">
+  <center>
+    <h2 class="mdl-card__title-text">
+      <%=: entrada.titulo | capitalize %>
+    </h2>
+    <span>
+      <p>
+        Publicado por
         <strong>
-          <h2 class="mdl-card__title-text">
-            <%=: entrada.titulo | capitalize %>
-          </h2>
-        </strong>
-      </div>
-      <div class="mdl-card__media">
-        <img class="article-image" src="<%= entrada.fondo %>" border="0" alt="" style="height: 50%;">
-      </div>
+          <%=entrada.entrada_usuario.nick%>
+        </strong>,
+        <%= entrada.createdAt %>
+        <% if (entrada.createdAt != entrada.updatedAt) { %>
+          , actualizado hace
+          <%= entrada.createdAt %>
+        <% } %>
+      </p>
+    </span>
+  </center>
 
-      <div class="mdl-grid portfolio-copy">
-        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+  <%- entrada.cuerpo %>
 
-        </h3>
-        <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">
-          <p>
-            Publicado por
-            <strong>
-              <%=entrada.entrada_usuario.nick%>
-            </strong>,
-            <%= entrada.createdAt %>
-            <% if (entrada.createdAt !== entrada.updatedAt) { %>
-              , actualizado hace
-              <%= entrada.createdAt %>
-            <% } %>
-          </p>
-        </h3>
-        <div class="mdl-cell mdl-cell--8-col no-padding">
-          <p>
-            <%- entrada.cuerpo %>
-          </p>
-        </div>
+  <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding">
+    <div>
+      <style media="screen">
+        ul.share-buttons {
+          list-style: none;
+          padding: 0;
+        }
 
-        <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding">
-          <div>
-            <style media="screen">
-              ul.share-buttons {
-                list-style: none;
-                padding: 0;
-              }
-
-              ul.share-buttons li {
-                display: inline;
-              }
-
-            </style>
-            <p>
-              <!-- Editar Button -->
-              <form action="/entrada/editar/<%= entrada.id %>" method="GET">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
-                  <%= __('Editar') %>
-                </button>
-              </form>
-            </p>
-            <p>
-              <ul class="share-buttons">
-                <li>
-                  <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=&t="
-                    title="Share on Facebook"
-                    target="_blank"
-                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;">
-                    <img src="http://www.redrooster.tv/images/fb2.png">
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://twitter.com/intent/tweet?source=&text=:%20"
-                    target="_blank"
-                    title="Tweet"
-                    onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;">
-                    <img src="https://www.msc.org/multimedia/images/logos/social-media/twitter-logo">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;">
-                    <img src="https://jvrdice.files.wordpress.com/2013/12/googleplus-icon.gif?w=820">
-                  </a>
-                </li>
-                <li>
-                  <a href="http://www.tumblr.com/share?v=3&u=&t=&s=" target="_blank" title="Post to Tumblr" onclick="window.open('http://www.tumblr.com/share?v=3&u=' + encodeURIComponent(document.URL) + '&t=' +  encodeURIComponent(document.title)); return false;">
-                    <img src="http://static.tumblr.com/o6knfw4/UZEml1xdk/fc-webicon-flickr-m.png">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://getpocket.com/save?url=&title=" target="_blank" title="Add to Pocket" onclick="window.open('https://getpocket.com/save?url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;">
-                    <img src="http://static-4.app4smart.me/i/icon/30/far/lqe/7bm/pocket.png">
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source="
-                    target="_blank"
-                    title="Share on LinkedIn"
-                    onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;">
-                    <img src="http://www.abogadosmadridtenerife.com/s/cc_images/cache_2320481.png?t=1443275566">
-                  </a>
-                </li>
-                <li>
-                  <a href="mailto:?subject=&body=:%20" target="_blank" title="Email" onclick="window.open('mailto:?subject=' + encodeURIComponent(document.title) + '&body=' +  encodeURIComponent(document.URL)); return false;">
-                    <img src="http://static-4.app4smart.me/i/icon/30/nqs/wrz/8j0/blue-mail-email-app.png">
-                  </a>
-                </li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
+        ul.share-buttons li {
+          display: inline;
+        }
+      </style>
+      <p>
+        <% if (creador === true) { %>
+          <!-- Editar Button -->
+          <form action="/entrada/editar/<%= entrada.id %>" method="GET">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+              <%= __('Editar') %>
+            </button>
+          </form>
+        <% } %>
+      </p>
+      <p>
+        <ul class="share-buttons">
+          <li>
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u=&t="
+              title="Share on Facebook"
+              target="_blank"
+              onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;">
+              <img src="http://www.redrooster.tv/images/fb2.png">
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/intent/tweet?source=&text=:%20"
+              target="_blank"
+              title="Tweet"
+              onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;">
+              <img src="https://www.msc.org/multimedia/images/logos/social-media/twitter-logo">
+            </a>
+          </li>
+          <li>
+            <a href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;">
+              <img src="https://jvrdice.files.wordpress.com/2013/12/googleplus-icon.gif?w=820">
+            </a>
+          </li>
+          <li>
+            <a href="http://www.tumblr.com/share?v=3&u=&t=&s=" target="_blank" title="Post to Tumblr" onclick="window.open('http://www.tumblr.com/share?v=3&u=' + encodeURIComponent(document.URL) + '&t=' +  encodeURIComponent(document.title)); return false;">
+              <img src="http://static.tumblr.com/o6knfw4/UZEml1xdk/fc-webicon-flickr-m.png">
+            </a>
+          </li>
+          <li>
+            <a href="https://getpocket.com/save?url=&title=" target="_blank" title="Add to Pocket" onclick="window.open('https://getpocket.com/save?url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;">
+              <img src="http://static-4.app4smart.me/i/icon/30/far/lqe/7bm/pocket.png">
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source="
+              target="_blank"
+              title="Share on LinkedIn"
+              onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;">
+              <img src="http://www.abogadosmadridtenerife.com/s/cc_images/cache_2320481.png?t=1443275566">
+            </a>
+          </li>
+          <li>
+            <a href="mailto:?subject=&body=:%20" target="_blank" title="Email" onclick="window.open('mailto:?subject=' + encodeURIComponent(document.title) + '&body=' +  encodeURIComponent(document.URL)); return false;">
+              <img src="http://static-4.app4smart.me/i/icon/30/nqs/wrz/8j0/blue-mail-email-app.png">
+            </a>
+          </li>
+        </ul>
+      </p>
     </div>
   </div>
-</main>
+</div>

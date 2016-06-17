@@ -198,10 +198,17 @@ module.exports = {
 				value.createdAt = momentParse(value.createdAt);
 				value.updatedAt = momentParse(value.updatedAt);
 
-				res.locals.layout = 'layouts/public';
-				res.view({
-					entrada: value
-				});
+				if (req.session.authenticated) { //Verificar si esta autenticado
+					res.view({
+						entrada: value,
+						creador: (req.session.User.id == value.entrada_usuario.id) //Verificar que la publicacion a ver la esta solicitando el mismo que la creó
+					});
+				} else { //El 'else' se coloca porque puede que el usuario no esté autenticado y por lo tanto User.id no existe y no se puede verificar
+					res.view({
+						entrada: value,
+						creador: false
+					});
+				}
 			} else {
 				console.log("No se encontro la entrada.");
 				return res.redirect('/entrada');
@@ -219,21 +226,9 @@ module.exports = {
 				return res.redirect('/entrada');
 			}
 			if (value != undefined) {
-				value.createdAt = momentParse(value.createdAt);
-				value.updatedAt = momentParse(value.updatedAt);
-
-				CategoriaEntrada.find(function CategoriaEntradaFounded(err, values) {
-					if (err) {
-						console.log('Error al consultar las categorias de las entradas. ' + err);
-						return next(err);
-					}
-					console.log("Se han consultado " + (values.length) + " categorias de entrada, form editar");
-
-					res.view('entrada/nuevo', {
-						categorias: values,
-						direccion: 'update',
-						entrada: value
-					});
+				res.view('entrada/nuevo', {
+					direccion: 'update',
+					entrada: value
 				});
 			} else {
 				console.log("No se encontro la entrada.");
@@ -273,9 +268,7 @@ module.exports = {
 				console.log('Updated entrada con id ' + updated[0].id);
 
 				findEntrada(updated[0].id, function(err, value) {
-					return res.view('entrada/showOne', {
-						entrada: value
-					});
+					return res.redirect('entrada/showOne/' + value.id);
 				})
 			});
 		}
@@ -296,9 +289,6 @@ var momentParse = function(string) {
 
 /**
  * Busca una entrada por id
- * @param  {[type]}   _id      [description]
- * @param  {Function} callback [description]
- * @return {[type]}            [description]
  */
 var findEntrada = function(_id, callback) {
 	Entrada.findOneById(_id).populateAll().exec(function(err, value) {
@@ -310,6 +300,8 @@ var findEntrada = function(_id, callback) {
 
 /**
  * Actualiza una entrada
+ *
+ * Se actualizan unicamente los atributos que se ingresan en el parametro 'atributos'
  */
 var updateEntrada = function(_id, atributos, callback) {
 	Entrada.update({

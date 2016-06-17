@@ -1,70 +1,76 @@
 <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 
-<form method="<%= (direccion=='update')?'put':'post' %>" action="/entrada/<%= direccion %>" enctype="multipart/form-data">
+<% if (direccion == 'update') {  /* Esta condicioncion es porque dashboard incrusta este mismo formulario y no es necesario asignar una vez mas 'ControllerPerfil' */ %> 
+  <div ng-controller="ControllerPerfil" ng-init="getCategoriaentradas()">
+<% } else { %>
+  <div>
+<% } %>
+  <form method="<%= (direccion=='update')?'put':'post' %>" action="/entrada/<%= direccion %>" enctype="multipart/form-data">
 
-  <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+    <input type='hidden' name='_csrf' value='<%= _csrf %>'>
 
-  <% if (direccion == 'update') { %>
-    <input name="id" value="<%= entrada.id %>" hidden="true" required>
-  <% } %>
+    <% if (direccion == 'update') { %>
+      <input name="id" value="<%= entrada.id %>" hidden="true" required>
+    <% } %>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <label>Titulo</label>
-        <input name="titulo" type="text" class="form-control border-input" placeholder="Titulo de la publicacion" value="<%= (direccion=='update')?entrada.titulo:'\r' %>" required>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Titulo</label>
+          <input name="titulo" type="text" class="form-control border-input" placeholder="Titulo de la publicacion" value="<%= (direccion=='update')?entrada.titulo:'\r' %>" required>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <label>Resumen</label>
-        <textarea name="resumen" rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike" required>
-          <%= (direccion=='update')?entrada.resumen: "\r" %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Resumen</label>
+          <textarea name="resumen" rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike" required>
+            <%= (direccion=='update')?entrada.resumen: "\r" %>
+          </textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <textarea name="cuerpo" rows="10" cols="100" required id="editor1">
+          <%= (direccion=='update')? entrada.cuerpo : "\r" %>
         </textarea>
+
+        <script type="text/javascript">
+          //CKEDITOR. Set the number of languages.
+          var count = document.getElementById('count');
+          if (count) {
+            count.innerHTML = window.CKEDITOR_LANGS.length;
+          }
+
+          var editor;
+          function createEditor(languageCode) {
+            if (editor)
+              editor.destroy();
+
+            // Replace the <textarea id="editor1"> with an CKEditor instance, using default configurations.
+            editor = CKEDITOR.replace('editor1', {language: languageCode});
+          }
+
+          // At page startup, load the default language:
+          createEditor();
+        </script>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div>
-      <textarea name="cuerpo" rows="10" cols="100" required id="editor1">
-        <%= (direccion=='update')? entrada.cuerpo : "\r" %>
-      </textarea>
-
-      <script type="text/javascript">
-        //CKEDITOR. Set the number of languages.
-        var count = document.getElementById('count');
-        if (count) {
-          count.innerHTML = window.CKEDITOR_LANGS.length;
-        }
-
-        var editor;
-        function createEditor(languageCode) {
-          if (editor)
-            editor.destroy();
-
-          // Replace the <textarea id="editor1"> with an CKEditor instance, using default configurations.
-          editor = CKEDITOR.replace('editor1', {language: languageCode});
-        }
-
-        // At page startup, load the default language:
-        createEditor();
-      </script>
+    <div class="row">
+      <div class="col-md-3 dropdown">
+        <select class="btn btn-simple dropdown-toggle" name="categoria_entrada_ref" required>
+          <option ng-repeat="option in categoriasentradas" value="{{option.id}}">{{option.nombre_categoria}}</option>
+        </select>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3 dropdown">
-      <select class="btn btn-simple dropdown-toggle" name="categoria_entrada_ref" required>
-        <option ng-repeat="option in categoriasentradas" value="{{option.id}}">{{option.nombre_categoria}}</option>
-      </select>
-    </div>
-  </div>
+    <div class="clearfix"></div>
 
-  <div class="clearfix"></div>
-
-  <button type="submit" class="btn btn-raised btn-primary">Publicar</button>
-</form>
+    <button type="submit" class="btn btn-raised btn-primary">Publicar</button>
+  </form>
+</div>

@@ -19,8 +19,6 @@ module.exports = {
 		});
 	},
 	login: function(req, res) { /* Iniciar sesion, se verifican que las credenciales coincidan con el usuario registrado */
-		console.log("Entrando al login");
-		console.log("Estado :  " + req.session.authenticated);
 		if (req.session.authenticated == true && req.session.User.id != undefined) { //Si ya ha iniciado sesion entonces se redirige al perfil
 			return res.redirect('/usuario/perfil/' + req.session.User.id);
 		} else {
@@ -79,6 +77,7 @@ module.exports = {
 		}
 	},
 	signin: function(req, res) { /* Abre el formulario de iniciar sesion o login */
+		res.locals.layout = 'layouts/signin';
 		if (req.session.User == undefined) { //Si NO se ha iniciado sesion entonces se dirige a signin
 			res.view();
 		} else {

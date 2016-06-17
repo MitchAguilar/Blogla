@@ -16,6 +16,10 @@ module.exports = {
       type: 'string',
       required: false
     },
+    eliminado: {
+      type: 'boolean',
+      default: false
+    },
     entrada_ref: { // Referencia a entrada
       type: 'collection',
       via: 'categoria_entrada_ref'

@@ -27,22 +27,27 @@ module.exports.policies = {
    ***************************************************************************/
 
   '*': 'flash',
+
   'entrada': {
     'nuevo': 'authenticated',
     'create': 'authenticated',
     'update': 'authenticated',
-    'delete': 'authenticated',
+    'delete': false,
     'index': 'flash'
   },
   'rol': {
-    '*': 'authenticated'
+    '*': 'authenticated',
+    'update': false
   },
   'comentario': {
+    'index': 'flash',
     '*': 'authenticated'
   },
   'categoriaentrada': {
-    'index': 'authenticated',
-    'create': 'authenticated'
+    'index': 'flash',
+    'create': 'authenticated',
+    'update': 'authenticated',
+    'delete': false //Asegurar que no se pueda, de todas formas ya está deshabilitado los request DELETE
   },
   'usuario': {
     'login': 'flash',

@@ -1,37 +1,13 @@
 <html lang="es">
   <head>
     <title>
-      Internal
-      <%= __('Nombre') %>
+      <%= __('Login') %>
     </title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
-    <meta name="viewport" content="width=device-width"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/animate.min.css">
-    <link rel="stylesheet" href="/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/demo.css">
-    <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/login-register.css">
-    <link rel="stylesheet" href="/styles/material-kit.css">
-    <link rel="stylesheet" href="/styles/paper-dashboard.css">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/themify-icons.css">
-    <!--STYLES END-->
-
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-
-    <style media="screen">
-      .navbar-form {
-        border-color: #e7e7e7;
-      }
-    </style>
+    <meta charset="UTF-8">
     <!--
         Stylesheets and Preprocessors
         ==============================
@@ -53,12 +29,35 @@
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
 
-    <script src="https://code.angularjs.org/1.5.6/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.6/angular-resource.js"></script>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Muli:400,300' type='text/css'>
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/animate.min.css">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/demo.css">
+    <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/login-register.css">
+    <link rel="stylesheet" href="/styles/material-kit.css">
+    <link rel="stylesheet" href="/styles/paper-dashboard.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/themify-icons.css">
+    <!--STYLES END-->
   </head>
 
-  <body ng-app="Blog">
-    <%- body %>
+  <body ng-app="Blog" class="signup-page">
+    <div class="wrapper">
+      <div class="header header-filter" style="background-image: url('/images/city.jpg'); background-size: cover; background-position: top center;">
+        <div class="container">
+          <div class="row">
+            <%- body %>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!--
         Client-side Templates
@@ -82,7 +81,7 @@
     -->
 
     <!--TEMPLATES-->
-
+    
     <!--TEMPLATES END-->
 
     <!--
@@ -108,6 +107,8 @@
 
     -->
 
+    <script src="https://code.angularjs.org/1.5.6/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.6/angular-resource.js"></script>
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/ajquery/jquery.min.js"></script>
@@ -126,5 +127,12 @@
     <script src="/js/nouislider.min.js"></script>
     <script src="/js/paper-dashboard.js"></script>
     <!--SCRIPTS END-->
+
+    <script type="text/javascript">
+      $().ready(function() {
+        // the body of this function is in assets/material-kit.js
+        $(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
+      });
+    </script>
   </body>
 </html>

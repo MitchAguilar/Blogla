@@ -5,8 +5,8 @@
     </title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta charset="UTF-8">
     <!--
         Stylesheets and Preprocessors
@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Muli:400,300' type='text/css'>
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/animate.min.css">
@@ -47,184 +48,80 @@
     <!--STYLES END-->
   </head>
 
-  <body ng-app="Blog">
+  <body ng-app="Blog" class="landing-page">
+    <nav class="navbar navbar-transparent navbar-absolute">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <%= __('Nombre') %>
+          </a>
+        </div>
 
-    <%- include ../usuario/signin %>
+        <div class="collapse navbar-collapse" id="navigation-example">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/usuario/signin" class="btn">
+                <%= __('Login') %>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple">
+                <i class="fa fa-facebook-square"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple">
+                <i class="fa fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <div class="tutorial-page">
-      <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll" role="navigation">
+    <div class="wrapper">
+
+      <div class="header header-filter" style="background-image: url('/images/photo-1423655156442-ccc11daa4e99.jpg');">
         <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button id="menu-toggle" type="button" class="navbar-toggle">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar bar1"></span>
-              <span class="icon-bar bar2"></span>
-              <span class="icon-bar bar3"></span>
-            </button>
-            <a href="http://www.creative-tim.com">
-              <div class="logo-container">
-                <div class="logo">
-                  <img src="/images/logo.png">
-                </div>
-                <div class="brand">
-                  <%= __('Nombre') %>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a data-toggle="modal" href="javascript:void(0)" onclick="loginAjaxAfter();">
-                  <%= __('Login') %>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/timcreative/material-kit/issues">Have an issue?</a>
-              </li>
-            </ul>
-          </div>
-          <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-      </nav>
-
-      <div class="wrapper">
-        <div class="header header-filter" style="background-image: url('/images/photo-1423655156442-ccc11daa4e99.jpg');">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-6 col-md-offset-3">
-                <h1 class="title text-center">
-                  <%= __('Nombre') %>
-                </h1>
-              </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="title">Write the best title for your page.</h1>
+              <h4>Every landing page needs a small description after the big bold title, that's why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
+              <br/>
+              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-danger btn-raised btn-lg">
+                <i class="fa fa-play"></i>
+                Ver video
+              </a>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="main main-raised">
-          <div class="section">
-            <div class="container">
-              <%- body %>
-            </div>
+      <div class="main main-raised">
+        <div class="container">
+          <div class="section section-landing">
 
-            <div class="modal fade login" id="loginModal">
-              <div class="modal-dialog login animated">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Iniciar con</h4>
-                  </div>
-                  <div class="modal-body">
-                    <div class="box">
-                      <div class="content">
-                        <div class="social">
-                          <a class="circle github" href="#">
-                            <i class="fa fa-github fa-fw"></i>
-                          </a>
-                          <a id="google_login" class="circle google" href="#">
-                            <i class="fa fa-google-plus fa-fw"></i>
-                          </a>
-                          <a id="facebook_login" class="circle facebook" href="#">
-                            <i class="fa fa-facebook fa-fw"></i>
-                          </a>
-                        </div>
-                        <div class="division">
-                          <div class="line l"></div>
-                          <span>
-                            <%= __('o') %>
-                          </span>
-                          <div class="line r"></div>
-                        </div>
-                        <div class="error"></div>
-                        <div class="form loginBox">
-                          <form method="" action="" accept-charset="UTF-8">
-                            <input id="email" class="form-control" type="text" placeholder="<%= __('Email') %>" name="email">
-                            <input id="password" class="form-control" type="password" placeholder="Password" name="contrasenia">
-                            <input class="btn btn-default btn-login" type="button" value="<%= __('IniciarSesion') %>" onclick="loginAjax()">
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="box">
-                      <div class="content registerBox" style="display:none;">
-                        <div class="form">
-                          <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                            <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                            <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                            <input class="btn btn-default btn-register" type="button" value="Create account" name="commit">
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <div class="forgot login-footer">
-                      <span>Looking to
-                        <a href="javascript: showRegisterForm();">
-                        </a>
-                        ?</span>
-                    </div>
-                    <div class="forgot register-footer" style="display:none">
-                      <span>
-                        <%= __('SiRegistrado') %>
-                      </span>
-                      <a href="javascript: showLoginForm();">
-                        <%= __('IniciarSesion') %>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <%- body %>
 
           </div>
         </div>
       </div>
 
-      <footer class="footer footer-transparent">
-        <div class="container">
-          <nav class="pull-left">
-            <ul>
-              <li>
-                <a href="/acercade">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="/">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="social-area pull-right">
-            <a class="btn btn-social btn-twitter btn-just-icon" href="https://twitter.com/CreativeTim">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a class="btn btn-social btn-facebook btn-just-icon" href="https://www.facebook.com/CreativeTim">
-              <i class="fa fa-facebook-square"></i>
-            </a>
-            <a class="btn btn-social btn-google btn-just-icon" href="https://plus.google.com/+CreativetimPage">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </div>
-          <div class="copyright">
-            &copy; 2016 <%= __('Nombre') %>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <% include ../components/footer %>
 
-    <script>
-      $().ready(function() {
-        $(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
-      });
-    </script>
+    </div>
 
     <!--
         Client-side Templates
@@ -248,7 +145,7 @@
     -->
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
     <!--
@@ -284,6 +181,7 @@
     <script src="/js/bootstrap-notify.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/chartist.min.js"></script>
+    <script src="/js/controllers_angular/controller_categoria.js"></script>
     <script src="/js/controllers_angular/controller_perfil.js"></script>
     <script src="/js/demo.js"></script>
     <script src="/js/login-register.js"></script>
@@ -294,9 +192,19 @@
     <script src="/js/paper-dashboard.js"></script>
     <!--SCRIPTS END-->
 
-    <script>
+    <script type="text/javascript">    
+      var header_height;
+      var fixed_section;
+      var floating = false;
+
       $().ready(function() {
+        suggestions_distance = $("#suggestions").offset();
+        pay_height = $('.fixed-section').outerHeight();
+
         $(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
+
+        // the body of this function is in assets/material-kit.js
+        materialKit.initSliders();
       });
     </script>
   </body>

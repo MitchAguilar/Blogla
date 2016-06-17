@@ -1,107 +1,32 @@
-<div class="row tim-row">
-  <h2 class="text-center">Short Description and Usage</h2>
-  <legend></legend>
+<div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <p>
-      <b>Material Kit</b>
-      is a beautiful resource built for Bootstrap. It was made over the powerful
-      <a href="http://fezvrasta.github.io/bootstrap-material-design/" target="_blank">Bootstrap Material Design</a>. We used and have redesigned all components to make it look flat, minimalist and easy to use. We are proud of this new Bootstrap skin and the possibilities for customisation.
-    </p>
-    <p>
-      Using it is very simple and it will enable you to refresh you classic looking application. To get the desired effect you will also need to integrate JS plugins that take a little bit more effort. It the end the result will be worth it.
-    </p>
-  </div>
-</div>
-
-<div class="row tim-row">
-  <h2 class="text-center">File Structure</h2>
-  <legend></legend>
-  <div class="col-md-8 col-md-offset-2">
-    <p>
-      Once you have downloaded the archive and opened it, you will find the following structure:
-    </p>
-    <p>
-      Let's take it one by one:
-    </p>
-    <p>
-      x_material_kit<br>
-      --assets<br>
-      ---css<br>
-      -----bootstrap.min.css<br>
-      -----material-kit.css<br>
-      -----demo.css<br>
-      ---img<br>
-      ---js<br>
-      -----bootstrap-datepicker.js<br>
-      -----bootstrap.min.js<br>
-      -----jquery.min.js<br>
-      -----material-kit.js<br>
-      -----material.min.js<br>
-      -----nouislider.min.js<br>
-      ----sass<br>
-      -----material-kit<br>
-      -----material-kit.scss<br>
-      --examples<br>
-      --components-documentation.html<br>
-      --Creative Tim License.pdf --index.html<br>
-      --template.html<br>
-      --tutorial.html<br>
-    </p>
-  </div>
-</div>
-
-<div class="row tim-row">
-  <h2 class="text-center">New Components</h2>
-  <legend></legend>
-  <div class="col-md-8 col-md-offset-2">
-    <p>
-      Besides giving the existing Bootstrap elements a new look, we added new ones, so that the interface and consistent and homogenous.
-    </p>
-    <p>
-      Going through them, we added:
-      <ul>
-        <li>
-          Tags</li>
-        <li>
-          Checkboxes</li>
-        <li>
-          Radio Buttons</li>
-        <li>
-          Sliders</li>
-        <li>
-          Toggle Buttons</li>
-        <li>
-          Raised Areas</li>
-        <li>
-          Cards with tabs</li>
-        <li>
-          Datepicker</li>
-        <li>
-          Material Icons</li>
-      </ul>
-    </p>
-    <p>
-      For more details regarding the components, go to our
-      <a href="components-documentation.html">Components Page</a>.
-    </p>
+    <% if (entradas.length > 0) { %>
+      Hay
+      <%= entradas.length %>
+      publicaciones
+    <% } else { %>
+      No hay publicaciones
+    <% } %>
   </div>
 </div>
 
 <% for (var i = 0; i < entradas.length; i++) { %>
-  <div class="row tim-row">
-    <h2 class="text-center">
-      <%=: entradas[i].titulo | capitalize %>
-    </h2>
-    <legend></legend>
+  <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <p>
+      <h2 class="title">
+        <%=: entradas[i].titulo | capitalize %>
+      </h2>
+      <small>
+        <%= entradas[i].entrada_usuario.nick %>
+        <br>
+        <%= entradas[i].updatedAt %>
+      </small>
+      <h5 class="description">
         <%= entradas[i].resumen %>
-      </p>
-      <p>
-        <a href="/entrada/showOne/<%= entradas[i].id %>" target="_blank">
-          <%= __('ContinuaLeyendo') %>
-        </a>
-      </p>
+      </h5>
+      <a href="/entrada/showOne/<%= entradas[i].id %>" target="_blank">
+        <%= __('ContinuaLeyendo') %>
+      </a>
     </div>
   </div>
 <% } %>
