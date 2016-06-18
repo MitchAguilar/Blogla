@@ -3,6 +3,7 @@ ________________________________________________________________________________
 ________________________________________________________________________________
 
 
-1. showOne NO debe consultar entradas ocultas o eliminadas
-2. Colocar validaciones del lado del servidor (emails)
-3. El boton de editar de showOne debe aparecer solamente a los usuarios que publicaron la entrada
+1. Colocar validaciones del lado del servidor (emails)
+2. Metodos de actualizar Categoria de entrada
+3. CategoriasEntradas deben ser eliminadas unicamente por un administrador (la x de borrar no debe aparecer a los demas p. ej:.. Editor)
+4. Hacer funcionar el socket de Sails para que detecte el usuario que se encuentra conectado

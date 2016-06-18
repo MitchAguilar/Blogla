@@ -179,7 +179,6 @@ module.exports = {
 					return res.redirect('/usuario/register');
 				}
 				if (value_user != undefined) {
-					//console.log(r.length + " Entradas relacionadas al usuario " + value_user.id + ": \n" + JSON.stringify(r));
 					res.view({
 						usuario: value_user,
 						direccion: 'create'

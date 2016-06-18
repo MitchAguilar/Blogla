@@ -273,6 +273,24 @@ module.exports = {
 			});
 		}
 	},
+	misentradas: function(req, res) {
+		Entrada.find({
+			sort: 'updatedAt DESC',
+			eliminado: [false, undefined], // Consultar solamente los no eliminados
+			entrada_usuario: req.session.User.id
+		}).populateAll().exec(function(e, r) {
+			if (e) {
+				console.log(JSON.stringify(e));
+				return next(e);
+			}
+			var value = {
+				autenticado: ((req.session.authenticated && req.session.authenticated != undefined) ? true : false),
+				id_usuario: req.session.User != undefined ? req.session.User.id : undefined,
+				entradas: r
+			};
+			return res.json(value);
+		});
+	},
 	json: function(req, res) { //Traer todas las publicaciones hasta las Ocultas
 		listEntradas2(req, false, function(value) {
 			return res.json(value)

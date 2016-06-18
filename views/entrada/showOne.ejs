@@ -26,7 +26,7 @@
       <style media="screen">
         ul.share-buttons {
           list-style: none;
-          padding: 0;
+          padding: 0;          
         }
 
         ul.share-buttons li {
@@ -37,7 +37,7 @@
         <% if (creador === true) { %>
           <!-- Editar Button -->
           <form action="/entrada/editar/<%= entrada.id %>" method="GET">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+            <button class="btn btn-raised btn-warning" type="submit">
               <%= __('Editar') %>
             </button>
           </form>

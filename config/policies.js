@@ -33,7 +33,8 @@ module.exports.policies = {
     'create': 'authenticated',
     'update': 'authenticated',
     'delete': false,
-    'index': 'flash'
+    'index': 'flash',
+    'misEntradas': 'authenticated'
   },
   'rol': {
     '*': 'authenticated',
@@ -47,7 +48,8 @@ module.exports.policies = {
     'index': 'flash',
     'create': 'authenticated',
     'update': 'authenticated',
-    'delete': false //Asegurar que no se pueda, de todas formas ya está deshabilitado los request DELETE
+    'delete': false, //Asegurar que no se pueda, de todas formas ya está deshabilitado los request DELETE
+    'eliminar': 'authenticated'
   },
   'usuario': {
     'login': 'flash',

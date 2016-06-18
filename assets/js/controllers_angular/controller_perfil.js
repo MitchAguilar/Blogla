@@ -1,5 +1,3 @@
-var app = angular.module('Blog', []);
-
 app.controller('ControllerPerfil', [
   '$scope',
   '$http',
@@ -7,21 +5,12 @@ app.controller('ControllerPerfil', [
     $scope.moment = moment;
     $scope.moment.locale('es');
 
-    $scope.getCategoriaentradas = function() {
-      $http.get('/categoriaentrada').success(function(data, status, headers, config) {
-        $scope.categoriasentradas = data.categoriasentradas;
-        console.log(JSON.stringify($scope.categoriasentradas));
-      }).error(function(data, status, headers, config) {
-        console.log("Error> " + data);
-      });
-    };
-
     /**
      * Get JSON entradas
      * @return {[type]} [description]
      */
     $scope.getEntradas = function() {
-      $http.get('/entrada/json').success(function(data, status, headers, config) {
+      $http.get('/entrada/misentradas').success(function(data, status, headers, config) {
         $scope.entradas_ocultas = 0;
         $scope.entradas = data;
         $scope.entradas.entradas.forEach(item => {
@@ -110,7 +99,6 @@ app.controller('ControllerPerfil', [
       $scope.entradas = [];
       $scope.entradas_ocultas = 0;
 
-      $scope.getCategoriaentradas();
       $scope.getEntradas();
 
       $scope.fnclick_dashboard();

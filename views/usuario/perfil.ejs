@@ -23,7 +23,7 @@
           <li class="{{publicar? 'active': ''}}">
             <a href="" ng-click="fnclick_publicar()">
               <i class="ti-layers"></i>
-              <p>Publicaciones</p>
+              <p>Publicar</p>
             </a>
           </li>
           <li class="{{perfil? 'active': ''}}">
@@ -59,7 +59,9 @@
           <li>
             <a href="/usuario/signout">
               <i class="ti-back-right"></i>
-              <p>Salir</p>
+              <p>
+                <%= __('CerrarSession') %>
+              </p>
             </a>
           </li>
         </ul>
