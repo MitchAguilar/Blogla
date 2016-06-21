@@ -61,6 +61,11 @@ module.exports.policies = {
     'auth': 'flash',
     'index': false,
     '*': false
+  },
+  'blog': {
+    'index': 'flash',
+    'create': 'authenticated',
+    'update': 'authenticated'
   }
 
   /***************************************************************************

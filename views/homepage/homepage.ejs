@@ -1,0 +1,39 @@
+<div ng-controller="ControllerHomePage">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 0">
+      No hay publicaciones
+    </div>
+    <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 1">
+      Hay 1 publicación
+    </div>
+    <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length > 1">
+      Hay
+      {{publicaciones.length}}
+      publicaciónes
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="p in publicaciones.entradas">
+    <div class="col-md-8 col-md-offset-2">
+      <h2 class="title">
+        {{p.titulo | capitalize}}
+      </h2>
+      <small>
+        {{p.entrada_usuario.nick}}
+        <br>
+        {{p.updatedAt}}
+      </small>
+      <h5 class="description">
+        {{p.resumen}}
+      </h5>
+      <span class="label label-default">
+        {{p.categoria_entrada_ref.nombre_categoria}}
+      </span>
+      &nbsp;&nbsp;
+      <a href="/entrada/showOne/{{p.id}}" target="_blank">
+        <%= __('ContinuaLeyendo') %>
+      </a>
+      <hr>
+    </div>
+  </div>
+</div>

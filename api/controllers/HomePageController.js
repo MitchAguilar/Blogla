@@ -11,6 +11,5 @@ module.exports = {
     res.view('homepage/homepage', {
       auth: req.session.authenticated
     });
-    //res.redirect('entrada');
   }
 };

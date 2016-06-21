@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <% if (entradas.length > 0) { %>
+    <% if (entradas.length <= 0) { %>
+      No hay publicaciones
+    <% } else if (entradas.length == 1) { %>
+      Hay 1 publicación
+    <% } else if (entradas.length > 0) { %>
       Hay
       <%= entradas.length %>
       publicaciones
@@ -24,9 +28,14 @@
       <h5 class="description">
         <%= entradas[i].resumen %>
       </h5>
+      <span class="label label-default">
+        <%= entradas[i].categoria_entrada_ref.nombre_categoria %>
+      </span>
+      &nbsp;&nbsp;
       <a href="/entrada/showOne/<%= entradas[i].id %>" target="_blank">
         <%= __('ContinuaLeyendo') %>
       </a>
+      <hr>
     </div>
   </div>
 <% } %>

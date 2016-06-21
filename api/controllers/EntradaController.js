@@ -124,7 +124,7 @@ module.exports = {
 	},
 	index: function(req, res) { //Pagina principal de todas las entradas
 		listEntradas(req, false, false, function(value) { //Mostrar al usuario los no ocultos y eliminados
-			return res.view(value);
+			return res.json(value);
 		});
 	},
 	search: function(req, res) {
@@ -142,10 +142,6 @@ module.exports = {
 				if (e) {
 					console.log(JSON.stringify(e));
 					return next(e);
-				}
-				for (var i = 0; i < r.length; i++) {
-					r[i].createdAt = moment(r[i].createdAt).fromNow();
-					r[i].updatedAt = moment(r[i].updatedAt).fromNow();
 				}
 				//console.log("R: " + JSON.stringify(r));
 				res.view('entrada/index', {
@@ -273,11 +269,31 @@ module.exports = {
 			});
 		}
 	},
-	misentradas: function(req, res) {
+	misentradas: function(req, res) { //Retorna las entradas publicadas por el usuario que solicita la consulta
 		Entrada.find({
 			sort: 'updatedAt DESC',
 			eliminado: [false, undefined], // Consultar solamente los no eliminados
 			entrada_usuario: req.session.User.id
+		}).populateAll().exec(function(e, r) {
+			if (e) {
+				console.log(JSON.stringify(e));
+				return next(e);
+			}
+			var value = {
+				autenticado: ((req.session.authenticated && req.session.authenticated != undefined) ? true : false),
+				id_usuario: req.session.User != undefined ? req.session.User.id : undefined,
+				entradas: r
+			};
+			return res.json(value);
+		});
+	},
+	entradasxcategoria: function(req, res) { //Ver entradas segun una categoria
+		var _idCategoria = req.param('idCategoria');
+		console.log(_idCategoria);
+		Entrada.find({
+			sort: 'updatedAt DESC',
+			eliminado: [false, undefined], // Consultar solamente los no eliminados
+			categoria_entrada_ref: _idCategoria
 		}).populateAll().exec(function(e, r) {
 			if (e) {
 				console.log(JSON.stringify(e));
@@ -347,11 +363,6 @@ var listEntradas = function(req, eliminado, oculto, callback) {
 		if (e) {
 			console.log(JSON.stringify(e));
 			return next(e);
-		}
-		for (var i = 0; i < r.length; i++) {
-			r[i].datetimeCreateAt = r[i].createdAt;
-			r[i].createdAt = moment(r[i].createdAt).fromNow();
-			r[i].updatedAt = moment(r[i].updatedAt).fromNow();
 		}
 		//console.log("R: " + JSON.stringify(r));
 		var value = {
