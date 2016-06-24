@@ -63,7 +63,7 @@
 
     <div class="row" ng-controller="ControllerCategoria">
       <div class="col-md-3 dropdown" ng-init="getCategoriaentradas()">
-        <select class="btn btn-simple dropdown-toggle" name="categoria_entrada_ref" required>
+        <select class="btn btn-default dropdown-toggle" name="categoria_entrada_ref" required>
           <option ng-repeat="option in categoriasentradas" value="{{option.id}}">{{option.nombre_categoria}}</option>
         </select>
       </div>

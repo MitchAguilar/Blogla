@@ -32,7 +32,8 @@
         {{moment(entradas.updatedAt).fromNow()}}
       </td>
       <td>
-        {{(entradas.oculto? 'Ocuto': 'Activo')}}
+        <span class="label label-default" ng-show="entradas.oculto == true">Oculto</span>
+        <span class="label label-success" ng-show="entradas.oculto == false || entradas.oculto == undefined">Visible</span>
       </td>
       <td class="td-actions text-right">
         <a ng-show="(entradas.oculto == true)" ng-click="desocultarEntrada(entradas.id)" href="" rel="tooltip" title="<%= __('Desocultar') %>">
@@ -54,44 +55,3 @@
     </tr>
   </tbody>
 </table>
-
-<!--
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-  <thead>
-    <tr>
-      <th class="mdl-data-table__cell--non-numeric">#</th>
-      <th>Titulo</th>
-      <th>Resumen</th>
-      <th>Categoria</th>
-      <th>Creado</th>
-      <th colspan="3">Opciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="entradas in entradas.entradas">
-      <td>
-        {{moment(entradas.createdAt).fromNow()}}
-      </td>
-      <td title="Ver una publicacion">
-        <a href="/entrada/showOne/{{entradas.id}}" target="_blank">
-          Ver
-        </a>
-      </td>
-      <td title="Ocultar o desocultar una publicación">
-        <a class="mdl-button-primary" ng-show="(entradas.oculto == true)" ng-click="desocultarEntrada(entradas.id)" href="">
-          <%= __('Desocultar') %>
-        </a>
-
-        <a class="mdl-button-primary" ng-show="(entradas.oculto == false || entradas.oculto == undefined)" ng-click="ocultarEntrada(entradas.id)" href="">
-          <%= __('Ocultar') %>
-        </a>
-      </td>
-      <td title="Doble click para eliminar">
-        <a href="" class="mdl-button--accent" ng-dblclick="eliminarEntrada(entradas.id)">
-          <%= __('Eliminar') %>
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
--->

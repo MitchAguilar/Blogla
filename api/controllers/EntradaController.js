@@ -130,21 +130,30 @@ module.exports = {
 	search: function(req, res) {
 		var search = req.param('search');
 		if (search != undefined) {
-			console.log("Buscando entradas con: " + search);
-			Entrada.find({
-				titulo: {
-					'like': '%' + search + '%'
-				},
-				sort: 'updatedAt DESC'
+			//console.log("Buscando entradas con: " + search);
+			Entrada.find().where({
+				or: [{
+					titulo: {
+						'contains': search
+					}/*,
+					cuerpo: {
+						'contains': search
+					},
+					resumen: {
+						'contains': search
+					}*/
+				}],
+				sort: 'updatedAt DESC',
+				eliminado: [false], // Consultar solamente los no eliminados
+				oculto: [false] // Consultar solamente los no ocultos
 			}).populateAll().exec(function(e, r) {
 				//console.log(r[0].toJSON())
-				//console.log("Resultados de busqueda: \n" + JSON.stringify(r));
 				if (e) {
 					console.log(JSON.stringify(e));
 					return next(e);
 				}
 				//console.log("R: " + JSON.stringify(r));
-				res.view('entrada/index', {
+				res.json({
 					autenticado: (req.session.authenticated && req.session.authenticated != undefined) ? true : false,
 					entradas: r
 				});

@@ -32,25 +32,19 @@
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Muli:400,300' type='text/css'>
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/animate.min.css">
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/animate.min.css">
     <link rel="stylesheet" href="/styles/demo.css">
-    <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/login-register.css">
     <link rel="stylesheet" href="/styles/material-kit.css">
-    <link rel="stylesheet" href="/styles/paper-dashboard.css">
+    <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/themify-icons.css">
-    <!--STYLES END-->
   </head>
 
   <body ng-app="Blog" class="landing-page">
-    <nav class="navbar navbar-transparent navbar-absolute">
+    <nav class="navbar navbar-transparent navbar-absolute" role="navigation">
       <div class="container" ng-controller="ControllerBlog">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -67,6 +61,11 @@
 
         <div class="collapse navbar-collapse" id="navigation-example">
           <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/acercade" class="btn">
+                <%= __('Nosotros') %>
+              </a>
+            </li>
             <li>
               <a href="/usuario/signin" class="btn">
                 <%= __('Login') %>
@@ -98,10 +97,10 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <h1 class="title">Write the best title for your page.</h1>
-              <h4>Every landing page needs a small description after the big bold title, that's why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
+              <h1 class="title">Semillero de Programación</h1>
+              <h4>Entrenamiento en estrategias de programación, con el propósito de aumentar el nivel en Algoritmia de los equipos que representan a la Universidad de la Amazonia en las Maratones Regionales, Nacionales y Mundiales de Programación.</h4>
               <br/>
-              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-danger btn-raised btn-lg">
+              <a href="https://www.youtube.com/watch?v=uvFojBYflTk" class="btn btn-danger btn-raised btn-lg">
                 <i class="fa fa-play"></i>
                 Ver video
               </a>
@@ -172,7 +171,6 @@
 
     -->
 
-    <script src="https://code.angularjs.org/1.5.6/angular.min.js"></script>
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/angular/angular.min.js"></script>
@@ -181,6 +179,7 @@
     <script src="/js/app_angular/b_services/service_entrada.js"></script>
     <script src="/js/app_angular/controllers/controller_blog.js"></script>
     <script src="/js/app_angular/controllers/controller_categoria.js"></script>
+    <script src="/js/app_angular/controllers/controller_evento.js"></script>
     <script src="/js/app_angular/controllers/controller_home.js"></script>
     <script src="/js/app_angular/controllers/controller_perfil.js"></script>
     <script src="/js/app_angular/filters/filter_capitalize.js"></script>

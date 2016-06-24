@@ -1,39 +1,99 @@
 <div ng-controller="ControllerHomePage">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 0">
-      No hay publicaciones
-    </div>
-    <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 1">
-      Hay 1 publicación
-    </div>
-    <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length > 1">
-      Hay
-      {{publicaciones.length}}
-      publicaciónes
+
+  <div class="col-md-8">
+    <div ng-cloak>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 0">
+          No hay publicaciones
+        </div>
+        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 1">
+          Hay 1 publicación
+        </div>
+        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length > 1">
+          Hay
+          {{publicaciones.length}}
+          publicaciónes
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="p in publicaciones.entradas">
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="title">
+            {{p.titulo | capitalize}}
+          </h2>
+          <small>
+            {{p.entrada_usuario.nick}}
+            <br>
+            {{p.updatedAt}}
+          </small>
+          <h5 class="description">
+            {{p.resumen}}
+          </h5>
+          <span class="label label-danger">
+            {{p.categoria_entrada_ref.nombre_categoria}}
+          </span>
+          &nbsp;&nbsp;
+          <a href="/entrada/showOne/{{p.id}}" target="_blank">
+            <%= __('ContinuaLeyendo') %>
+          </a>
+          <hr>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row" ng-repeat="p in publicaciones.entradas">
-    <div class="col-md-8 col-md-offset-2">
-      <h2 class="title">
-        {{p.titulo | capitalize}}
-      </h2>
-      <small>
-        {{p.entrada_usuario.nick}}
-        <br>
-        {{p.updatedAt}}
-      </small>
-      <h5 class="description">
-        {{p.resumen}}
-      </h5>
-      <span class="label label-default">
-        {{p.categoria_entrada_ref.nombre_categoria}}
-      </span>
-      &nbsp;&nbsp;
-      <a href="/entrada/showOne/{{p.id}}" target="_blank">
-        <%= __('ContinuaLeyendo') %>
-      </a>
-      <hr>
+  <!-- Blog Sidebar Widgets Column -->
+  <div class="col-md-4">
+    <!-- Blog Search Well -->
+    <div class="well">
+      <h4>
+        <%= __('Buscar') %>
+      </h4>
+      <div class="form-group label-floating">
+        <label class="control-label">
+          <%= __('Busqueda') %>
+        </label>
+        <input type="text" class="form-control" ng-change="buscar()" ng-model="buscar_frase">
+      </div>
+      <span>{{resultados_publicaciones.entradas.length}}</span>
+      <ul class="list-group" ng-show="resultados_publicaciones.entradas.length > 0">
+        <li class="list-group-item" ng-repeat="encontrado in resultados_publicaciones.entradas">
+          <span class="badge">
+            {{moment(encontrado.createdAt).fromNow()}}
+          </span>
+          {{encontrado.titulo}}
+          <a href="/entrada/showOne/{{encontrado.id}}">Ver</a>
+        </li>
+      </ul>
     </div>
+
+    <!-- Blog Categories Well -->
+    <div class="well" ng-controller="ControllerCategoria">
+      <h4>({{categoriasentradas.length}}) Categorias</h4>
+      <div class="row">
+        <div class="col-lg-6">
+          <ul class="list-unstyled" ng-init="getCategoriaentradas()">
+            <li ng-repeat="c in categoriasentradas">
+              <a href="#">{{c.nombre_categoria}}</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.col-lg-6 -->
+      </div>
+      <!-- /.row -->
+    </div>
+
+    <!-- Side Widget Well -->
+    <div class="well">
+      <h4>Eventos</h4>
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="badge">14</span>
+          Cras justo odio
+        </li>
+      </ul>
+    </div>
+
   </div>
 </div>

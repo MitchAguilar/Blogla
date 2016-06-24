@@ -9,14 +9,15 @@
 	font-style: normal;
 }
 
+
 [class^="ti-"], [class*=" ti-"] {
 	font-family: 'themify';
 	speak: none;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
-	line-height: 1.42857;
+	line-height: 1;
 
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
