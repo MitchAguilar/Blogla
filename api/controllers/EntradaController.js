@@ -123,7 +123,7 @@ module.exports = {
 		}
 	},
 	index: function(req, res) { //Pagina principal de todas las entradas
-		listEntradas(req, false, false, function(value) { //Mostrar al usuario los no ocultos y eliminados
+		listEntradas(req, false, false, function(value) { //Mostrar al usuario los no ocultos y no eliminados
 			return res.json(value);
 		});
 	},
@@ -131,10 +131,10 @@ module.exports = {
 		var search = req.param('search');
 		if (search != undefined) {
 			//console.log("Buscando entradas con: " + search);
-			Entrada.find().where({
-				or: [{
+			Entrada.find({
+				where: {
 					titulo: {
-						'contains': search
+						contains: search
 					}/*,
 					cuerpo: {
 						'contains': search
@@ -142,7 +142,7 @@ module.exports = {
 					resumen: {
 						'contains': search
 					}*/
-				}],
+				},
 				sort: 'updatedAt DESC',
 				eliminado: [false], // Consultar solamente los no eliminados
 				oculto: [false] // Consultar solamente los no ocultos
@@ -190,7 +190,7 @@ module.exports = {
 			return next(err);
 		}
 	},
-	showOne: function(req, res) {
+	showOne: function(req, res) { /* Ver una entrada-publicacion por id */
 		Entrada.findOneById(req.param('id')).populateAll().exec(function(err, value) {
 			if (err) {
 				req.session.flash = {
@@ -206,9 +206,9 @@ module.exports = {
 				if (req.session.authenticated) { //Verificar si esta autenticado
 					res.view({
 						entrada: value,
-						creador: (req.session.User.id == value.entrada_usuario.id) //Verificar que la publicacion a ver la esta solicitando el mismo que la creó
+						creador: (req.session.User.id == value.entrada_usuario.id) //Verificar que la publicacion a ver, la está solicitando el mismo que la creó
 					});
-				} else { //El 'else' se coloca porque puede que el usuario no esté autenticado y por lo tanto User.id no existe y no se puede verificar
+				} else { /* El 'else' se coloca porque puede que el usuario no esté autenticado y por lo tanto User.id no existe y no se puede verificar*/
 					res.view({
 						entrada: value,
 						creador: false
@@ -298,23 +298,29 @@ module.exports = {
 	},
 	entradasxcategoria: function(req, res) { //Ver entradas segun una categoria
 		var _idCategoria = req.param('idCategoria');
-		console.log(_idCategoria);
-		Entrada.find({
-			sort: 'updatedAt DESC',
-			eliminado: [false, undefined], // Consultar solamente los no eliminados
-			categoria_entrada_ref: _idCategoria
-		}).populateAll().exec(function(e, r) {
-			if (e) {
-				console.log(JSON.stringify(e));
-				return next(e);
-			}
-			var value = {
-				autenticado: ((req.session.authenticated && req.session.authenticated != undefined) ? true : false),
-				id_usuario: req.session.User != undefined ? req.session.User.id : undefined,
-				entradas: r
-			};
+		//console.log(_idCategoria);
+		var value = {
+			autenticado: ((req.session.authenticated && req.session.authenticated != undefined) ? true : false),
+			entradas: []
+		};
+
+		if(_idCategoria != undefined) {
+			Entrada.find({
+				sort: 'updatedAt DESC',
+				oculto: [false, undefined], // Consultar solamente los no ocultos
+				eliminado: [false, undefined], // Consultar solamente los no eliminados
+				categoria_entrada_ref: _idCategoria
+			}).populateAll().exec(function(e, r) {
+				if (e) {
+					console.log(JSON.stringify(e));
+					return next(e);
+				}
+				value.entradas = r;
+				return res.json(value);
+			});
+		} else {
 			return res.json(value);
-		});
+		}
 	},
 	json: function(req, res) { //Traer todas las publicaciones hasta las Ocultas
 		listEntradas2(req, false, function(value) {

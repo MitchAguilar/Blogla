@@ -1,39 +1,50 @@
-<div ng-controller="ControllerHomePage">
+<div ng-controller="ControllerHomePage" id="publicaciones">
 
   <div class="col-md-8">
     <div ng-cloak>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 0">
+        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.entradas.length == 0">
           No hay publicaciones
         </div>
-        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length == 1">
+        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.entradas.length == 1">
           Hay 1 publicación
         </div>
-        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.length > 1">
+        <div class="col-md-8 col-md-offset-2" ng-show="publicaciones.entradas.length > 1">
           Hay
-          {{publicaciones.length}}
+          {{publicaciones.entradas.length}}
           publicaciónes
         </div>
       </div>
 
-      <div class="row" ng-repeat="p in publicaciones.entradas">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="form-group label-floating">
+            <label class="control-label">Buscar por titulo, contenido, categoria...</label>
+            <input type="text" class="form-control" ng-model="busqueda_princ">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="p in publicaciones.entradas | filter: busqueda_princ">
         <div class="col-md-8 col-md-offset-2">
           <h2 class="title">
             {{p.titulo | capitalize}}
           </h2>
           <small>
+            <%= __('PublicadoBy') %>
             {{p.entrada_usuario.nick}}
             <br>
-            {{p.updatedAt}}
+            {{moment(p.updatedAt).fromNow()}}
           </small>
           <h5 class="description">
-            {{p.resumen}}
+            {{p.resumen.substring(0, 200)}}
+            ...
           </h5>
           <span class="label label-danger">
             {{p.categoria_entrada_ref.nombre_categoria}}
           </span>
-          &nbsp;&nbsp;
-          <a href="/entrada/showOne/{{p.id}}" target="_blank">
+          &nbsp;
+          <a href="/entrada/showOne/{{p.id}}" target="_blank" class="label label-default">
             <%= __('ContinuaLeyendo') %>
           </a>
           <hr>
@@ -46,7 +57,7 @@
   <div class="col-md-4">
     <!-- Blog Search Well -->
     <div class="well">
-      <h4>
+      <h4 data-toggle="tooltip" data-placement="top" title="Buscar en todos las publicaciones hasta ahora.">
         <%= __('Buscar') %>
       </h4>
       <div class="form-group label-floating">
@@ -55,11 +66,12 @@
         </label>
         <input type="text" class="form-control" ng-change="buscar()" ng-model="buscar_frase">
       </div>
-      <span>{{resultados_publicaciones.entradas.length}}</span>
+      <span ng-show="resultados_publicaciones.entradas.length > 0">{{resultados_publicaciones.entradas.length}}
+        encontrados</span>
       <ul class="list-group" ng-show="resultados_publicaciones.entradas.length > 0">
         <li class="list-group-item" ng-repeat="encontrado in resultados_publicaciones.entradas">
           <span class="badge">
-            {{moment(encontrado.createdAt).fromNow()}}
+            {{moment(encontrado.updatedAt).fromNow()}}
           </span>
           {{encontrado.titulo}}
           <a href="/entrada/showOne/{{encontrado.id}}">Ver</a>
@@ -69,12 +81,15 @@
 
     <!-- Blog Categories Well -->
     <div class="well" ng-controller="ControllerCategoria">
-      <h4>({{categoriasentradas.length}}) Categorias</h4>
+      <h4>({{categoriasentradas.length + 1}}) Categorias</h4>
       <div class="row">
         <div class="col-lg-6">
           <ul class="list-unstyled" ng-init="getCategoriaentradas()">
+            <li>
+              <a href="" ng-click="getEntradas()">Todos</a>
+            </li>
             <li ng-repeat="c in categoriasentradas">
-              <a href="#">{{c.nombre_categoria}}</a>
+              <a href="" ng-click="xcategoria(c.id)">{{c.nombre_categoria}}</a>
             </li>
           </ul>
         </div>
@@ -83,9 +98,9 @@
       <!-- /.row -->
     </div>
 
-    <!-- Side Widget Well -->
+    <!-- Side Widget Well
     <div class="well">
-      <h4>Eventos</h4>
+      <h4>Recientes</h4>
 
       <ul class="list-group">
         <li class="list-group-item">
@@ -94,6 +109,6 @@
         </li>
       </ul>
     </div>
-
+    -->
   </div>
 </div>

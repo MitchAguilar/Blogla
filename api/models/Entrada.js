@@ -12,10 +12,8 @@ module.exports = {
   attributes: {
     titulo: {
       type: 'string',
-      required: true
-    },
-    fondo: {
-      type: 'text'
+      required: true,
+      validationMessage: 'Titulo de publicacion requerido'
     },
     resumen: {
       type: 'text',
@@ -40,6 +38,12 @@ module.exports = {
     entrada_usuario: { /* Relacion con usuario */
       model: 'Usuario',
       via: 'usuario_publicador_ref'
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.eliminado;
+
+      return obj;
     }
   }
 };

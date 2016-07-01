@@ -1,10 +1,10 @@
 <div ng-controller="ControllerPerfil" ng-init="inicializar()">
-  <div class="wrapper" ng-cloak>
+  <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
 
       <!-- Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"	Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"-->
 
-      <div class="sidebar-wrapper">
+      <div class="sidebar-wrapper" ng-cloak>
         <div class="logo">
           <a href="http://www.creative-tim.com" class="simple-text">
             <%= usuario.nick %>
@@ -70,7 +70,6 @@
 
     <div class="main-panel">
 
-
       <nav class="navbar navbar-default filter-bar live-view">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -84,37 +83,35 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li>
+              <!--<li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="ti-panel"></i>
                   <p>Stats</p>
                 </a>
-              </li>
+              </li>-->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="ti-bell"></i>
-                  <p class="notification">5</p>
-                  <p>Notifications</p>
+                  <p class="notification">
+                    {{notificaciones.length}}
+                  </p>
+                  <p>
+                    <%= __('Notificaciones') %>
+                  </p>
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">Notification 1</a>
-                  </li>
-                  <li>
-                    <a href="#">Notification 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Another notification</a>
+                  <li ng-repeat="n in notificaciones">
+                    <a href="">{{n.mensaje}}</a>
                   </li>
                 </ul>
               </li>
-              <li>
+              <!--<li>
                 <a href="#">
                   <i class="ti-settings"></i>
                   <p>Settings</p>
                 </a>
-              </li>
+              </li>-->
             </ul>
 
           </div>
@@ -332,29 +329,7 @@
         </div>
       </div>
 
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="pull-left">
-            <ul>
-              <li>
-                <a href="/">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright pull-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with
-            <i class="fa fa-heart heart"></i>
-            by
-            <a href="http://www.creative-tim.com">Creative Tim</a>
-          </div>
-        </div>
-      </footer>
-
+      <% include ../components/footer %>
     </div>
   </div>
 </div>
