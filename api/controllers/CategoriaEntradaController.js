@@ -44,7 +44,7 @@ module.exports = {
 		var categoriaentrada = {
 			nombre_categoria: req.param('nombre_categoria'),
 			descripcion: req.param('descripcion')
-		}
+		};
 
 		if (categoriaentrada.nombre_categoria != undefined && categoriaentrada.descripcion != undefined) {
 			CategoriaEntrada.create(categoriaentrada, function(err, value) {
@@ -58,7 +58,7 @@ module.exports = {
 			console.log("Error al crear una categoriaentrada, Faltan campos. ");
 			var err = {
 				message: "Faltan campos para registrar la categoriaentrada"
-			}
+			};
 			return next(err);
 		}
 	}

@@ -36,7 +36,7 @@ module.exports = {
 
 			var update_ent = {
 				oculto: true
-			}
+			};
 
 			updateEntrada(_id, update_ent, function(err, updated) {
 				if (err) {
@@ -68,7 +68,7 @@ module.exports = {
 
 			var update_ent = {
 				oculto: false,
-			}
+			};
 
 			updateEntrada(_id, update_ent, function(err, updated) {
 				if (err) {
@@ -84,7 +84,7 @@ module.exports = {
 						entrada: value,
 						estado: true
 					});
-				})
+				});
 			});
 		}
 	},
@@ -102,7 +102,7 @@ module.exports = {
 
 			var update_ent = {
 				eliminado: true,
-			}
+			};
 
 			updateEntrada(_id, update_ent, function(err, updated) {
 				if (err) {
@@ -118,7 +118,7 @@ module.exports = {
 						entrada: value,
 						estado: true
 					});
-				})
+				});
 			});
 		}
 	},
@@ -129,7 +129,7 @@ module.exports = {
 	},
 	search: function(req, res) {
 		var search = req.param('search');
-		if (search != undefined) {
+		if (search !== undefined) {
 			//console.log("Buscando entradas con: " + search);
 			Entrada.find({
 				where: {
@@ -171,7 +171,7 @@ module.exports = {
 			eliminado: false,
 			categoria_entrada_ref: req.param('categoria_entrada_ref'),
 			entrada_usuario: req.session.User.id
-		}
+		};
 
 		if (entrada.titulo != undefined && entrada.cuerpo != undefined) {
 			Entrada.create(entrada, function(err, value) {
@@ -186,7 +186,7 @@ module.exports = {
 			console.log("Error al crear una entrada, Faltan campos. ");
 			var err = {
 				message: "Faltan campos para registrar la entrada"
-			}
+			};
 			return next(err);
 		}
 	},
@@ -199,7 +199,7 @@ module.exports = {
 				console.log("Error al buscar una entrada.");
 				return res.redirect('/entrada');
 			}
-			if (value != undefined) {
+			if (value !== undefined) {
 				value.createdAt = momentParse(value.createdAt);
 				value.updatedAt = momentParse(value.updatedAt);
 
@@ -230,7 +230,7 @@ module.exports = {
 				console.log("Error al buscar una entrada.");
 				return res.redirect('/entrada');
 			}
-			if (value != undefined) {
+			if (value !== undefined) {
 				res.view('entrada/nuevo', {
 					direccion: 'update',
 					entrada: value
@@ -274,7 +274,7 @@ module.exports = {
 
 				findEntrada(updated[0].id, function(err, value) {
 					return res.redirect('entrada/showOne/' + value.id);
-				})
+				});
 			});
 		}
 	},
@@ -304,7 +304,7 @@ module.exports = {
 			entradas: []
 		};
 
-		if(_idCategoria != undefined) {
+		if(_idCategoria !== undefined) {
 			Entrada.find({
 				sort: 'updatedAt DESC',
 				oculto: [false, undefined], // Consultar solamente los no ocultos
@@ -381,8 +381,8 @@ var listEntradas = function(req, eliminado, oculto, callback) {
 		}
 		//console.log("R: " + JSON.stringify(r));
 		var value = {
-			autenticado: ((req.session.authenticated && req.session.authenticated != undefined) ? true : false),
-			id_usuario: req.session.User != undefined ? req.session.User.id : undefined,
+			autenticado: ((req.session.authenticated && req.session.authenticated !== undefined) ? true : false),
+			id_usuario: req.session.User !== undefined ? req.session.User.id : undefined,
 			entradas: r
 		};
 		callback(value);
@@ -408,8 +408,8 @@ var listEntradas2 = function(req, eliminado, callback) {
 		}
 		//console.log("R: " + JSON.stringify(r));
 		var value = {
-			autenticado: ((req.session.authenticated && req.session.authenticated != undefined) ? true : false),
-			id_usuario: req.session.User != undefined ? req.session.User.id : undefined,
+			autenticado: ((req.session.authenticated && req.session.authenticated !== undefined) ? true : false),
+			id_usuario: req.session.User !== undefined ? req.session.User.id : undefined,
 			entradas: r
 		};
 		callback(value);

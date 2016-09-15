@@ -16,7 +16,7 @@ module.exports = {
   create: function(req, res) {
     var ComentarioObj = {
       cuerpo: req.param('cuerpo')
-    }
+    };
 
     Comentario.create(ComentarioObj, function(err, value) {
       if (err) {
@@ -48,13 +48,13 @@ module.exports = {
   update: function(req, res) {
     var ComentarioObj = {
       cuerpo: req.param('cuerpo')
-    }
+    };
 
     Comentario.update(req.param('id'), ComentarioObj, function comentarioUpdate(err, value) {
       if (err) {
         req.session.flash = {
           err: err
-        }
+        };
         res.redirect('comentario/edit/' + req.param('id'));
       }
       res.redirect('comentario/show/' + req.param('id'));
