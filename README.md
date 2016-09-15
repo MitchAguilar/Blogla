@@ -1,5 +1,18 @@
 # Blogla
 
-a [Sails](http://sailsjs.org) application
+Una platafoma de administracion de blog, desarrollado con [SailsJS](http://sailsjs.org)
 
-sails generate scaffold user name:string age:integer email:email
+# Instalación
+
+```bash
+$ git clone https://github.com/juliandavidmr/Blogla
+$ cd Blogla
+$ npm install
+$ sails lift
+```
+
+**Ir a la carpeta *screenshots* para ver las capturas de pantalla.**
+
+## License
+
+MIT © [Julian David](https://twitter.com/anlijudavid)
