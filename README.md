@@ -1,5 +1,7 @@
 # Blogla
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/juliandavidmr/Blogla.svg)](https://greenkeeper.io/)
+
 Una platafoma de administracion de blog, desarrollado con [SailsJS](http://sailsjs.org)
 
 # Instalación
